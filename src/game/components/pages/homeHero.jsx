@@ -7,7 +7,6 @@ import {
 	Button,
 	Group,
 } from "@mantine/core"
-import neoIcon from "../../icons/neoIcon.svg"
 import {
 	Compass,
 	ListBullets,
@@ -151,7 +150,7 @@ function HeroImageRight() {
 				<div className={classes.inner}>
 					<div>
 						<Group align="center" spacing={4}>
-							<img src={neoIcon} className={classes.svg} alt="logo" />
+							<img src="/logo.svg" className={classes.svg} alt="logo" />
 							<Title component={Link} to="/" className={classes.title} mb="lg">
 								{BRAND_NAME}
 							</Title>

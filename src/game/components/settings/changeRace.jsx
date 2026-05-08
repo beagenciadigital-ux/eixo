@@ -57,6 +57,9 @@ function ChangeRace({ status, empire })
         }
     }
 
+    const selectedRaceIndex = Number(raceForm.values.race ?? empire.race)
+    const selectedRace = raceArray[selectedRaceIndex] ?? raceArray[empire.race]
+
     return (
         <form onSubmit={raceForm.onSubmit((values) =>
         {
@@ -71,6 +74,14 @@ function ChangeRace({ status, empire })
             }
         })}>
             <Stack spacing='sm' align='center'>
+                <Image
+                    src={`/images/races/${selectedRace.name.toLowerCase()}.webp`}
+                    alt={selectedRace.name}
+                    radius='md'
+                    fit='cover'
+                    width='100%'
+                    sx={{ maxWidth: 400 }}
+                />
                 <Group align='center'>
                     <Image src={`/icons/${raceArray[empire.race].name.toLowerCase()}.svg`} height={40} width={40} fit='contain' sx={(theme) => theme.colorScheme === 'dark' ? ({ filter: 'invert(1)', opacity: '75%' }) : ({ filter: 'invert(0)', })} />
                     {empire.turnsUsed > turnsProtection ? (<Text w='300px'>{t('settings:settings.changeRace', { turnsCost: Math.floor(turnsMax / 2) })}</Text>) : (<Text w='300px'>{t('settings:settings.freeRaceChange')}</Text>)}

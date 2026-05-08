@@ -123,6 +123,14 @@ export default function CreateDemoEmpire()
 									})}
 								>
 									<Stack spacing='sm' align='center'>
+										<Image
+											src={`/images/races/${(raceArray[Number(form.values.race ?? 0)] ?? raceArray[0]).name.toLowerCase()}.webp`}
+											alt={(raceArray[Number(form.values.race ?? 0)] ?? raceArray[0]).name}
+											radius='md'
+											fit='cover'
+											width='100%'
+											sx={{ maxWidth: 500 }}
+										/>
 										<TextInput
 											label='Name'
 											placeholder='empire name'
