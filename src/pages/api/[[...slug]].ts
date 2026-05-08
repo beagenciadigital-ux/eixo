@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type { Express } from "express";
 
 export const config = {
+	maxDuration: 300,
 	api: {
 		bodyParser: false,
 		externalResolver: true,
