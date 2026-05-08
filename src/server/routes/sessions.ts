@@ -3,9 +3,9 @@
 import type { Request, Response } from 'express'
 import { Router } from 'express'
 import { Not } from 'typeorm'
-import Session from '../entity/Session'
 import user from '../middleware/user'
 import auth from '../middleware/auth'
+import { getSessionRepo } from '@/lib/db'
 
 // READ
 const getSession = async (req: Request, res: Response) => {
@@ -14,7 +14,7 @@ const getSession = async (req: Request, res: Response) => {
 
 	try {
 		const now = new Date().getTime()
-		const session = await Session.findOne({
+		const session = await getSessionRepo().findOne({
 			where: {
 				empire_id: Number(id),
 				time: Not(0),
@@ -50,13 +50,15 @@ const setSession = async (req: Request, res: Response) => {
 	const time = 3600
 
 	try {
-		const session = new Session()
-		session.data = data
-		session.time = time
-		session.user_id = user_id
-		session.empire_id = Number(id)
-		session.role = 'user'
-		await session.save()
+		const sessionRepo = getSessionRepo()
+		const session = sessionRepo.create({
+			data,
+			time,
+			user_id,
+			empire_id: Number(id),
+			role: 'user',
+		})
+		await sessionRepo.save(session)
 		// console.log('session saved')
 		return res.sendStatus(200)
 	} catch (error) {

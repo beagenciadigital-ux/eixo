@@ -146,8 +146,8 @@ function App() {
 		isLoggedIn,
 		location.pathname,
 		navigate,
-		user.empires.length,
-		user.role,
+		user?.empires?.length,
+		user?.role,
 	])
 
 	useEffect(() => {

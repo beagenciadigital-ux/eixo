@@ -1,11 +1,9 @@
-import EmpireMessage from '../entity/EmpireMessage'
-import ClanMessage from '../entity/ClanMessage'
 import type { Request, Response } from 'express'
 import { Router } from 'express'
 import user from '../middleware/user'
 import auth from '../middleware/auth'
-import { getConnection } from 'typeorm'
 import type User from '../entity/User'
+import { getClanMessageRepo, getEmpireMessageRepo } from '@/lib/db'
 import { containsOnlySymbols } from '../services/actions/actions'
 import { attachGame } from '../middleware/game'
 
@@ -23,7 +21,7 @@ const getConversations = async (req: Request, res: Response) => {
 	const { empireId } = req.body
 
 	try {
-		const conversations = await EmpireMessage.find({
+		const conversations = await getEmpireMessageRepo().find({
 			select: [
 				'conversationId',
 				'empireIdSource',
@@ -90,7 +88,8 @@ const getMessages = async (req: Request, res: Response) => {
 	// console.log('conversationId', conversationId)
 	// console.log('empireId', empireId)
 	try {
-		let messages = await EmpireMessage.find({
+		const msgRepo = getEmpireMessageRepo()
+		let messages = await msgRepo.find({
 			where: { conversationId: conversationId },
 			order: { createdAt: 'ASC' },
 		})
@@ -102,7 +101,7 @@ const getMessages = async (req: Request, res: Response) => {
 			const reverseId = reverseConversationId(conversationId, empireId)
 			// console.log('reverseId', reverseId)
 
-			messages = await EmpireMessage.find({
+			messages = await msgRepo.find({
 				where: { conversationId: reverseId },
 				order: { createdAt: 'ASC' },
 			})
@@ -161,13 +160,14 @@ const postMessage = async (req: Request, res: Response) => {
 	// console.log('conversationId1', conversationId1)
 	// console.log('conversationId2', conversationId2)
 
-	conversation1 = await EmpireMessage.find({
+	const msgRepo = getEmpireMessageRepo()
+	conversation1 = await msgRepo.find({
 		where: { conversationId: conversationId1 },
 	})
 
 	// console.log('conversation1', conversation1)
 
-	conversation2 = await EmpireMessage.find({
+	conversation2 = await msgRepo.find({
 		where: { conversationId: conversationId2 },
 	})
 
@@ -175,7 +175,7 @@ const postMessage = async (req: Request, res: Response) => {
 
 	if (conversation1.length < 1 && conversation2.length < 1) {
 		console.log('no conversation found')
-		const newConversation = EmpireMessage.create({
+		const newConversation = msgRepo.create({
 			empireIdSource: sourceId,
 			empireSourceName: sourceName,
 			empireIdDestination: destinationId,
@@ -189,11 +189,11 @@ const postMessage = async (req: Request, res: Response) => {
 			game_id: game_id,
 		})
 
-		await newConversation.save()
+		await msgRepo.save(newConversation)
 		res.status(201).json(newConversation)
 	} else if (conversation1.length > 0) {
 		console.log('conversation found', conversationId1)
-		const newMessage = EmpireMessage.create({
+		const newMessage = msgRepo.create({
 			empireIdSource: sourceId,
 			empireSourceName: sourceName,
 			empireIdDestination: destinationId,
@@ -207,11 +207,11 @@ const postMessage = async (req: Request, res: Response) => {
 			game_id: game_id,
 		})
 
-		await newMessage.save()
+		await msgRepo.save(newMessage)
 		res.status(201).json(newMessage)
 	} else if (conversation2.length > 0) {
 		console.log('conversation found', conversationId2)
-		const newMessage = EmpireMessage.create({
+		const newMessage = msgRepo.create({
 			empireIdSource: sourceId,
 			empireSourceName: sourceName,
 			empireIdDestination: destinationId,
@@ -225,7 +225,7 @@ const postMessage = async (req: Request, res: Response) => {
 			game_id: game_id,
 		})
 
-		await newMessage.save()
+		await msgRepo.save(newMessage)
 		res.status(201).json(newMessage)
 	} else {
 		res.status(500).json({ message: 'Error' })
@@ -243,7 +243,7 @@ const checkForNew = async (req: Request, res: Response) => {
 	// }
 
 	try {
-		const news = await EmpireMessage.find({
+		const news = await getEmpireMessageRepo().find({
 			where: { empireIdDestination: id },
 			order: { createdAt: 'DESC' },
 			skip: 0,
@@ -266,7 +266,7 @@ const countNew = async (req: Request, res: Response) => {
 	const { id } = req.params
 
 	try {
-		const mail = await EmpireMessage.findAndCount({
+		const mail = await getEmpireMessageRepo().findAndCount({
 			where: { empireIdDestination: id, seen: false },
 			// cache: 30000,
 		})
@@ -282,11 +282,11 @@ const markRead = async (req: Request, res: Response) => {
 	// console.log('marking mail as read')
 	const { id } = req.params
 
-	await getConnection()
+	await getEmpireMessageRepo()
 		.createQueryBuilder()
-		.update(EmpireMessage)
+		.update()
 		.set({ seen: true })
-		.where({ conversationId: id })
+		.where('conversationId = :id', { id })
 		.execute()
 
 	return res.json({ success: true })
@@ -296,7 +296,7 @@ const getClanMessages = async (req: Request, res: Response) => {
 	const { clanId } = req.body
 
 	try {
-		const messages = await ClanMessage.find({
+		const messages = await getClanMessageRepo().find({
 			where: { clanId: clanId },
 			order: { createdAt: 'ASC' },
 		})
@@ -319,7 +319,8 @@ const postClanMessage = async (req: Request, res: Response) => {
 	}
 
 	try {
-		const newMessage = ClanMessage.create({
+		const clanRepo = getClanMessageRepo()
+		const newMessage = clanRepo.create({
 			empireId,
 			empireName,
 			clanMessageBody: message,
@@ -328,7 +329,7 @@ const postClanMessage = async (req: Request, res: Response) => {
 			game_id,
 		})
 
-		await newMessage.save()
+		await clanRepo.save(newMessage)
 		res.status(201).json(newMessage)
 	} catch (error) {
 		res.status(500).json({ message: error.message })
@@ -341,7 +342,7 @@ const unreadClanMessages = async (req: Request, res: Response) => {
 	// console.log(req.body)
 	empireId = empireId.toString()
 	try {
-		const messages = await ClanMessage.find({
+		const messages = await getClanMessageRepo().find({
 			where: {
 				clanId: clanId,
 			},
@@ -369,7 +370,7 @@ const readClanMessages = async (req: Request, res: Response) => {
 	// console.log(req.body)
 	empireId = empireId.toString()
 	try {
-		const messages = await ClanMessage.find({
+		const messages = await getClanMessageRepo().find({
 			where: {
 				clanId: clanId,
 			},
@@ -396,9 +397,9 @@ const reportMessage = async (req: Request, res: Response) => {
 	const { conversationId } = req.body
 
 	try {
-		await getConnection()
+		await getEmpireMessageRepo()
 			.createQueryBuilder()
-			.update(EmpireMessage)
+			.update()
 			.set({
 				// update rank
 				messageFlags: 1,
@@ -417,9 +418,14 @@ const toggleReport = async (req: Request, res: Response) => {
 	const { uuid } = req.params
 
 	try {
-		const message = await EmpireMessage.findOne({
+		const msgRepo = getEmpireMessageRepo()
+		const message = await msgRepo.findOne({
 			where: { uuid: uuid },
 		})
+
+		if (!message) {
+			return res.status(404).json({ message: 'Message not found' })
+		}
 
 		if (message.messageFlags === 1) {
 			message.messageFlags = 0
@@ -427,7 +433,7 @@ const toggleReport = async (req: Request, res: Response) => {
 			message.messageFlags = 1
 		}
 
-		await message.save()
+		await msgRepo.save(message)
 
 		res.status(200).json({ message: 'Message report status changed' })
 	} catch (error) {

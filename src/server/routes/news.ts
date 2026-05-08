@@ -1,19 +1,23 @@
 // route to fetch individual empire news items
 // fetch all public news items
 import { Request, Response, Router } from 'express'
-import EmpireNews from '../entity/EmpireNews'
 import auth from '../middleware/auth'
 import user from '../middleware/user'
-import { getConnection, Raw } from 'typeorm'
-import User from '../entity/User'
+import { Raw } from 'typeorm'
+import { getEmpireNewsRepo } from '@/lib/db'
 
 // set up route for pagination of news data
 const getPageNews = async (req: Request, res: Response) => {
 	const { skip, take, view } = req.body
 
 	try {
-		const news = await EmpireNews.find({
-			where: { public: view, game_id: req.query.gameId },
+		const gameId = req.query.gameId
+		const where: { public: boolean; game_id?: number } = { public: view }
+		if (gameId !== undefined && gameId !== '') {
+			where.game_id = Number(gameId)
+		}
+		const news = await getEmpireNewsRepo().find({
+			where,
 			order: { createdAt: 'DESC' },
 			skip: skip,
 			take: take,
@@ -30,7 +34,7 @@ const getEmpireNews = async (req: Request, res: Response) => {
 	const { id } = req.params
 
 	try {
-		const news = await EmpireNews.find({
+		const news = await getEmpireNewsRepo().find({
 			where: { empireIdDestination: id },
 			order: { createdAt: 'DESC' },
 			skip: 0,
@@ -48,11 +52,11 @@ const markRead = async (req: Request, res: Response) => {
 	console.log('marking news as read')
 	const { id } = req.params
 
-	await getConnection()
+	await getEmpireNewsRepo()
 		.createQueryBuilder()
-		.update(EmpireNews)
+		.update()
 		.set({ seen: true })
-		.where({ empireIdDestination: id })
+		.where('empireIdDestination = :id', { id })
 		.execute()
 
 	return res.json({ success: true })
@@ -62,7 +66,7 @@ const checkForNew = async (req: Request, res: Response) => {
 	const { id } = req.params
 
 	try {
-		const news = await EmpireNews.find({
+		const news = await getEmpireNewsRepo().find({
 			where: { empireIdDestination: id },
 			order: { createdAt: 'DESC' },
 			skip: 0,
@@ -84,7 +88,7 @@ const countNew = async (req: Request, res: Response) => {
 	const { id } = req.params
 
 	try {
-		const news = await EmpireNews.findAndCount({
+		const news = await getEmpireNewsRepo().findAndCount({
 			where: { empireIdDestination: id, seen: false },
 			// cache: 30000,
 		})
@@ -110,7 +114,7 @@ const searchNews = async (req: Request, res: Response) => {
 
 	try {
 		if (empire && type) {
-			const news = await EmpireNews.find({
+			const news = await getEmpireNewsRepo().find({
 				where: [
 					{
 						public: view,
@@ -132,7 +136,7 @@ const searchNews = async (req: Request, res: Response) => {
 			return res.json(news)
 		}
 		if (type && !empire) {
-			const news = await EmpireNews.find({
+			const news = await getEmpireNewsRepo().find({
 				where: {
 					public: view,
 					type: searchType,
@@ -145,7 +149,7 @@ const searchNews = async (req: Request, res: Response) => {
 			return res.json(news)
 		}
 		if (empire && !type) {
-			const news = await EmpireNews.find({
+			const news = await getEmpireNewsRepo().find({
 				where: [
 					{
 						public: view,
@@ -165,7 +169,7 @@ const searchNews = async (req: Request, res: Response) => {
 			return res.json(news)
 		}
 		if (!empire && !type) {
-			const news = await EmpireNews.find({
+			const news = await getEmpireNewsRepo().find({
 				where: {
 					public: view,
 					game_id: gameId,
@@ -195,7 +199,7 @@ const clanNews = async (req: Request, res: Response) => {
 	// console.log(searchArray)
 
 	try {
-		const news = await EmpireNews.find({
+		const news = await getEmpireNewsRepo().find({
 			where: searchArray,
 			order: { createdAt: 'DESC' },
 		})
@@ -210,7 +214,7 @@ const clanNews = async (req: Request, res: Response) => {
 
 const simpleNews = async (req: Request, res: Response) => {
 	try {
-		const news = await EmpireNews.find({
+		const news = await getEmpireNewsRepo().find({
 			select: [
 				'sourceName',
 				'destinationName',
@@ -238,7 +242,7 @@ const scoresNews = async (req: Request, res: Response) => {
 	const { gameId } = req.query
 
 	try {
-		const news = await EmpireNews.find({
+		const news = await getEmpireNewsRepo().find({
 			where: [
 				{
 					public: view,

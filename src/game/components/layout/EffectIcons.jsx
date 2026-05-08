@@ -13,11 +13,11 @@ export default function EffectIcons({ empire, pageState })
     const effects = useSelector((state) => state.effects.effects)
     const now = new Date()
 
-    useEffect(() =>
-        dispatch(fetchEffects({
+    useEffect(() => {
+        void dispatch(fetchEffects({
             id: empire.id
         }))
-        , [empire, pageState])
+    }, [empire, pageState])
 
     return (
         <div>
