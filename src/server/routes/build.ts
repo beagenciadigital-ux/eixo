@@ -6,10 +6,11 @@ import Clan from "../entity/Clan";
 import { useTurnInternal } from "./useturns";
 import user from "../middleware/user";
 import auth from "../middleware/auth";
-import { calcSizeBonus, calcSizeFactors } from "../services/actions/actions";
+import { calcSizeFactors } from "../services/actions/actions";
 import { takeSnapshot } from "../services/actions/snaps";
 import { attachGame } from "../middleware/game";
 import type Game from "../entity/Game";
+import type User from "../entity/User";
 import { updateEmpire } from "../services/actions/updateEmpire";
 import { getServerStats } from "../services/game/serverStats";
 
@@ -36,6 +37,37 @@ const getBuildAmounts = async (empire: Empire, cost: number, gameId: number) => 
 	);
 
 	return { canBuild, buildRate, buildCost };
+};
+
+/** GET — same caps as POST /build so the client does not underestimate build cost. */
+const getBuildLimits = async (req: Request, res: Response) => {
+	const game: Game = res.locals.game;
+	const user = res.locals.user as User;
+	const empireId = Number.parseInt(String(req.query.empireId), 10);
+
+	if (!Number.isFinite(empireId)) {
+		return res.status(400).json({
+			error: "empireId is required",
+			code: "MISSING_EMPIRE_ID",
+		});
+	}
+
+	const empire = await Empire.findOne({ id: empireId });
+	if (!empire) {
+		return res.status(404).json({ error: "Empire not found", code: "EMPIRE_NOT_FOUND" });
+	}
+
+	if (empire.game_id !== game.game_id) {
+		return res.status(403).json({ error: "Empire is not in this game", code: "GAME_MISMATCH" });
+	}
+
+	const owned = user.empires?.some((e) => e.id === empire.id) ?? false;
+	if (!owned) {
+		return res.status(403).json({ error: "Forbidden", code: "FORBIDDEN" });
+	}
+
+	const amounts = await getBuildAmounts(empire, game.buildCost, game.game_id);
+	return res.json(amounts);
 };
 
 const build = async (req: Request, res: Response) => {
@@ -180,6 +212,7 @@ const build = async (req: Request, res: Response) => {
       return resultArray;
     } catch (err) {
       console.log(err);
+      return [{ error: "Build failed", code: "BUILD_ERROR" }];
     }
   };
 
@@ -201,7 +234,7 @@ const build = async (req: Request, res: Response) => {
 
 const router = Router();
 
-// needs user and auth middleware
+router.get("/limits", user, auth, attachGame, getBuildLimits);
 router.post("/", user, auth, attachGame, build);
 
 export default router;

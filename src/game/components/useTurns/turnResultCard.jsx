@@ -235,6 +235,9 @@ export default function TurnResultCard({ data, era })
 						},
 					})}>
 						{data.type === 'explore' && <Text align='center' weight='bold' color='green'>{t('turns:results.exploreSuccess', { count: data.result.toLocaleString() })}</Text>}
+						{data?.messages?.production ? (
+							<Text align='center' weight='bold' color='green'>{data.messages.production}</Text>
+						) : null}
 						{data?.messages?.desertion && <Text align='center' color='red' weight='bold'>{data.messages.desertion}</Text>}
 						{data.attack && attackResult(data.attack, era, t)}
 						{data.cast && spellResult(data.cast, t)}

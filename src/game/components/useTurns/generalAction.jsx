@@ -40,7 +40,7 @@ export default function GeneralAction(props)
 			}
 		}
 		form.setValues({ turns: turns })
-	}, [props.type, props.empire.health]);
+	}, [props.type, props.empire.health, props.empire.tax]);
 
 	const form = useForm({
 		initialValues: {
@@ -149,7 +149,7 @@ export default function GeneralAction(props)
 					</Text>
 					<form onSubmit={form.onSubmit((values) =>
 					{
-						dispatch(clearResult)
+						dispatch(clearResult())
 						doTurns(values)
 					})}>
 						<Stack spacing='sm' align='center'>

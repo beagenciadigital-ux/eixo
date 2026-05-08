@@ -25,24 +25,24 @@ const NewPlayerModal = ({ empire, time }) => {
 		<Modal
 			opened={newPlayerModal}
 			onClose={() => setNewPlayerModal(false)}
-			title={t('guide:content.newPlayer.title')}
+			title={t('guide:guide.content.newPlayer.title')}
 			centered
 			overflow="inside"
 			size="lg"
 		>
 			<Text>
-				{t('guide:content.newPlayer.protection', { turnsProtection: 1000 })}
+				{t('guide:guide.content.newPlayer.protection', { turnsProtection: 1000 })}
 			</Text>
 			<Text mt="sm">
-				{t('guide:content.newPlayer.newPlayerGuide')}
+				{t('guide:guide.content.newPlayer.newPlayerGuide')}
 			</Text>
 			<Text mt="sm">
-				{t('guide:content.newPlayer.goal')}
+				{t('guide:guide.content.newPlayer.goal')}
 			</Text>
 			<Text mt="sm">
-				{t('guide:content.newPlayer.raceTraits.intro', { 
+				{t('guide:guide.content.newPlayer.raceTraits.intro', { 
 					raceName: raceArray[empire.race].name, 
-					strength: t(`guide:content.newPlayer.raceTraits.${raceName}`)
+					strength: t(`guide:guide.content.newPlayer.raceTraits.${raceName}`)
 				})}
 			</Text>
 		</Modal>

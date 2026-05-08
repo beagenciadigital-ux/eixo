@@ -1,4 +1,5 @@
-import { Button, Center, NumberInput, Stack, Table, Title, Text, ActionIcon, Group } from '@mantine/core'
+import { Button, Center, NumberInput, Stack, Table, Title, Text, ActionIcon, Group, Loader } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '@mantine/form'
 import Axios from 'axios'
@@ -7,8 +8,8 @@ import { raceArray } from '../../config/races'
 import { eraArray } from '../../config/eras'
 import { FavoriteButton, HalfButton, MaxButton, OneTurn } from '../utilities/maxbutton'
 import { Link } from 'react-router-dom'
-import { calcSizeBonus } from '../../functions/functions'
 import { useState, useRef } from 'react'
+import { useBuildLimits } from '../../hooks/useBuildLimits'
 import { useTour } from '@reactour/tour'
 import { Compass } from '@phosphor-icons/react'
 import { getBuildSteps } from '../../tour/buildSteps'
@@ -30,34 +31,12 @@ export default function Build({ size })
 		error: '',
 	}
 	const { empire } = useSelector((state) => state.empire)
-	const { buildCost: baseBuildCost } = useSelector((state) => state.games.activeGame)
 
 	const [loading, setLoading] = useState(false)
 
 	const dispatch = useDispatch()
 	const loadEmpire = useLoadEmpire(empire.uuid)
-
-	const getBuildAmounts = (empire) =>
-	{
-		const size = calcSizeBonus(empire)
-		// console.log(size)
-		const buildCost = Math.round((baseBuildCost + empire.land * 0.2) * (size / 3))
-
-		let buildRate = Math.round(empire.land * 0.015 + 4)
-		buildRate = Math.round(
-			((100 + raceArray[empire.race].mod_buildrate) / 100) * buildRate
-		)
-
-		const canBuild = Math.min(
-			Math.floor(empire.cash / buildCost),
-			buildRate * empire.turns,
-			empire.freeLand
-		)
-
-		return { canBuild, buildRate, buildCost }
-	}
-
-	const { canBuild, buildRate, buildCost } = getBuildAmounts(empire)
+	const { limits: { canBuild, buildRate, buildCost }, status: limitsStatus } = useBuildLimits(empire)
 
 	const form = useForm({
 		initialValues: {
@@ -153,6 +132,13 @@ export default function Build({ size })
 			}
 		} catch (error) {
 			console.log(error)
+			const data = error.response?.data
+			const msg =
+				(typeof data?.error === 'string' && data.error) ||
+				data?.messages?.error ||
+				error.message ||
+				'Pedido falhou'
+			showNotification({ title: t('build.title'), message: msg, color: 'red' })
 			setLoading(false)
 		}
 	}
@@ -190,6 +176,14 @@ export default function Build({ size })
 							<Text align='center'>
 								{t('build.canBuild', { canBuild: canBuild.toLocaleString() })}
 							</Text>
+							{limitsStatus === 'loading' && (
+								<Group position='center'><Loader size='sm' /></Group>
+							)}
+							{limitsStatus === 'error' && (
+								<Text align='center' color='red' size='sm'>
+									Não foi possível carregar os limites de construção. Atualiza a página.
+								</Text>
+							)}
 						</div>
 					</>}
 					<form
@@ -197,7 +191,7 @@ export default function Build({ size })
 							totalBuild <= canBuild
 								? form.onSubmit((values) =>
 								{
-									dispatch(clearResult)
+									dispatch(clearResult())
 									doBuild(values)
 								})
 								: setErrors(t('build.error'))
@@ -302,7 +296,7 @@ export default function Build({ size })
 							</Table>
 							<div style={{ color: 'red' }}>{errors.error}</div>
 
-							<Button type='submit' disabled={errors.error || roundStatus} loading={loading} ref={buttonRef}>
+							<Button type='submit' disabled={errors.error || roundStatus || limitsStatus !== 'succeeded'} loading={loading} ref={buttonRef}>
 								{t('turns:build.submit')}
 							</Button>
 

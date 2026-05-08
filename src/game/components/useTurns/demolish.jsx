@@ -256,7 +256,7 @@ export default function Demolish() {
 							totalDemo <= canDemolish
 								? form.onSubmit((values) => {
 										// console.log(values)
-										dispatch(clearResult)
+										dispatch(clearResult())
 										doDemolish(values)
 								  })
 								: setErrors(t("turns:build.demoError"))
@@ -392,7 +392,7 @@ export default function Demolish() {
 					<form
 						onSubmit={dropForm.onSubmit((values) => {
 							// console.log(values)
-							dispatch(clearResult)
+							dispatch(clearResult())
 							doDrop(values)
 						})}
 					>

@@ -11,10 +11,19 @@ export const attachGame = async (
 		const { gameId } = req.query
 		// console.log(gameId)
 		// console.log(res.locals.user.empires[0].game_id)
-		if (!gameId) return res.status(400).json({ error: 'Game ID is required.' })
+		if (gameId === undefined || gameId === '')
+			return res.status(400).json({ error: 'Game ID is required.' })
 
-		const game = await getGameRepo().findOne({ where: { game_id: gameId } })
-		// console.log(game)
+		const gameIdNum = Number(gameId)
+		if (!Number.isFinite(gameIdNum))
+			return res.status(400).json({ error: 'Game ID is required.' })
+
+		const game = await getGameRepo().findOne({
+			where: { game_id: gameIdNum },
+		})
+		if (!game)
+			return res.status(404).json({ error: 'Game not found.' })
+
 		res.locals.game = game
 
 		next()

@@ -1,13 +1,13 @@
 import { Button, NumberInput, Group, Text } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '@mantine/form'
 import Axios from 'axios'
 import { clearResult, setResult } from '../../store/turnResultsSlice'
-import { raceArray } from '../../config/races'
 import { HalfButton, MaxButton, OneTurn } from '../utilities/maxbutton'
-import { calcSizeBonus } from '../../functions/functions'
 import { useState, useRef } from 'react'
 import { useLoadEmpire } from '../../hooks/useLoadEmpire'
+import { useBuildLimits } from '../../hooks/useBuildLimits'
 import { checkRoundStatus } from '../../functions/checkRoundStatus'
 import { setRepeat } from '../../store/repeatSlice'
 import { eraArray } from '../../config/eras'
@@ -17,7 +17,6 @@ export default function TinyBuild({ building, show })
 {
 	// console.log(building)
 	const { empire } = useSelector((state) => state.empire)
-	const { buildCost: baseBuildCost } = useSelector((state) => state.games.activeGame)
 	const { t } = useTranslation(['turns', 'eras'])
 	const buttonRef = useRef()
 	if (building === 'bldTrp') {
@@ -34,28 +33,7 @@ export default function TinyBuild({ building, show })
 
 	const dispatch = useDispatch()
 	const loadEmpire = useLoadEmpire(empire.uuid)
-
-	const getBuildAmounts = (empire) =>
-	{
-		let size = calcSizeBonus(empire)
-		// console.log(size)
-		let buildCost = Math.round((baseBuildCost + empire.land * 0.2) * (size / 3))
-
-		let buildRate = Math.round(empire.land * 0.015 + 4)
-		buildRate = Math.round(
-			((100 + raceArray[empire.race].mod_buildrate) / 100) * buildRate
-		)
-
-		let canBuild = Math.min(
-			Math.floor(empire.cash / buildCost),
-			buildRate * empire.turns,
-			empire.freeLand
-		)
-
-		return { canBuild, buildRate, buildCost }
-	}
-
-	const { canBuild, buildRate } = getBuildAmounts(empire)
+	const { limits: { canBuild, buildRate }, status: limitsStatus } = useBuildLimits(empire)
 
 	const form = useForm({
 		initialValues: {
@@ -146,6 +124,13 @@ export default function TinyBuild({ building, show })
 			setLoading(false)
 		} catch (error) {
 			console.log(error)
+			const data = error.response?.data
+			const msg =
+				(typeof data?.error === 'string' && data.error) ||
+				data?.messages?.error ||
+				error.message ||
+				'Pedido falhou'
+			showNotification({ title: t('turns:build.submit'), message: msg, color: 'red' })
 			setLoading(false)
 		}
 	}
@@ -168,7 +153,7 @@ export default function TinyBuild({ building, show })
 				totalBuild <= canBuild
 					? form.onSubmit((values) =>
 					{
-						dispatch(clearResult)
+						dispatch(clearResult())
 						doBuild(values)
 					})
 					: setErrors(t('turns:build.buildError'))
@@ -201,7 +186,7 @@ export default function TinyBuild({ building, show })
 					}
 					}
 				/>
-				<Button type='submit' disabled={errors.error || roundStatus} loading={loading} ref={buttonRef}>
+				<Button type='submit' disabled={errors.error || roundStatus || limitsStatus !== 'succeeded'} loading={loading} ref={buttonRef}>
 					{t('turns:build.submit')}
 				</Button>
 			</Group>

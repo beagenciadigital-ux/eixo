@@ -29,10 +29,14 @@ export default function TinyAction(props)
 	useEffect(() =>
 	{
 		if (props.type === 'heal') {
-			turns = (100 - props.empire.health) / 2
+			const healthDeduction = Math.max((props.empire.tax - 25) / 2, 0)
+			turns = (100 - props.empire.health - healthDeduction) / 2
+			if (turns < 0) {
+				turns = 0
+			}
 		}
 		form.setValues({ turns: turns })
-	}, [props.type, props.empire.health]);
+	}, [props.type, props.empire.health, props.empire.tax]);
 
 
 	const form = useForm({
@@ -80,7 +84,7 @@ export default function TinyAction(props)
 				<Stack align='center'>
 					<form onSubmit={form.onSubmit((values) =>
 					{
-						dispatch(clearResult)
+						dispatch(clearResult())
 						doTurns(values)
 					})}>
 						<Group spacing='xs'>

@@ -17,10 +17,14 @@ export default function TurnResultContainer({ empire })
 
   useEffect(() =>
   {
-    if (turnResult.length > 0) {
-      setResult(turnResult);
+    let next = [];
+    if (Array.isArray(turnResult)) {
+      next = turnResult;
+    } else if (turnResult && typeof turnResult === 'object' && turnResult.message != null) {
+      next = [{ error: String(turnResult.message) }];
     }
-    setShow(true);
+    setResult(next);
+    setShow(next.length > 0);
   }, [turnResult]);
 
   useEffect(() =>

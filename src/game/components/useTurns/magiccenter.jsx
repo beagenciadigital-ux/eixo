@@ -154,7 +154,7 @@ export default function MagicCenter({ size })
                     <form onSubmit={form.onSubmit((values) =>
                     {
                         // console.log(values)
-                        dispatch(clearResult)
+                        dispatch(clearResult())
                         doMagic(values)
                     })}>
                         <Stack spacing='sm' align='center'>

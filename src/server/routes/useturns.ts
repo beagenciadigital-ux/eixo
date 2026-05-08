@@ -77,6 +77,7 @@ export const useTurn = async (
 			desertion: '',
 		}
 		taken++
+		turnResult = 0
 		let trouble = 0
 		let troubleFood = false
 		let troubleLoan = false
@@ -179,13 +180,11 @@ export const useTurn = async (
 			})
 
 			// console.log(clan)
-			const relations = clan.relation.map((relation) => {
-				if (relation.clanRelationFlags === 'war') {
-					return relation.c_id2
-				}
-			})
-			if (relations.length > 0) {
-				wartax += (relations.length * empire.networth) / 100
+			const warRelations = clan.relation.filter(
+				(relation) => relation.clanRelationFlags === 'war'
+			)
+			if (warRelations.length > 0) {
+				wartax += (warRelations.length * empire.networth) / 100
 				// active war tax
 				if (type === 'war') {
 					wartax += expenses / 10
@@ -676,14 +675,12 @@ export const useTurnInternal = (
 			// passive wartax
 			// console.log(clan)
 			if (clan?.relation) {
-				const relations = clan.relation.map((relation) => {
-					if (relation.clanRelationFlags === 'war') {
-						return relation.c_id2
-					}
-				})
-				// console.log(relations)
-				if (relations.length > 0) {
-					wartax += (relations.length * empire.networth) / 100
+				const warRelations = clan.relation.filter(
+					(relation) => relation.clanRelationFlags === 'war'
+				)
+				// console.log(warRelations)
+				if (warRelations.length > 0) {
+					wartax += (warRelations.length * empire.networth) / 100
 					// active war tax
 					if (type === 'war') {
 						wartax += expenses / 10

@@ -9,7 +9,7 @@ export const turnResults = createSlice({
 			return { turnResult: action.payload }
 		},
 		clearResult: () => {
-			return { turnResult: '' }
+			return { turnResult: [] }
 		},
 	},
 })
