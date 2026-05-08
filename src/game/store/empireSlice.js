@@ -19,8 +19,8 @@ export const create = createAsyncThunk(
 			let data = res.data
 			return data
 		} catch (e) {
-			console.log(e)
-			return thunkAPI.rejectWithValue(e.response.data)
+			const payload = e?.response?.data || { error: 'request failed' }
+			return thunkAPI.rejectWithValue(payload)
 		}
 	}
 )
@@ -37,8 +37,8 @@ export const fetchEmpire = createAsyncThunk(
 				empire: data,
 			}
 		} catch (e) {
-			console.log(e)
-			return thunkAPI.rejectWithValue(e.response.data)
+			const payload = e?.response?.data || { error: 'request failed' }
+			return thunkAPI.rejectWithValue(payload)
 		}
 	}
 )
@@ -98,6 +98,10 @@ export const empireSlice = createSlice({
 			.addCase(fetchEmpire.fulfilled, (state, action) => {
 				state.status = 'succeeded'
 				state.empire = action.payload.empire
+			})
+			.addCase(fetchEmpire.rejected, (state) => {
+				state.status = 'failed'
+				state.empire = null
 			})
 			.addCase(logoutEmpire.fulfilled, (state) => {
 				state.status = 'idle'

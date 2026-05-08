@@ -91,6 +91,10 @@ const Sidebar = memo(({ game }) => {
 		}
 	}
 
+	if (!game) {
+		return null
+	}
+
 	return (
 		<Fragment>
 			<Stack
@@ -118,7 +122,7 @@ const Sidebar = memo(({ game }) => {
 						variant = "filled"
 					}
 
-					if (!game.clanEnable && key === "clanStats") {
+					if (!game?.clanEnable && key === "clanStats") {
 						return null
 					}
 
@@ -308,11 +312,11 @@ const Sidebar = memo(({ game }) => {
 						variant = "filled"
 					}
 
-					if (!game.clanEnable && key === "clans") {
+					if (!game?.clanEnable && key === "clans") {
 						return null
 					}
 
-					if (!game.aidEnable && key === "foreignAid") {
+					if (!game?.aidEnable && key === "foreignAid") {
 						return null
 					}
 

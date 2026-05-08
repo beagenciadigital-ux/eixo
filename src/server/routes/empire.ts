@@ -633,7 +633,7 @@ const findOneEmpire = async (req: Request, res: Response) => {
 	try {
 		const empire = await getEmpireRepo().findOneOrFail(
 			{ uuid },
-			{ relations: ["user", "clan"] },
+			{ relations: ["user"] },
 		)
 
 		if (empire.clanId !== 0 && empire.clanId !== null) {

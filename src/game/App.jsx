@@ -114,7 +114,7 @@ function App() {
 			!isLoggedIn ||
 			!empires?.length ||
 			!activeGame ||
-			(empireStatus !== "idle" && empireStatus !== "loading")
+			empireStatus !== "idle"
 		) {
 			return
 		}
@@ -124,13 +124,22 @@ function App() {
 
 		dispatch(fetchEmpire({ uuid: row.uuid }))
 			.unwrap()
-			.catch((err) => kickOut(err))
+			.catch((err) => {
+				// A deleted/stale empire should redirect to mode select instead of hard logout.
+				if (err?.empire === "empire not found") {
+					dispatch(logoutEmpire())
+					navigate("/select", { replace: true })
+					return
+				}
+				kickOut(err)
+			})
 	}, [
 		activeGame,
 		dispatch,
 		empireStatus,
 		isLoggedIn,
 		kickOut,
+		navigate,
 		user?.empires,
 	])
 
@@ -273,13 +282,10 @@ function App() {
 										paddingBottom: "calc(1em + env(safe-area-inset-bottom))",
 									}}
 								>
-									<Navbar.Section
-										grow
-										component={ScrollArea}
-										ml={10}
-										onClick={() => setOpened(false)}
-									>
-										<Sidebar game={activeGame} />
+									<Navbar.Section grow ml={10} onClick={() => setOpened(false)}>
+										<ScrollArea h="100%">
+											<Sidebar game={activeGame} />
+										</ScrollArea>
 									</Navbar.Section>
 									<Navbar.Section>
 										<Button

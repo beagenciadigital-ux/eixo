@@ -34,7 +34,7 @@ export default function ModeCard({ game, empireFound, user }) {
 	// console.log(game.game_id)
 
 	// button action to set active game and navigate to app or create empire
-	const handleGameSelect = (game) => {
+	const handleGameSelect = async (game) => {
 		// console.log(game.game_id)
 		dispatch(setActiveGame(game))
 		// compare user empires and find the one with the same game_id as the game object
@@ -48,13 +48,17 @@ export default function ModeCard({ game, empireFound, user }) {
 			if (!empire) {
 				navigate("/create")
 			} else {
-				dispatch(
-					fetchEmpire({
-						uuid: empire.uuid,
-					}),
-				)
-				dispatch(getTime(game.game_id)).then(() => navigate("/app/"))
-				dispatch(createSession({ id: empire.id }))
+				try {
+					await dispatch(
+						fetchEmpire({
+							uuid: empire.uuid,
+						}),
+					).unwrap()
+					dispatch(createSession({ id: empire.id }))
+					dispatch(getTime(game.game_id)).then(() => navigate("/app/"))
+				} catch (err) {
+					setError(err)
+				}
 			}
 		} else {
 			navigate("/create")
@@ -184,7 +188,9 @@ export default function ModeCard({ game, empireFound, user }) {
 						w={210}
 						color="blue"
 						disabled={roundStatus && !isUpcoming}
-						onClick={() => handleGameSelect(game)}
+							onClick={() => {
+								void handleGameSelect(game)
+							}}
 					>
 						{t("pages:mode.play")}
 					</Button>
@@ -194,10 +200,17 @@ export default function ModeCard({ game, empireFound, user }) {
 						w={210}
 						color="teal"
 						disabled={roundStatus && !isUpcoming}
-						onClick={() => handleGameSelect(game)}
+							onClick={() => {
+								void handleGameSelect(game)
+							}}
 					>
 						{t("pages:mode.createEmpire")}
 					</Button>
+				)}
+				{error?.empire && (
+					<Text color="red" align="left" size="sm">
+						{error.empire}
+					</Text>
 				)}
 			</Stack>
 			<Box onClick={toggle} sx={{ cursor: "pointer" }}>

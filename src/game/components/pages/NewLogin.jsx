@@ -105,9 +105,9 @@ export default function NewLogin()
                         }
                         )
                         }>
-                            <TextInput required label="Username" placeholder="username" size="md" {...form.getInputProps('username')} />
+                            <TextInput required label="Username" placeholder="username" size="md" autoComplete="username" {...form.getInputProps('username')} />
                             <Text size='sm' my={0} color='dimmed' align='left'>{t('auth:username')}. <Anchor component={Link} to='/forgot-username'>{t('auth:forgotUsername')}</Anchor></Text>
-                            <PasswordInput required label="Password" placeholder="Your password" mt="sm" size="md" {...form.getInputProps('password')} />
+                            <PasswordInput required label="Password" placeholder="Your password" mt="sm" size="md" autoComplete="current-password" {...form.getInputProps('password')} />
                             <Text size='sm' align='left'>
                                 <Anchor component={Link} to='/forgot'>{t('auth:forgotPassword')}</Anchor>
                             </Text>

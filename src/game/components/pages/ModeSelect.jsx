@@ -12,7 +12,7 @@ import { SlimHero } from "./slimHero"
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { fetchGames } from "../../store/gamesSlice"
-import { resetUser } from "../../store/userSlice"
+import { resetUser, userLoaded } from "../../store/userSlice"
 import Axios from "axios"
 import FooterSocial from "../layout/footer"
 import ModeCard from "./ModeCard"
@@ -37,7 +37,9 @@ export default function ModeSelect() {
 		async function loadUser() {
 			try {
 				const res = await Axios.get("auth/me")
-				// console.log(res)
+				if (res?.data) {
+					dispatch(userLoaded(res.data))
+				}
 			} catch (error) {
 				// console.log(error)
 				// localStorage.removeItem('persist:root');

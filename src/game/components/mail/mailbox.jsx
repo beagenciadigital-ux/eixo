@@ -41,7 +41,11 @@ export default function Mailbox()
             .then((data) =>
             {
                 setConvos(data);
-                setActiveTab(data[0].conversationId.toString())
+                if (data?.length > 0 && data[0]?.conversationId !== undefined) {
+                    setActiveTab(data[0].conversationId.toString())
+                } else {
+                    setActiveTab(undefined)
+                }
             })
             .catch((error) =>
             {
