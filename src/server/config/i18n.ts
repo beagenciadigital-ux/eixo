@@ -24,7 +24,12 @@ const i18nConfig = {
     backend: {
         loadPath: path.join(resolvedLocalesDir, "{{lng}}/{{ns}}.json"),
     },
-    fallbackLng: "en",
+    fallbackLng: (code: string | undefined) => {
+      if (code === "en") return ["en"];
+      if (code === "es") return ["es", "en"];
+      if (code === "pt") return ["pt", "en"];
+      return ["pt", "en"];
+    },
     ns: ["errors", "responses"],
     interpolation: {
         escapeValue: false,

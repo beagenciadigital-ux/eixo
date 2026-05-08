@@ -2,15 +2,15 @@
   "crons": [
     {
       "path": "/api/cron/turns",
-      "schedule": "*/1 * * * *"
+      "schedule": "0 0 * * *"
     },
     {
       "path": "/api/cron/thirty",
-      "schedule": "*/30 * * * *"
+      "schedule": "0 6 * * *"
     },
     {
       "path": "/api/cron/hourly",
-      "schedule": "0 * * * *"
+      "schedule": "0 12 * * *"
     },
     {
       "path": "/api/cron/daily",
