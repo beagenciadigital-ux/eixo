@@ -1,0 +1,7 @@
+# Permite scripts de instalação de dependências nativas (pnpm 10.26+ / Vercel).
+# Sem isto, o pnpm ignora postinstall e bcrypt/sharp falham em runtime.
+allowBuilds:
+  bcrypt: true
+  "@sentry/profiling-node": true
+  sharp: true
+  unrs-resolver: true
