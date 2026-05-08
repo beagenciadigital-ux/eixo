@@ -1,0 +1,30 @@
+{
+	"main": {
+		"welcome": "Bem-vindo! Seus primeiros passos no Eixo do Mal importam muito. Como império novo, você precisa de terras e prédios para produzir recursos. Depois de dar uma olhada, vá à página Explorar.",
+		"explore": "Esta é a página Explorar. Aqui você encontra terras livres para o império. Explore em blocos de 100 turnos.",
+		"results": "O resultado do turno mostra quanta terra ganhou e a produção dos turnos usados.",
+		"build": "Com terras livres, construa prédios. Vá à página Construir.",
+		"buildings": "Em Construir você ergue estruturas nas terras. O melhor mix depende da sua estratégia. Para começar, construa um pouco de cada: clique no botão 1 ao lado de cada tipo para gastar um turno naquela estrutura.",
+		"production": "Note que dinheiro e comida sobem e camponeses, magos e tropas chegam. Conforme crescer, especialize a produção. Você pode construir mais ou explorar por mais terras.",
+		"conclusion": "Durante a proteção, cresça o máximo possível para encarar o mundo aberto do Eixo do Mal. O guia traz estratégias; o Discord também ajuda. Boa sorte!"
+	},
+	"building": {
+		"intro": "Construir é central para recursos e estratégia. O mix de prédios define o que o império produz e consome a cada turno. Ao ganhar terras em ataques e exploração, construa com frequência para usar a terra.",
+		"huts": "Cabanas trazem mais cidadãos. Eles sustentam a economia: a renda depende do número de cidadãos e da renda per capita.",
+		"markets": "Mercados aumentam a renda per capita e geram dinheiro. Essencial na economia. Turnos na página Dinheiro maximizam a renda por turno.",
+		"blacksmiths": "Forjas geram tropas. Você precisa delas para atacar e defender. Em Indústria você ajusta o mix de unidades.",
+		"keeps": "Fortalezas reduzem o custo de manter tropas. Tropas consomem muito; este prédio pesa mais conforme o exército cresce. Também baratece tropas no mercado negro.",
+		"mageTowers": "Torres de magos trazem magos e geram o recurso para feitiços. Magos alimentam o centro mágico, escudos, eras e portais do tempo. Meditar aumenta a produção de mana.",
+		"farms": "Fazendas geram comida para cidadãos, tropas e magos. Sem comida há deserções em massa. A página Fazenda maximiza a colheita.",
+		"guardTowers": "Torres de guarda são puramente defensivas: cada % de terra nelas soma 1% de defesa (até 50%) e melhora o ganho de DR ao sofrer ataques. O DR limita terras perdidas por ataque e aparece no placar."
+	},
+	"attack": {
+		"intro": "Atacar é o coração do Eixo do Mal. Você precisa atacar para crescer em terras — e será atacado também. Há 7 tipos de ataque conforme o uso do exército.",
+		"army": "Monte o exército com foco: muitos jogadores apostam em dois tipos de tropa para furar defesas, mas isso pode deixar brechas. Ataque e defesa mudam por era; ataques entre eras usam o ataque da sua era contra a defesa do alvo.",
+		"values": "Veja o ataque e a defesa totais do exército, já com bônus de raça e saúde. Ao atacar a saúde cai e enfraquece o exército. Construir e produzir recupera saúde; explorar cura mais rápido; Curar dobra a recuperação.",
+		"targeting": "Escolha alvos com muita terra para o patrimônio ou DR baixo. Use o centro de inteligência e notícias para estimar o exército. Pode precisar de vários alvos para maximizar terras.",
+		"types": "O tipo de ataque define quais unidades vão à luta. Você envia toda a força. Ex.: ataque de guerrilha manda toda a infantaria contra a infantaria inimiga.",
+		"magical": "Feitiços ofensivos podem quebrar recursos, tropas ou terras. Escudos mágicos reduzem o efeito. Muitos jogadores reagem mal a feitiços pesados como Bola de fogo sem provocação.",
+		"conclusion": "Hora de levar terras: escolha um alvo com boa terra e patrimônio parecido ou menor. Use o tipo de ataque que combine com seu exército. Se falhar, mude a tática ou o alvo. Há mais detalhes no guia. Boa sorte!"
+	}
+}

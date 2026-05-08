@@ -1,0 +1,8 @@
+{
+	"round": {
+		"notStarted": "Rodada ainda não começou",
+		"willStart": "A rodada começa em {{days}} dias, {{hours}} horas e {{minutes}} minutos",
+		"willEnd": "A rodada termina em {{days}} dias, {{hours}} horas e {{minutes}} minutos",
+		"ended": "A rodada terminou — obrigado por jogar! Uma nova rodada começará em breve."
+	}
+}

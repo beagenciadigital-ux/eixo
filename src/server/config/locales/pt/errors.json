@@ -1,0 +1,79 @@
+{
+	"generic": "Algo deu errado",
+	"unauthorized": "Não autorizado",
+	"tryAgain": "Ocorreu um erro. Tenta novamente.",
+	"auth": {
+		"emailAlreadyInUse": "Este e-mail já está em uso",
+		"usernameAlreadyTaken": "Este nome de utilizador já está a ser usado",
+		"userNotFound": "Utilizador não encontrado",
+		"passwordIncorrect": "Palavra-passe incorreta",
+		"ipError": "Ocorreu um erro, tenta novamente. Cria uma conta se o problema continuar.",
+		"demoError": "Aguarda um pouco antes de criar outra conta de demonstração",
+		"invalidToken": "Token inválido",
+		"emailNotFound": "E-mail não encontrado",
+		"tokenExpired": "Token expirado",
+		"usernameEmpty": "O nome de utilizador não pode estar vazio",
+		"passwordEmpty": "A palavra-passe não pode estar vazia"
+	},
+	"aid": {
+		"nothingToSend": "Nada para enviar!",
+		"notEnoughShips": "Não tens navios suficientes!",
+		"cannotSendAidToSelf": "Não podes enviar ajuda a ti próprio!",
+		"notEnoughAidCredits": "Não tens créditos de ajuda suficientes!",
+		"cannotSendAidAsDemo": "Não podes enviar ou receber ajuda com um império de demonstração!",
+		"cannotSendAidWhileInProtection": "Não podes enviar ou receber ajuda enquanto estiveres em proteção!",
+		"cannotSendAidToWarClan": "Não podes enviar ajuda a um clã com o qual estás em guerra!",
+		"cannotSendAidToLargeEmpire": "Não podes enviar ajuda a um império tão grande!"
+	},
+	"attack": {
+		"cannotAttackSelf": "Não podes atacar-te a ti mesmo!",
+		"empireDefeated": "Este império foi derrotado recentemente, não serão atribuídos pontos...",
+		"maxAttacks": "Atingiste o número máximo de ataques. Espera um pouco antes de atacar de novo.",
+		"clanMate": "Não podes atacar um membro do teu clã.",
+		"cannotAttackWhileInProtection": "Não podes atacar enquanto estiveres em proteção.",
+		"cannotAttackYoungEmpire": "Não podes atacar um império tão recente.",
+		"cannotAttackSmallEmpire": "Não podes atacar um império com tão pouco terreno.",
+		"notEnoughTurns": "Não tens turnos suficientes para atacar.",
+		"notEnoughHealth": "A tua saúde é demasiado baixa para enviar um ataque."
+	},
+	"clan": {
+		"alreadyInClan": "Já estás num clã",
+		"underProtection": "Não podes criar um clã enquanto tiveres proteção de jogador novo",
+		"clanNameAlreadyExists": "Já existe um clã com este nome",
+		"joinCooldown": "Não podes entrar num clã durante 3 dias após sair de um",
+		"cannotJoinClanWhileProtected": "Não podes entrar num clã enquanto tiveres proteção de jogador novo",
+		"clanFull": "Este clã está cheio",
+		"leaveCooldown": "Não podes sair de um clã durante {{hours}} horas após teres entrado",
+		"notInClan": "Não estás em nenhum clã",
+		"clanLeaderCannotLeave": "O líder do clã não pode sair do clã",
+		"disbandCooldown": "Não podes dissolver o clã durante {{hours}} horas após a criação",
+		"notLeader": "Não tens autoridade para dissolver o clã",
+		"cannotKickLeader": "O líder do clã não pode ser expulso",
+		"notLeaderAssignRole": "Não tens autoridade para atribuir funções",
+		"alreadyAssigned": "Esta função já está atribuída",
+		"cantDeclareWar": "Não estás em posição de declarar guerra",
+		"alreadyAtWar": "Já estás em guerra com este clã",
+		"cannotOfferPeace": "Não estás em posição de oferecer paz",
+		"notAtWar": "Não estás em guerra com este clã",
+		"alreadyOfferedPeace": "Já ofereceste paz a este clã",
+		"enemyAlreadyOfferedPeace": "O inimigo já te ofereceu paz",
+		"profaneClanTag": "A etiqueta do clã não é permitida",
+		"notClanLeader": "Não és o líder do clã"
+	},
+	"magic": {
+		"notEnoughFood": "Ficaste sem comida! Não podes lançar feitiços nesta crise!",
+		"notEnoughCash": "Ficaste sem dinheiro! Não podes lançar feitiços nesta crise!",
+		"notEnoughRunes": "Não tens {{resource}} suficiente para lançar este feitiço.",
+		"notEnoughHealth": "Não tens saúde suficiente para lançar este feitiço.",
+		"notEnoughTurns": "Não tens turnos suficientes para lançar este feitiço.",
+		"notEnoughWiz": "Não tens {{trpwiz}} suficientes para lançar este feitiço."
+	},
+	"market": {
+		"notEnoughMoney": "Não tens dinheiro suficiente.",
+		"sellTooMuch": "Não podes vender essa quantidade!",
+		"invalidPurchase": "Quantidade de compra inválida",
+		"notEnoughCash": "Dinheiro insuficiente para a compra",
+		"noItemsToSell": "Nada para vender",
+		"invalidPrice": "Preço inválido"
+	}
+}

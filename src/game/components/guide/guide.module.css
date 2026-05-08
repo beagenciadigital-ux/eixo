@@ -1,0 +1,36 @@
+.guideTable {
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.guideTable th {
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.guideTable td {
+    text-align: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .guideTable {
+        width: 300px;
+        overflow-x: auto;
+        white-space: nowrap;
+        text-align: center;
+    }
+}
+
+.mprotected {
+    color: 'lightgreen'
+}
+
+.madmin {
+    color: 'yellow'
+}
+
+.mself {
+    color: 'cyan'
+}

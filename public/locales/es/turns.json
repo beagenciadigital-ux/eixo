@@ -1,0 +1,123 @@
+{
+	"favorites": {
+		"title": "Favoritos",
+		"drag": "Arrastra y suelta para reordenar favoritos",
+		"empty": "Añade favoritos haciendo clic en el icono de estrella de las acciones en la categoría Turnos Usados",
+		"compact": "Compacto"
+	},
+	"general": {
+		"flavorText": "Para cada turno que gastes {{flavor}}, tu imperio produce un 25% más de {{item}}.",
+		"spend": "Gasta cuántos turnos {{flavor}}?",
+		"condensed": "Compacto",
+		"error": "Número de turnos inválido",
+		"refresh": "Actualizar Datos",
+		"repeat": "Repetir Acción",
+		"resume": "Resumir Tutorial",
+		"bonusTurns": "Turnos Bonus"
+	},
+	"explore": {
+		"title": "Explorar",
+		"flavor": "explorando",
+		"item": "acres",
+		"flavorText": "Para cada turno que gastes {{flavor}}, tu imperio crecerá en {{explore}} {{item}}."
+	},
+	"heal": {
+		"title": "Curar",
+		"flavor": "usando turnos",
+		"flavorText": "Usar turnos de cualquier manera curará tu imperio, pero para cada turno que gastes {{flavor}}, tu imperio curará un punto adicional. Tu producción de recursos se reducirá al 66% de su valor base."
+	},
+	"farm": {
+		"title": "Granja",
+		"flavor": "criando",
+		"item": "comida"
+	},
+	"cash": {
+		"title": "Dinero",
+		"flavor": "enfocando en tu economía",
+		"item": "dinero",
+		"tax": "Configuración de impuestos",
+		"update": "Actualiza la tasa de impuestos de tu imperio:",
+		"custom": "Personalizado",
+		"updateButton": "Actualizar",
+		"warning": "Una tasa de impuestos alta reducirá tu máxima salud.",
+		"error": "Tasa de impuestos inválida",
+		"responseSuccess": "Tasa de impuestos actualizada",
+		"responseFail": "Error al actualizar la tasa de impuestos"
+	},
+	"industry": {
+		"title": "Industria",
+		"flavor": "enfocando en la industria",
+		"item": "tropas",
+		"error": "Porcentaje de producción inválido",
+		"responseFail": "Error al actualizar la configuración de la industria",
+		"responseSuccess": "Configuración de la industria actualizada",
+		"indySettings": "Configuración de la industria",
+		"update": "Introduce el porcentaje de producción dedicado a cada tipo de unidad.",
+		"total": "Los valores deben sumar 100",
+		"updateButton": "Actualizar"
+	},
+	"meditate": {
+		"title": "Meditar",
+		"flavor": "meditando"
+	},
+	"build": {
+		"title": "Construir",
+		"error": "Número de edificios inválido",
+		"description": "Cada estructura consume un acre de tierra vacía y cuesta {{cost}} para construir.",
+		"rate": "Puedes construir {{rate}} estructuras por turno.",
+		"canBuild": "Con tus recursos y tierra vacía puedes construir {{canBuild}} estructuras.",
+		"buildError": "No se pueden construir tantos edificios",
+		"structure": "Estructura",
+		"owned": "Posees",
+		"build": "Construir",
+		"empty": "Tierra Vacía",
+		"submit": "Construir",
+		"demolish": "Demoler Edificios",
+		"demoTitle": "Demoler",
+		"demoDescription": "Cada estructura demolida libera un acre de tierra y se recuperarán ${{cost}}.",
+		"demoRate": "Puedes demoler {{rate}} estructuras por turno.",
+		"demoCan": "Con tus recursos y tierra puedes demoler {{can}} estructuras.",
+		"demoError": "No se pueden demoler tantos edificios",
+		"submitDemo": "Demoler",
+		"buildButton": "Construir Edificios",
+		"dropLand": "Puedes abandonar hasta {{canDrop}} acres de tierra vacía, a razón de {{dropRate}} acres por turno.",
+		"canDrop": "Puede Abandonar",
+		"drop": "Abandonar",
+		"dropButton": "Abandonar Tierra"
+	},
+	"magicCenter": {
+		"title": "Centro Mágico",
+		"description": "Lanza hechizos para crear un escudo, generar comida o dinero, o cambiar eras. Los hechizos consumen dos turnos al lanzarlos.",
+		"power": "Tu poder mágico actual es de {{power}}.",
+		"select": "Selecciona el hechizo a lanzar",
+		"pick": "Escoger uno",
+		"number": "Lanza el hechizo cuántas veces?",
+		"submit": "Lanzar Hechizo",
+		"castError": "No puedes lanzar tantos hechizos",
+		"powerReq": "Poder",
+		"cost": "Costo"
+	},
+	"results": {
+		"freeLand": "Tierra Libre",
+		"attackFailed": "¡El ataque no tuvo éxito!",
+		"spellFailed": "¡El hechizo no tuvo éxito! {{wizloss}} {{descriptor}} murieron en la explosión.",
+		"exploreSuccess": "Ganaste {{count}} acres mientras explorabas",
+		"savingsOverflow": "Tu saldo de ahorros ha excedido el límite. ${{amount}} te ha sido devuelto.",
+		"economy": "Economía:",
+		"income": "Ingresos:",
+		"expenses": "Gastos:",
+		"loanPayment": "Pago de Préstamo:",
+		"loanInterest": "Interés de Préstamo:",
+		"corruption": "Corrupción:",
+		"warTax": "Impuesto de Guerra:",
+		"net": "Neto",
+		"agriculture": "Agricultura:",
+		"produced": "Producido:",
+		"consumed": "Consumido:",
+		"rot": "Putrefacción:",
+		"populationAndMilitary": "Población y Militar:",
+		"youLost": "Perdiste:",
+		"youKilled": "Mataste:",
+		"youCaptured": "Capturaste:"
+	}
+}

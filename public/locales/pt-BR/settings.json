@@ -1,0 +1,32 @@
+{
+	"settings": {
+		"title": "Configurações do império",
+		"tour": "Repetir tour dos primeiros turnos",
+		"changeRace": "Trocar a raça custa {{turnsCost}} turnos, 25% de comida, dinheiro e runas, e 10% de população e exército.",
+		"freeRaceChange": "Trocar de raça é grátis enquanto estiver sob proteção de iniciante.",
+		"raceSelect": "Escolha outra raça",
+		"pickOne": "Escolha uma",
+		"submit": "Enviar",
+		"turnsError": "Turnos insuficientes",
+		"raceResponseSuccess": "Raça atualizada",
+		"raceResponseError": "Erro ao trocar de raça",
+		"deleteEmpire": "Excluir império",
+		"deleteEmpireText": "Isso remove seu império desta rodada. Sentiremos sua falta.",
+		"contactUs": "Fale conosco",
+		"feedback": "se tiver sugestões para melhorar o jogo.",
+		"deleteEmpireConfirm": "Digite 'confirm' para excluir o império",
+		"pleaseConfirm": "Confirme, por favor",
+		"chooseIcon": "Escolha seu ícone",
+		"iconResponseSuccess": "Ícone atualizado",
+		"iconResponseError": "Erro ao atualizar ícone",
+		"changeName": "Alterar nome do império",
+		"nameLimit": "Você pode trocar o nome uma vez por rodada",
+		"nameResponseSuccess": "Nome alterado",
+		"nameError": "O nome deve ter entre 3 e 50 caracteres",
+		"updateProfile": "Atualizar perfil público",
+		"profilePlaceholder": "Digite seu perfil aqui",
+		"profileResponseSuccess": "Perfil atualizado",
+		"profileResponseError": "Erro ao atualizar perfil",
+		"profileValidation": "O perfil deve ter no máximo 499 caracteres"
+	}
+}

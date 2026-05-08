@@ -1,0 +1,25 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/turns",
+      "schedule": "*/1 * * * *"
+    },
+    {
+      "path": "/api/cron/thirty",
+      "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/hourly",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/daily",
+      "schedule": "0 20 * * *"
+    }
+  ],
+  "functions": {
+    "src/pages/api/[[...slug]].ts": {
+      "maxDuration": 300
+    }
+  }
+}

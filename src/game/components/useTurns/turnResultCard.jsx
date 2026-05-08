@@ -1,0 +1,324 @@
+import
+{
+	Card,
+	Text,
+	SimpleGrid,
+} from '@mantine/core'
+import { useTranslation } from 'react-i18next'
+
+import { eraArray } from '../../config/eras'
+import NetProduced from '../utilities/NetProduced'
+
+const attackResult = (result, era, t) =>
+{
+	if (result.result === 'success') {
+		// console.log(result.message)
+		if (result.attackType === 'pillage') {
+			const youLost = []
+			const youKilled = []
+
+			for (const key in result.troopLoss) {
+				if (Object.prototype.hasOwnProperty.call(result.troopLoss, key)) {
+					youLost.push(`${eraArray[era][key]}: ${result.troopLoss[key].toLocaleString()}`);
+				}
+			}
+
+			for (const key in result.troopKilled) {
+				if (Object.prototype.hasOwnProperty.call(result.troopKilled, key)) {
+					youKilled.push(`${eraArray[era][key]}: ${result.troopKilled[key].toLocaleString()}`);
+				}
+			}
+
+			return (<>
+				<Text align='center' weight='bold' color={result.message.includes('desert') ? 'orange' : 'green'}>{result.message}</Text>
+				<Text align='center'>{t('turns:results.youLost')} {youLost.map((item, index) =>
+				{
+					if (index === youLost.length - 1) { return (item) }
+					return (`${item}, `)
+				}
+				)}</Text>
+				<Text align='center'>{t('turns:results.youKilled')} {youKilled.map((item, index) =>
+				{
+					if (index === youKilled.length - 1) { return (item) }
+					return (`${item}, `)
+				}
+				)}</Text>
+			</>)
+		}
+
+		if (result.attackType !== 'all out' && result.attackType !== 'surprise') {
+			return (<>
+				<Text align='center' weight='bold' color={result.message.includes('desert') ? 'orange' : 'green'}>{result.message}</Text>
+				<Text align='center' >You lost {result.troopLoss[result.attackType].toLocaleString()} {result.troopType}</Text>
+				<Text align='center' >You killed {result.troopKilled[result.attackType].toLocaleString()} {result.troopType}</Text>
+			</>)
+		}
+
+		// console.log(result)
+		const youLost = []
+		const youKilled = []
+		const buildingsCaptured = []
+
+		for (const key in result.troopLoss) {
+			if (Object.prototype.hasOwnProperty.call(result.troopLoss, key)) {
+				youLost.push(`${eraArray[era][key]}: ${result.troopLoss[key].toLocaleString()}`);
+			}
+		}
+
+		for (const key in result.troopKilled) {
+			if (Object.prototype.hasOwnProperty.call(result.troopKilled, key)) {
+				youKilled.push(`${eraArray[era][key]}: ${result.troopKilled[key].toLocaleString()}`);
+			}
+		}
+
+		for (const key in result.buildingGain) {
+			if (Object.prototype.hasOwnProperty.call(result.buildingGain, key)) {
+				const newKey = key.toLowerCase()
+				let string = `${eraArray[era][newKey]}: ${result.buildingGain[key].toLocaleString()}`
+				if (newKey === 'bldtroop') {
+					string = `${eraArray[era].bldtrp}: ${result.buildingGain[key].toLocaleString()}`
+				} else if (newKey === 'freeland') {
+					string = `${t('turns:results.freeLand')}: ${result.buildingGain[key].toLocaleString()}`
+				}
+				buildingsCaptured.push(string);
+			}
+		}
+
+		return (<>
+			<Text align='center' weight='bold' color={result.message.includes('desert') ? 'orange' : 'green'}>{result.message}</Text>
+			<Text align='center'>You lost: {youLost.map((item, index) =>
+			{
+				if (index === youLost.length - 1) { return (item) }
+				return (`${item}, `)
+			}
+			)}</Text>
+			<Text align='center'>You killed: {youKilled.map((item, index) =>
+			{
+				if (index === youKilled.length - 1) { return (item) }
+				return (`${item}, `)
+			}
+			)}</Text>
+			{result.attackType !== 'surprise' && <Text align='center'>
+				{t('turns:results.youCaptured')} {buildingsCaptured.map((item, index) =>
+				{
+					if (index === buildingsCaptured.length - 1) { return (item) }
+					return (`${item}, `)
+				}
+				)}
+			</Text>}
+		</>)
+
+	} if (result.result === 'fail') {
+		if (result.attackType === 'pillage' || result.attackType === 'surprise' || result.attackType === 'all out') {
+			const youLost = []
+			const youKilled = []
+
+			for (const key in result.troopLoss) {
+				if (Object.prototype.hasOwnProperty.call(result.troopLoss, key)) {
+					youLost.push(`${eraArray[era][key]}: ${result.troopLoss[key].toLocaleString()}`);
+				}
+			}
+
+			for (const key in result.troopKilled) {
+				if (Object.prototype.hasOwnProperty.call(result.troopKilled, key)) {
+					youKilled.push(`${eraArray[era][key]}: ${result.troopKilled[key].toLocaleString()}`);
+				}
+			}
+
+			return (<>
+				<Text align='center' weight='bold' color={result.message.includes('desert') ? 'orange' : 'red'}>{result.message}</Text>
+				<Text align='center' weight='bold' color='red'>{t('turns:results.attackFailed')}</Text>
+				<Text align='center'>{t('turns:results.youLost')} {youLost.map((item, index) =>
+				{
+					if (index === youLost.length - 1) { return (item) }
+					return (`${item}, `)
+				}
+				)}</Text>
+				<Text align='center'>{t('turns:results.youKilled')} {youKilled.map((item, index) =>
+				{
+					if (index === youKilled.length - 1) { return (item) }
+					return (`${item}, `)
+				}
+				)}</Text>
+			</>)
+
+		}
+		return (<>
+			<Text align='center' weight='bold' color={result.message.includes('desert') ? 'orange' : 'red'}>{result.message}</Text>
+			<Text align='center' weight='bold' color='red'>{t('turns:results.attackFailed')}</Text>
+			<Text align='center'>You lost {result.troopLoss[result.attackType].toLocaleString()} {result.troopType}</Text>
+			<Text align='center'>You killed {result.troopKilled[result.attackType].toLocaleString()} {result.troopType}</Text>
+		</>)
+
+	} if (result.result === 'desertion') {
+		return (<>
+			<Text align='center' weight='bold' color='red'>{result.message}</Text>
+		</>)
+	}
+}
+
+const spellResult = (result, t) =>
+{
+	// console.log(result)
+	if (result.result === 'success' || result.result === 'shielded') {
+		if (result.food) {
+			return (<>
+				<Text align='center' weight='bold'>{result.message}<span style={{ color: 'green' }}> {result.food.toLocaleString()}</span> {result.descriptor}.</Text>
+			</>)
+		}
+		if (result.cash) {
+			return (<>
+				<Text align='center' weight='bold'>{result.message}<span style={{ color: 'green' }}> ${result.cash.toLocaleString()}</span>.</Text>
+			</>)
+		}
+		if (result.fight) {
+			const lines = result.message.split('/n')
+			return lines.map((line, index) =>
+			{
+				let weight = 'normal'
+				if (index === 0) weight = 'bold'
+				return <Text align='center' weight='bold' color={result.message.includes('ashamed') ? 'orange' : 'green'}>{line}</Text>
+			})
+
+		}
+		// covers time era changes
+		const lines = result.message.split('/n')
+		return lines.map((line, index) =>
+		{
+			let weight = 'normal'
+			if (index === 0) weight = 'bold'
+			return <Text key={line} weight={weight} align='center'>{line}</Text>
+		})
+
+	}
+	if (result.result === 'fail') {
+		//untested
+		if (result.fight) {
+			const lines = result.message.split('/n')
+			return lines.map((line, index) =>
+			{
+				let weight = 'normal'
+				if (index === 0) weight = 'bold'
+				return <Text align='center' weight='bold' color={result.message.includes('ashamed') ? 'orange' : 'red'}>{line}</Text>
+			})
+		}
+		return (<>
+			<Text align='center' weight='bold' color='red'>{t('turns:results.spellFailed', { wizloss: result.wizloss.toLocaleString(), descriptor: result.descriptor })}</Text>
+		</>)
+
+	} if (result.result === 'desertion') {
+		return (<>
+			<Text align='center' weight='bold' color='red'>{result.message}</Text>
+		</>)
+	}
+}
+
+export default function TurnResultCard({ data, era })
+{
+	const { t } = useTranslation(['turns'])
+	// console.log(data)
+	return (
+		<div>
+			{data.error ? (<Card shadow='sm' padding='sm' withBorder sx={(theme) => ({
+				backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '',
+				'&:hover': {
+					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+				},
+			})}>
+				<Text align='center' color='red'>{data.error}</Text>
+			</Card>) :
+				(<div style={{ margin: 'auto', marginBottom: '1rem' }}>
+					<Card shadow='sm' padding='sm' withBorder sx={(theme) => ({
+						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '',
+						'&:hover': {
+							backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+						},
+					})}>
+						{data.type === 'explore' && <Text align='center' weight='bold' color='green'>{t('turns:results.exploreSuccess', { count: data.result.toLocaleString() })}</Text>}
+						{data?.messages?.desertion && <Text align='center' color='red' weight='bold'>{data.messages.desertion}</Text>}
+						{data.attack && attackResult(data.attack, era, t)}
+						{data.cast && spellResult(data.cast, t)}
+						{data?.aid?.includes('successfully') ? (<Text align='center' weight='bold' color='green'>{data.aid}</Text>) : (<Text align='center' weight='bold' color='red'>{data.aid}</Text>)}
+						{data.withdraw > 0 ? <Text align='center' color='orange'>{t('turns:results.savingsOverflow', { amount: data.withdraw.toLocaleString() })}</Text> : ''}
+						<SimpleGrid
+							cols={3}
+							spacing='xs'
+							breakpoints={[
+								{ maxWidth: 755, cols: 3 },
+								{ maxWidth: 600, cols: 1 },
+							]}
+						>
+							<div>
+								<Text weight={800}>{t('turns:results.economy')}</Text>
+								<SimpleGrid cols={2} spacing={1}>
+									<Text>{t('turns:results.income')}</Text>
+									<Text align='right'>${data.income.toLocaleString()}</Text>
+									<Text>{t('turns:results.expenses')}</Text>
+									<Text align='right'>${data.expenses.toLocaleString()}</Text>
+									{data.loanpayed !== 0 ? (
+										<>
+											<Text>{t('turns:results.loanPayment')}</Text>
+											<Text align='right'>${(data.loanpayed).toLocaleString()}</Text>
+										</>
+									) : (
+										''
+									)}
+									{data.loanInterest > 0 ? (
+										<>
+											<Text>{t('turns:results.loanInterest')}</Text>
+											<Text align='right'>${(data.loanInterest).toLocaleString()}</Text>
+										</>
+									) : (
+										''
+									)}
+									{data.corruption > 0 ? (<>
+										<Text>{t('turns:results.corruption')}</Text>
+										<Text align='right'>${(data.corruption).toLocaleString()}</Text>
+									</>) : ('')}
+									{data.wartax > 0 ? (<>
+										<Text>{t('turns:results.warTax')}</Text>
+										<Text align='right'>${(data.wartax).toLocaleString()}</Text>
+									</>) : ('')}
+									<NetProduced title={t('turns:results.net')} value={data.money} money />
+								</SimpleGrid>
+							</div>
+							<div>
+								<Text weight={800}>{t('turns:results.agriculture')}</Text>
+								<SimpleGrid cols={2} spacing={1}>
+									<Text>{t('turns:results.produced')}</Text>
+									<Text align='right'>{data.foodpro.toLocaleString()}</Text>
+									<Text>{t('turns:results.consumed')}</Text>
+									<Text align='right'>{data.foodcon.toLocaleString()}</Text>
+									{data.rot > 0 ?
+										(<>
+											<Text>{t('turns:results.rot')}</Text>
+											<Text align='right'>{data.rot.toLocaleString()}</Text>
+										</>)
+										: ('')}
+									<NetProduced title={t('turns:results.net')} value={data.food} />
+								</SimpleGrid>
+							</div>
+							<div>
+								<Text weight={800}>{t('turns:results.populationAndMilitary')}</Text>
+								<SimpleGrid cols={2} spacing={1}>
+									{data.peasants !== 0 ? (<NetProduced value={data.peasants} title={eraArray[era].peasants} />) : ('')
+									}
+									{data.trpArm !== 0 ? (<NetProduced value={data.trpArm} title={eraArray[era].trparm} />) : ('')
+									}
+									{data.trpLnd !== 0 ? (<NetProduced value={data.trpLnd} title={eraArray[era].trplnd} />) : ('')
+									}
+									{data.trpFly !== 0 ? (<NetProduced value={data.trpFly} title={eraArray[era].trpfly} />) : ('')
+									}
+									{data.trpSea !== 0 ? (<NetProduced value={data.trpSea} title={eraArray[era].trpsea} />) : ('')
+									}
+									{data.trpWiz !== 0 ? (<NetProduced value={data.trpWiz} title={eraArray[era].trpwiz} />) : ('')
+									}
+									{data.runes !== 0 ? (<NetProduced value={data.runes} title={eraArray[era].runes} />) : ('')}
+								</SimpleGrid>
+							</div>
+						</SimpleGrid>
+					</Card>
+				</div>)}
+		</div>
+	)
+}

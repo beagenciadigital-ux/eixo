@@ -1,0 +1,123 @@
+{
+	"favorites": {
+		"title": "Favoritos",
+		"drag": "Arraste para reordenar",
+		"empty": "Adicione favoritos pela estrela nas páginas de Usar turnos",
+		"compact": "Compacto"
+	},
+	"general": {
+		"flavorText": "A cada turno gasto {{flavor}}, seu império produz 25% a mais de {{item}}.",
+		"spend": "Quantos turnos {{flavor}}?",
+		"condensed": "Compacto",
+		"error": "Número de turnos inválido",
+		"refresh": "Atualizar dados",
+		"repeat": "Repetir ação",
+		"resume": "Retomar tutorial",
+		"bonusTurns": "Turnos bônus"
+	},
+	"explore": {
+		"title": "Explorar",
+		"flavor": "explorando",
+		"item": "acres",
+		"flavorText": "A cada turno {{flavor}}, seu império ganha {{explore}} {{item}}."
+	},
+	"heal": {
+		"title": "Curar",
+		"flavor": "em cura",
+		"flavorText": "Qualquer uso de turno cura um pouco; focando em cura, cada turno {{flavor}} cura um ponto extra. A produção cai para 66% do normal."
+	},
+	"farm": {
+		"title": "Fazenda",
+		"flavor": "na agricultura",
+		"item": "comida"
+	},
+	"cash": {
+		"title": "Dinheiro",
+		"flavor": "na economia",
+		"item": "dinheiro",
+		"tax": "Impostos",
+		"update": "Atualize a alíquota:",
+		"custom": "Personalizado",
+		"updateButton": "Atualizar",
+		"warning": "Imposto alto reduz a saúde máxima.",
+		"error": "Alíquota inválida",
+		"responseSuccess": "Impostos atualizados",
+		"responseFail": "Falha ao atualizar impostos"
+	},
+	"industry": {
+		"title": "Indústria",
+		"flavor": "na indústria",
+		"item": "tropas",
+		"error": "Percentual inválido",
+		"responseFail": "Falha ao salvar indústria",
+		"responseSuccess": "Indústria atualizada",
+		"indySettings": "Configuração da indústria",
+		"update": "Distribua 100% entre os tipos de unidade.",
+		"total": "Os valores devem somar 100",
+		"updateButton": "Atualizar"
+	},
+	"meditate": {
+		"title": "Meditar",
+		"flavor": "meditando"
+	},
+	"build": {
+		"title": "Construir",
+		"error": "Quantidade de prédios inválida",
+		"description": "Cada estrutura usa um acre vazio e custa {{cost}} para construir.",
+		"rate": "Você constrói até {{rate}} estruturas por turno.",
+		"canBuild": "Com recursos e terra, dá para construir {{canBuild}} estruturas.",
+		"buildError": "Não dá para construir tantos prédios",
+		"structure": "Estrutura",
+		"owned": "Possui",
+		"build": "Construir",
+		"empty": "Terra vazia",
+		"submit": "Construir",
+		"demolish": "Demolir prédios",
+		"demoTitle": "Demolir",
+		"demoDescription": "Cada demolição libera um acre e recupera ${{cost}}.",
+		"demoRate": "Você demole até {{rate}} estruturas por turno.",
+		"demoCan": "Pode demolir {{can}} estruturas.",
+		"demoError": "Não dá para demolir tantos prédios",
+		"submitDemo": "Demolir",
+		"buildButton": "Construir prédios",
+		"dropLand": "Você pode abandonar até {{canDrop}} acres vazios, a {{dropRate}} acres por turno.",
+		"canDrop": "Pode abandonar",
+		"drop": "Abandonar",
+		"dropButton": "Abandonar terra"
+	},
+	"magicCenter": {
+		"title": "Centro mágico",
+		"description": "Lança feitiços para escudo, comida, dinheiro ou mudar de era. Cada lançamento custa dois turnos.",
+		"power": "Seu poder mágico atual é {{power}}.",
+		"select": "Escolha o feitiço",
+		"pick": "Escolha um",
+		"number": "Quantas vezes lançar?",
+		"submit": "Lançar feitiço",
+		"castError": "Não pode lançar tantas vezes",
+		"powerReq": "Poder",
+		"cost": "Custo"
+	},
+	"results": {
+		"freeLand": "Terra livre",
+		"attackFailed": "O ataque falhou!",
+		"spellFailed": "O feitiço falhou! {{wizloss}} {{descriptor}} morreram na explosão.",
+		"exploreSuccess": "Você ganhou {{count}} acres explorando",
+		"savingsOverflow": "Sua poupança estourou o limite. ${{amount}} foram devolvidos.",
+		"economy": "Economia:",
+		"income": "Receitas:",
+		"expenses": "Despesas:",
+		"loanPayment": "Parcela do empréstimo:",
+		"loanInterest": "Juros do empréstimo:",
+		"corruption": "Corrupção:",
+		"warTax": "Imposto de guerra:",
+		"net": "Líquido",
+		"agriculture": "Agricultura:",
+		"produced": "Produzido:",
+		"consumed": "Consumido:",
+		"rot": "Apodrecimento:",
+		"populationAndMilitary": "População e militar:",
+		"youLost": "Você perdeu:",
+		"youKilled": "Você eliminou:",
+		"youCaptured": "Você capturou:"
+	}
+}

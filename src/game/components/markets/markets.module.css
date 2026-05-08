@@ -1,0 +1,31 @@
+.tablecontainer {
+    overflow-x: auto;
+    width: auto;
+}
+
+.widetable {
+    width: auto;
+}
+
+.widetable th,
+.widetable td {
+    min-width: 120px;
+}
+
+@media screen and (max-width: 440px) {
+
+    .tablecontainer {
+        overflow-x: auto;
+        width: 360px;
+    }
+
+    .widetable {
+        width: 700px;
+    }
+
+    .widetable th,
+    .widetable td {
+        width: 80px;
+    }
+
+}
