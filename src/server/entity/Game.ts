@@ -4,10 +4,9 @@ import {
 	Index,
 	PrimaryGeneratedColumn,
 	OneToMany,
-	Generated,
 } from 'typeorm'
 import Model from './Model'
-import type Empire from './Empire'
+import Empire from './Empire'
 
 @Entity('game')
 export default class Game extends Model {
@@ -20,7 +19,10 @@ export default class Game extends Model {
 	@PrimaryGeneratedColumn()
 	game_id: number
 
-	@OneToMany('Empire', 'game')
+	@OneToMany(
+		() => Empire,
+		(empire: Empire) => empire.game,
+	)
 	empires: Empire[]
 
 	@Column({ default: true })

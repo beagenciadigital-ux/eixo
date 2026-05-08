@@ -1,5 +1,4 @@
 import * as Sentry from "@sentry/node";
-import { ProfilingIntegration } from "@sentry/profiling-node";
 import express from "express";
 import * as fs from "fs";
 import * as path from "path";
@@ -46,10 +45,8 @@ export function getApiApp(): express.Express {
 		integrations: [
 			new Sentry.Integrations.Http({ tracing: true }),
 			new Sentry.Integrations.Express({ app }),
-			new ProfilingIntegration(),
 		],
 		tracesSampleRate: 0.5,
-		profilesSampleRate: 0.5,
 	});
 
 	app.use(Sentry.Handlers.requestHandler());
@@ -143,6 +140,8 @@ export function getApiApp(): express.Express {
 		res: express.Response,
 		_next: express.NextFunction,
 	) {
+		// Emit stack/details to runtime logs so production 500 root causes are visible.
+		console.error("[Eixo API] Unhandled error:", err);
 		const sentryId = (res as express.Response & { sentry?: string }).sentry;
 		res.statusCode = 500;
 		res.end(String(sentryId ?? err) + "\n");

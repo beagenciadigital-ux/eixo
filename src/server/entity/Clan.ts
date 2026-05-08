@@ -1,12 +1,5 @@
 import { Length } from 'class-validator'
-import {
-	Entity,
-	Column,
-	Index,
-	BeforeInsert,
-	PrimaryGeneratedColumn,
-	OneToMany,
-} from 'typeorm'
+import { Entity, Column, Index, BeforeInsert, PrimaryGeneratedColumn } from 'typeorm'
 import Model from './Model'
 import bcrypt from 'bcrypt'
 import { Exclude } from 'class-transformer'
@@ -87,10 +80,8 @@ export default class Clan extends Model {
 	@Column({ type: 'simple-array', default: null, nullable: true })
 	peaceOffer: string[]
 
-	@OneToMany('ClanRelation', 'clan')
 	relation: ClanRelation[]
 
-	@OneToMany('Empire', 'clan')
 	empires: Empire[]
 
 	@BeforeInsert()

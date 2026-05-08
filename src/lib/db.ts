@@ -32,15 +32,60 @@ const g = globalThis as typeof globalThis & {
 	__eixo_game_bootstrap_done?: boolean;
 };
 
+function hasRequiredEntityMetadata(connection: Connection): boolean {
+	// In dev with HMR, TypeORM can keep a cached connection while entity modules
+	// are hot-reloaded, leading to partial metadata state.
+	const names = new Set(connection.entityMetadatas.map((m) => m.name));
+	const tableNames = new Set(connection.entityMetadatas.map((m) => m.tableName));
+	const hasEntities =
+		names.has("Empire") &&
+		names.has("Game") &&
+		(tableNames.has("empires") || names.has("empires")) &&
+		(tableNames.has("game") || names.has("game"));
+	if (!hasEntities) return false;
+
+	try {
+		const empireMeta = connection.getMetadata("empires");
+		const gameRelation = empireMeta.relations.find((r) => r.propertyName === "game");
+		// This is the exact edge case from logs: Empire#game missing inverse metadata.
+		return Boolean(gameRelation?.inverseEntityMetadata);
+	} catch {
+		return false;
+	}
+}
+
+function resolveDatabaseUrl(): string {
+	const candidates = [
+		process.env.DATABASE_URL,
+		process.env.POSTGRES_URL,
+		process.env.POSTGRES_PRISMA_URL,
+		process.env.POSTGRES_URL_NON_POOLING,
+	];
+	for (const raw of candidates) {
+		if (typeof raw === "string" && raw.trim().length > 0) {
+			return raw.trim();
+		}
+	}
+	return "";
+}
+
 function assertEnv(): void {
-	const hasDatabaseUrl = Boolean(process.env.DATABASE_URL?.trim());
+	const hasDatabaseUrl = Boolean(resolveDatabaseUrl());
+	const hasDiscreteDbConfig = Boolean(
+		process.env.DB_HOST ||
+			process.env.POSTGRES_HOST ||
+			process.env.PGHOST ||
+			process.env.DB_PASSWORD ||
+			process.env.POSTGRES_PASSWORD ||
+			process.env.PGPASSWORD,
+	);
 	const dbPassword = process.env.DB_PASSWORD;
 	const passwordMissingOrPlaceholder =
 		!dbPassword || dbPassword === "REPLACE_WITH_DATABASE_PASSWORD";
 
-	if (!hasDatabaseUrl && passwordMissingOrPlaceholder) {
+	if (!hasDatabaseUrl && !hasDiscreteDbConfig && passwordMissingOrPlaceholder) {
 		throw new Error(
-			"[Eixo do Mal] Configura DATABASE_URL ou DB_PASSWORD no .env (ver .env.example).",
+			"[Eixo do Mal] Configura DATABASE_URL/POSTGRES_URL ou variáveis DB_*/PG* no ambiente.",
 		);
 	}
 
@@ -56,12 +101,12 @@ function assertEnv(): void {
 }
 
 function buildConnectionOptions() {
-	const databaseUrl =
-		typeof process.env.DATABASE_URL === "string"
-			? process.env.DATABASE_URL.trim()
-			: "";
+	const databaseUrl = resolveDatabaseUrl();
 
-	const useSsl = process.env.DB_SSL === "true" || process.env.DB_SSL === "1";
+	const useSsl =
+		process.env.DB_SSL === "true" ||
+		process.env.DB_SSL === "1" ||
+		process.env.PGSSLMODE === "require";
 
 	const common = {
 		synchronize: process.env.TYPEORM_SYNC !== "false",
@@ -82,11 +127,26 @@ function buildConnectionOptions() {
 
 	return {
 		type: (process.env.DB_DIALECT || "postgres") as "postgres",
-		host: process.env.DB_HOST,
-		port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
-		username: process.env.DB_USERNAME,
-		password: process.env.DB_PASSWORD,
-		database: process.env.DB_DATABASE,
+		host: process.env.DB_HOST || process.env.POSTGRES_HOST || process.env.PGHOST,
+		port: process.env.DB_PORT
+			? Number(process.env.DB_PORT)
+			: process.env.POSTGRES_PORT
+				? Number(process.env.POSTGRES_PORT)
+				: process.env.PGPORT
+					? Number(process.env.PGPORT)
+					: undefined,
+		username:
+			process.env.DB_USERNAME ||
+			process.env.POSTGRES_USER ||
+			process.env.PGUSER,
+		password:
+			process.env.DB_PASSWORD ||
+			process.env.POSTGRES_PASSWORD ||
+			process.env.PGPASSWORD,
+		database:
+			process.env.DB_DATABASE ||
+			process.env.POSTGRES_DATABASE ||
+			process.env.PGDATABASE,
 		...(useSsl && {
 			ssl: { rejectUnauthorized: false },
 		}),
@@ -163,12 +223,35 @@ async function bootstrapDefaultGameIfNeeded(connection: Connection): Promise<voi
  */
 export function ensureDb(): Promise<Connection> {
 	assertEnv();
+	if (g.__eixo_typeorm_connection) {
+		g.__eixo_typeorm_connection = g.__eixo_typeorm_connection.then(
+			async (connection) => {
+				if (hasRequiredEntityMetadata(connection)) {
+					return connection;
+				}
+				if (connection.isConnected) {
+					await connection.close();
+				}
+				const recreated = await createConnection(buildConnectionOptions());
+				await bootstrapDefaultGameIfNeeded(recreated);
+				return recreated;
+			},
+		);
+		return g.__eixo_typeorm_connection;
+	}
 	if (!g.__eixo_typeorm_connection) {
 		g.__eixo_typeorm_connection = (async () => {
 			const manager = getConnectionManager();
 			let connection: Connection;
 			if (manager.has("default")) {
 				connection = manager.get("default");
+				if (!hasRequiredEntityMetadata(connection)) {
+					// Recreate stale connection metadata (common after dev HMR).
+					if (connection.isConnected) {
+						await connection.close();
+					}
+					connection = await createConnection(buildConnectionOptions());
+				}
 			} else {
 				connection = await createConnection(buildConnectionOptions());
 			}

@@ -3,7 +3,6 @@ import {
 	Column,
 	Index,
 	PrimaryGeneratedColumn,
-	ManyToOne,
 } from 'typeorm'
 import Model from './Model'
 import type Clan from './Clan'
@@ -66,6 +65,6 @@ export default class ClanRelation extends Model {
 	})
 	clan2Name: string
 
-	@ManyToOne('Clan', 'relation', { onDelete: 'SET NULL' })
 	clan: Clan
+
 }

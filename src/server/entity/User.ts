@@ -10,7 +10,7 @@ import {
 import Model from './Model'
 import bcrypt from 'bcrypt'
 import { Exclude } from 'class-transformer'
-import type Empire from './Empire'
+import Empire from './Empire'
 
 @Entity('users')
 export default class User extends Model {
@@ -44,7 +44,10 @@ export default class User extends Model {
 		this.password = await bcrypt.hash(this.password, 6)
 	}
 
-	@OneToMany('Empire', 'user')
+	@OneToMany(
+		() => Empire,
+		(empire: Empire) => empire.user,
+	)
 	empires: Empire[]
 
 	@Column({

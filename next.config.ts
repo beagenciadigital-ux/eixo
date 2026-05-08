@@ -3,6 +3,9 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
 	allowedDevOrigins: ["192.168.15.159"],
+	experimental: {
+		serverMinification: false,
+	},
 	turbopack: {
 		root: path.resolve(process.cwd()),
 	},

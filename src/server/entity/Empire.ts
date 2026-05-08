@@ -9,9 +9,9 @@ import {
 import { Length } from 'class-validator'
 
 import Model from './Model'
-import type User from './User'
+import User from './User'
 import type Clan from './Clan'
-import type Game from './Game'
+import Game from './Game'
 
 @Entity('empires')
 export default class Empire extends Model {
@@ -42,13 +42,18 @@ export default class Empire extends Model {
 	})
 	game_id: number
 
-	@ManyToOne('Clan', 'empires', { onDelete: 'SET NULL' })
 	clan: Clan
 
-	@ManyToOne('Game', 'empires')
+	@ManyToOne(
+		() => Game,
+		(game: Game) => game.empires,
+	)
 	game: Game
 
-	@ManyToOne('User', 'empires')
+	@ManyToOne(
+		() => User,
+		(user: User) => user.empires,
+	)
 	@JoinColumn({ name: 'username', referencedColumnName: 'username' })
 	user: User
 
