@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { Outlet, useNavigate, Link } from "react-router-dom"
 import Axios from "axios"
-import { useLocalStorage } from "@mantine/hooks"
+import { useLocalStorage, useMediaQuery } from "@mantine/hooks"
 import useInterval from "./hooks/useInterval"
 import {
 	ColorSchemeProvider,
@@ -20,6 +20,8 @@ import {
 	Image,
 	Center,
 	Box,
+	Drawer,
+	Stack,
 } from "@mantine/core"
 import { NotificationsProvider, showNotification } from "@mantine/notifications"
 import neoIcon from "./icons/neoIcon.svg"
@@ -53,12 +55,21 @@ import { BRAND_NAME } from "./config/oldConfig"
 
 function App() {
 	const [opened, setOpened] = useState(false)
+	const isMobile = useMediaQuery("(max-width: 767px)", false, true)
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const navigate = useNavigate()
 	const empireStatus = useSelector((state) => state.empire.status)
+	const timeStatus = useSelector((state) => state.time.status)
+	const roundClock = useSelector((state) => state.time.time)
 	const { isLoggedIn, user } = useSelector((state) => state.user)
 	const { empire } = useSelector((state) => state.empire)
+
+	const shellReady =
+		empireStatus === "succeeded" &&
+		empire != null &&
+		timeStatus === "succeeded" &&
+		roundClock != null
 
 	// handle condition where there is no active game in redux store
 	const games = useSelector((state) => state.games.games)
@@ -177,6 +188,10 @@ function App() {
 	}, [dispatch, pageState])
 
 	useEffect(() => {
+		setOpened(false)
+	}, [location.pathname])
+
+	useEffect(() => {
 		if (empireStatus !== "succeeded" || !empire) return
 		if (empire.flags === 1 && location.pathname !== "/app/disabled") {
 			navigate("/app/disabled")
@@ -223,7 +238,11 @@ function App() {
 	}, [currentStep, meta, navigate, pageName, setIsOpen])
 
 	useInterval(async () => {
-		if (empireStatus === "succeeded" && pageName !== "Public Market") {
+		if (
+			empireStatus === "succeeded" &&
+			empire?.uuid &&
+			pageName !== "Public Market"
+		) {
 			try {
 				const res = await Axios.get(`/empire/${empire.uuid}`)
 				// console.log(res.data)
@@ -259,6 +278,7 @@ function App() {
 			>
 				<MantineProvider theme={{ colorScheme }} withGlobalStyles>
 					<NotificationsProvider autoClose={4000}>
+						<>
 						<AppShell
 							styles={(theme) => ({
 								main: {
@@ -272,6 +292,7 @@ function App() {
 							navbarOffsetBreakpoint="sm"
 							fixed
 							navbar={
+								isMobile ? undefined : (
 								<Navbar
 									padding="sm"
 									hiddenBreakpoint="sm"
@@ -282,7 +303,7 @@ function App() {
 										paddingBottom: "calc(1em + env(safe-area-inset-bottom))",
 									}}
 								>
-									<Navbar.Section grow ml={10} onClick={() => setOpened(false)}>
+									<Navbar.Section grow ml={10}>
 										<ScrollArea h="100%">
 											<Sidebar game={activeGame} />
 										</ScrollArea>
@@ -299,6 +320,7 @@ function App() {
 										</Button>
 									</Navbar.Section>
 								</Navbar>
+								)
 							}
 							header={
 								<Header height={60} p="sm" zIndex={120}>
@@ -307,7 +329,13 @@ function App() {
 											<Burger
 												opened={opened}
 												onClick={() => setOpened((o) => !o)}
-												size="sm"
+												size="md"
+												aria-label="Menu"
+												sx={(theme) => ({
+													minWidth: 44,
+													minHeight: 44,
+													padding: theme.spacing.xs,
+												})}
 											/>
 										</MediaQuery>
 										<a
@@ -363,11 +391,32 @@ function App() {
 								style={{
 									paddingBottom: "calc(15px + env(safe-area-inset-bottom))",
 								}}
-								onClick={() => setOpened(false)}
 								className="gremlin14 dwarf14 ghoul14 goblin14 orc14 hobbit14 elf10 drow10 pixie10 gnome14 vampire14 minotaur14"
 							>
-								{empireStatus !== "succeeded" ? (
-									<Loader />
+								{!shellReady ? (
+									timeStatus === "failed" &&
+									empireStatus === "succeeded" &&
+									empire ? (
+										<Center style={{ minHeight: "40vh" }}>
+											<Stack align="center" spacing="sm">
+												<Title order={4} ta="center">
+													Could not load round clock. Check your connection
+													and try again.
+												</Title>
+												<Button
+													variant="light"
+													onClick={() => {
+														if (activeGame?.game_id)
+															dispatch(getTime(activeGame.game_id))
+													}}
+												>
+													Retry
+												</Button>
+											</Stack>
+										</Center>
+									) : (
+										<Loader />
+									)
 								) : (
 									<>
 										<InfoBar data={empire} />
@@ -376,10 +425,10 @@ function App() {
 											justify="center"
 											sx={{ marginTop: "0.5rem", marginBottom: "0.25rem" }}
 										>
-											<Grid.Col span={2}>
+											<Grid.Col span={{ base: 12, sm: 2 }}>
 												<EffectIcons pageState={pageState} empire={empire} />
 											</Grid.Col>
-											<Grid.Col span={3}>
+											<Grid.Col span={{ base: 12, sm: 3 }}>
 												<Group spacing="xs" position="center">
 													<GuideModalButton
 														pageName={pageName}
@@ -389,8 +438,18 @@ function App() {
 													<RefreshButton empire={empire} />
 												</Group>
 											</Grid.Col>
-											<Grid.Col span={2}>
-												<Group spacing="xs" mr="sm" position="right">
+											<Grid.Col span={{ base: 12, sm: 2 }}>
+												<Group
+													spacing="xs"
+													sx={(theme) => ({
+														flexWrap: "wrap",
+														justifyContent: "center",
+														[theme.fn.largerThan("sm")]: {
+															justifyContent: "flex-end",
+															marginRight: theme.spacing.sm,
+														},
+													})}
+												>
 													<BonusTurns />
 													{empire.clanId !== 0 && (
 														<ClanMailButton empire={empire} kickOut={kickOut} />
@@ -416,6 +475,53 @@ function App() {
 								)}
 							</main>
 						</AppShell>
+						{isMobile && (
+							<Drawer
+								opened={opened}
+								onClose={() => setOpened(false)}
+								position="left"
+								size={280}
+								padding="sm"
+								title=""
+								zIndex={400}
+								styles={{
+									body: {
+										paddingBottom:
+											"calc(1em + env(safe-area-inset-bottom))",
+									},
+								}}
+							>
+								<Stack
+									justify="space-between"
+									sx={{
+										minHeight: "calc(100vh - 2rem - env(safe-area-inset-bottom))",
+									}}
+								>
+									<ScrollArea
+										sx={{
+											flex: 1,
+											maxHeight: "calc(100vh - 200px - env(safe-area-inset-bottom))",
+										}}
+									>
+										<Sidebar game={activeGame} />
+									</ScrollArea>
+									<Stack spacing="sm">
+										<LanguageSelector />
+										<Button
+											component={Link}
+											to="/select"
+											variant="subtle"
+											color="red"
+											fullWidth
+											onClick={() => setOpened(false)}
+										>
+											Mode Select
+										</Button>
+									</Stack>
+								</Stack>
+							</Drawer>
+						)}
+						</>
 					</NotificationsProvider>
 				</MantineProvider>
 			</ColorSchemeProvider>

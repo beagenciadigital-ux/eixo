@@ -374,20 +374,32 @@ const updateTax = async (req: Request, res: Response) => {
 }
 
 const updateProfile = async (req: Request, res: Response) => {
-	const { empireId, type, profile } = req.body
+	const { uuid } = req.params
+	const { type, profile } = req.body
+	const user = res.locals.user as User
 
 	try {
-		const empire = await getEmpireRepo().findOneOrFail({ id: empireId })
+		const empire = await getEmpireRepo().findOneOrFail(
+			{ uuid },
+			{ relations: ["user"] },
+		)
 
-		if (type === "profile") {
-			if (!containsOnlySymbols(profile)) {
-				empire.profile = filter.clean(profile)
-			} else {
-				empire.profile = profile
-			}
-			await getEmpireRepo().save(empire)
-			return res.json(empire)
+		if (!empire.user || empire.user.username !== user.username) {
+			return res.status(403).json({ error: "Forbidden" })
 		}
+
+		if (type !== "profile") {
+			return res.status(400).json({ error: "Invalid request type" })
+		}
+
+		const profileStr = typeof profile === "string" ? profile : ""
+		if (!containsOnlySymbols(profileStr)) {
+			empire.profile = filter.clean(profileStr)
+		} else {
+			empire.profile = profileStr
+		}
+		await getEmpireRepo().save(empire)
+		return res.json(empire)
 	} catch (error) {
 		console.log(error)
 		return res.status(500).json({ error: "something went wrong" })

@@ -2,10 +2,19 @@ import { useSelector } from "react-redux"
 
 export const checkRoundStatus = (early) =>
 {
-	const time = useSelector((state) => state.time)
+	const slice = useSelector((state) => state.time)
+	const payload = slice.time
+	if (
+		!payload ||
+		payload.start == null ||
+		payload.end == null ||
+		payload.time == null
+	) {
+		return false
+	}
 	let roundStatus = false
-	const upcoming = time.time.start - time.time.time
-	const remaining = time.time.end - time.time.time
+	const upcoming = payload.start - payload.time
+	const remaining = payload.end - payload.time
 	let earlyEnd = false
 	if (early) {
 		earlyEnd = remaining / 1000 / 60 / 60 < 24

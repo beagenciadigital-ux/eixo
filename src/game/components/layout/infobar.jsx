@@ -1,4 +1,13 @@
-import { Paper, Grid, Text, Center, Progress, Popover } from "@mantine/core"
+import {
+	Paper,
+	Grid,
+	Text,
+	Center,
+	Progress,
+	Popover,
+	Box,
+	Loader,
+} from "@mantine/core"
 import { useTranslation } from "react-i18next"
 import { eraArray } from "../../config/eras"
 import {
@@ -73,12 +82,28 @@ export default function InfoBar({ data }) {
 	// console.log(i18n.language)
 
 	const { time } = useSelector((state) => state.time)
-	const roundLength = time.end - time.start
-	const roundProgress = time.time - time.start
-	const roundPercent = (roundProgress / roundLength) * 100
 	const { turnsProtection, scoreEnabled, turnsFreq } = useSelector(
 		(state) => state.games.activeGame,
 	)
+
+	if (
+		!time ||
+		time.start == null ||
+		time.end == null ||
+		time.time == null
+	) {
+		return (
+			<Paper shadow="xs" radius="xs" withBorder pb="xs">
+				<Center py="md">
+					<Loader size="sm" />
+				</Center>
+			</Paper>
+		)
+	}
+
+	const roundLength = time.end - time.start
+	const roundProgress = time.time - time.start
+	const roundPercent = (roundProgress / roundLength) * 100
 
 	let roundStatus = ""
 	const upcoming = time.start - time.time
@@ -125,12 +150,30 @@ export default function InfoBar({ data }) {
 			<Text align="center" weight="bold" mb="xs">
 				{roundStatus}
 			</Text>
+			<Box
+				sx={(theme) => ({
+					[theme.fn.smallerThan("sm")]: {
+						overflowX: "auto",
+						WebkitOverflowScrolling: "touch",
+						marginLeft: `calc(-1 * ${theme.spacing.xs})`,
+						marginRight: `calc(-1 * ${theme.spacing.xs})`,
+						paddingLeft: theme.spacing.xs,
+						paddingRight: theme.spacing.xs,
+					},
+				})}
+			>
 			<Grid
 				justify="space-between"
 				grow
 				columns={scoreEnabled ? 21 : 19}
 				pl="xs"
 				pr="xs"
+				sx={(theme) => ({
+					[theme.fn.smallerThan("sm")]: {
+						flexWrap: "nowrap",
+						minWidth: scoreEnabled ? 640 : 560,
+					},
+				})}
 			>
 				<Grid.Col span={2} sx={{ cursor: "pointer" }}>
 					<Popover withArrow shadow="sm">
@@ -259,6 +302,7 @@ export default function InfoBar({ data }) {
 					<AnimateNumberChange type="health" number={empire.health} />
 				</Grid.Col>
 			</Grid>
+			</Box>
 		</Paper>
 	)
 }

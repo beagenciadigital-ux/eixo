@@ -38,6 +38,10 @@ export const timeSlice = createSlice({
 				state.status = 'succeeded'
 				state.time = action.payload
 			})
+			.addCase(getTime.rejected, (state) => {
+				state.status = 'failed'
+				state.time = null
+			})
 			.addCase(PURGE, () => initialState)
 	},
 })
