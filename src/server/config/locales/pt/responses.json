@@ -73,5 +73,15 @@
 		"noPrice": "É necessário um preço para {{item}}.",
 		"itemRecalled": "Item retirado",
 		"priceChanged": "Preço alterado"
+	},
+	"turns": {
+		"desertion": "{{percent}}% dos teus {{peasants}}, das Tropas e dos {{trpwiz}} desertaram por falta de recursos.",
+		"desertionStopped": "{{percent}}% dos teus {{peasants}}, das Tropas e dos {{trpwiz}} desertaram por falta de recursos. Os turnos foram parados para evitar mais perdas.",
+		"loanGrowingStopped": "O teu empréstimo está a crescer depressa. Os turnos foram parados para permitires fazer ajustes.",
+		"loanMaxedOut": "Ficaste sem dinheiro e o empréstimo está no máximo!",
+		"rushToBank": "Ficaste sem dinheiro! Corres ao banco para pedir um empréstimo.",
+		"empireDisabled": "O teu império foi desativado pela administração.",
+		"notEnoughTurns": "Não há turnos suficientes disponíveis.",
+		"specifyTurns": "Indica quantos turnos queres usar."
 	}
 }

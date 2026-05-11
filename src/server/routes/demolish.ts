@@ -134,7 +134,7 @@ const demolish = async (req: Request, res: Response) => {
 					demoAmount = demolishRate
 				}
 				// use one turn
-				const oneTurn = useTurnInternal('demolish', 1, empire, clan, true, game)
+				const oneTurn = useTurnInternal('demolish', 1, empire, clan, true, game, language)
 				// console.log(oneTurn)
 				const turnRes = oneTurn[0]
 				// extract turn info from result and put individual object in result array

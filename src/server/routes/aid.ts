@@ -135,7 +135,7 @@ const sendAid = async (req: Request, res: Response) => {
 				(item) => item.value > 0 && item.value <= sender[item.name] * 0.15,
 			);
 
-		let aidTurns = useTurnInternal("aid", turns, sender, clan, true, game);
+		let aidTurns = useTurnInternal("aid", turns, sender, clan, true, game, language);
 		const spellRes = aidTurns[0];
 		// console.log('spell res', spellRes)
 		aidTurns = aidTurns[0];

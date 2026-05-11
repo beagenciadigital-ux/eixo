@@ -85,7 +85,7 @@ const dropLand = async (req: Request, res: Response) => {
 			console.log('dropAmount', dropAmount)
 			console.log('leftToDrop', leftToDrop)
 			// use one turn
-			const oneTurn = useTurnInternal('drop', 1, empire, clan, true, game)
+			const oneTurn = useTurnInternal('drop', 1, empire, clan, true, game, language)
 			// console.log(oneTurn)
 			const turnRes = oneTurn[0]
 			// extract turn info from result and put individual object in result array

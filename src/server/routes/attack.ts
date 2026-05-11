@@ -442,7 +442,7 @@ const attack = async (req: Request, res: Response) => {
 				attacker.health -= 5
 			}
 
-			let attackTurns = useTurnInternal(type, 2, attacker, clan, true, game)
+			let attackTurns = useTurnInternal(type, 2, attacker, clan, true, game, language)
 
 			const attackRes = attackTurns[0]
 			attackTurns = attackTurns[0]

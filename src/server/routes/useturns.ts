@@ -30,6 +30,24 @@ import { calculateRunes } from '../services/turn/calculateRunes'
 import { calcWizards } from '../services/turn/calcWizards'
 import { calcTaxPenalty } from '../services/turn/calcTaxPenalty'
 import { calcPeasants } from '../services/turn/calcPeasants'
+import { translate } from '../util/translation'
+import { language as languageMiddleware } from '../middleware/language'
+
+function desertionNotice(
+	language: string,
+	empire: Empire,
+	percent: number,
+	turnsStopped: boolean,
+) {
+	const vars = {
+		percent,
+		peasants: eraArray[empire.era].peasants,
+		trpwiz: eraArray[empire.era].trpwiz,
+	}
+	return turnsStopped
+		? translate('responses:turns.desertionStopped', language, vars)
+		: translate('responses:turns.desertion', language, vars)
+}
 
 export function getRandomInt(min, max) {
 	min = Math.ceil(min)
@@ -42,7 +60,8 @@ export const useTurn = async (
 	turns: number,
 	empireId: number,
 	condensed: boolean,
-	game: Game
+	game: Game,
+	language = 'pt',
 ) => {
 	let taken: number = 0
 	let overall = {}
@@ -56,7 +75,9 @@ export const useTurn = async (
 	const empire = await Empire.findOneOrFail({ id: empireId })
 
 	if (empire.flags === 1) {
-		return { message: 'Your empire has been disabled by administration.' }
+		return {
+			message: translate('responses:turns.empireDisabled', language),
+		}
 	}
 
 	if (empire.tax < 1) {
@@ -64,10 +85,14 @@ export const useTurn = async (
 	}
 
 	if (turns > empire.turns) {
-		return { message: 'not enough turns available' }
+		return {
+			message: translate('responses:turns.notEnoughTurns', language),
+		}
 	}
 	if (turns === 0) {
-		return { message: 'specify number of turns to use' }
+		return {
+			message: translate('responses:turns.specifyTurns', language),
+		}
 	}
 
 	while (taken < turns) {
@@ -218,16 +243,20 @@ export const useTurn = async (
 
 		if (trouble && troubleCash && empire.loan > loanEmergencyLimit) {
 			console.log('extreme cash trouble')
-			message['desertion'] =
-				'You have run out of money and your loan is maxed out!'
+			message['desertion'] = translate(
+				'responses:turns.loanMaxedOut',
+				language,
+			)
 			trouble |= 2
 			troubleLoan = true
 			empire.cash = 0
 			loanpayed = 0
 		} else if (troubleCash) {
 			console.log('less than 0')
-			message['desertion'] =
-				'You have run out of money! You rush to the bank to take out a loan.'
+			message['desertion'] = translate(
+				'responses:turns.rushToBank',
+				language,
+			)
 			loanpayed = Math.min(Math.round(empire.loan / 200), empire.cash)
 			console.log(loanpayed)
 		} else {
@@ -467,22 +496,24 @@ export const useTurn = async (
 			if (!interruptable) {
 				// let percent = condensed ? Math.round((1 - deserted) * 100) : 3
 				let percent = 3 * desertionTurns
-				message['desertion'] = `${percent}% of your ${
-					eraArray[empire.era].peasants
-				}, Troops, and ${
-					eraArray[empire.era].trpwiz
-				} have deserted due to lack of resources.`
+				message['desertion'] = desertionNotice(
+					language,
+					empire,
+					percent,
+					false,
+				)
 				current['messages'] = message
 				statsArray.push(current)
 			} else {
 				// let percent = condensed ? Math.round((1 - deserted) * 100) : 3
 				let percent = 3 * desertionTurns
 				// console.log(percent)
-				message['desertion'] = `${percent}% of your ${
-					eraArray[empire.era].peasants
-				}, Troops, and ${
-					eraArray[empire.era].trpwiz
-				} have deserted due to lack of resources. Turns have been stopped to prevent further losses.`
+				message['desertion'] = desertionNotice(
+					language,
+					empire,
+					percent,
+					true,
+				)
 				current['messages'] = message
 
 				empire.networth = getNetworth(empire, game)
@@ -491,9 +522,10 @@ export const useTurn = async (
 				break
 			}
 		} else if (troubleCashMinor) {
-			message[
-				'desertion'
-			] = `Your loan is growing quickly. Turns have been stopped to allow you to make adjustments.`
+			message['desertion'] = translate(
+				'responses:turns.loanGrowingStopped',
+				language,
+			)
 			current['messages'] = message
 			empire.networth = getNetworth(empire, game)
 			await empire.save()
@@ -533,8 +565,16 @@ const useTurns = async (req: Request, res: Response) => {
 	// const empireId = res.locals.user.empire.empireId
 	// console.log(type, turns, empireId, condensed)
 	const game = res.locals.game
+	const language = res.locals.language
 
-	const response = await useTurn(type, turns, empireId, condensed, game)
+	const response = await useTurn(
+		type,
+		turns,
+		empireId,
+		condensed,
+		game,
+		language,
+	)
 
 	return res.json(response)
 }
@@ -546,7 +586,8 @@ export const useTurnInternal = (
 	empire: Empire,
 	clan: Clan,
 	condensed: boolean,
-	game: Game
+	game: Game,
+	language = 'pt',
 ) => {
 	let taken = 0
 	const overall = {}
@@ -565,7 +606,7 @@ export const useTurnInternal = (
 	}
 
 	if (empire.flags === 1) {
-		message.error = 'Your empire has been disabled by administration.'
+		message.error = translate('responses:turns.empireDisabled', language)
 		statsArray.push(message)
 		return statsArray
 	}
@@ -580,13 +621,13 @@ export const useTurnInternal = (
 	}
 
 	if (turns > empire.turns) {
-		message.error = 'not enough turns available'
+		message.error = translate('responses:turns.notEnoughTurns', language)
 		statsArray.push(message)
 		return statsArray
 	}
 
 	if (turns === 0) {
-		message.error = 'specify number of turns to use'
+		message.error = translate('responses:turns.specifyTurns', language)
 		statsArray.push(message)
 		return statsArray
 	}
@@ -708,16 +749,20 @@ export const useTurnInternal = (
 		const loanEmergencyLimit = loanMax * 2
 		if (trouble && troubleCash && empire.loan > loanEmergencyLimit) {
 			console.log('extreme cash trouble')
-			message['desertion'] =
-				'You have run out of money and your loan is maxed out!'
+			message['desertion'] = translate(
+				'responses:turns.loanMaxedOut',
+				language,
+			)
 			trouble |= 2
 			troubleLoan = true
 			empire.cash = 0
 			loanpayed = 0
 		} else if (troubleCash) {
 			console.log('troubleCash', troubleCash)
-			message['desertion'] =
-				'You have run out of money! You rush to the bank to take out a loan.'
+			message['desertion'] = translate(
+				'responses:turns.rushToBank',
+				language,
+			)
 			loanpayed = Math.min(Math.round(empire.loan / 200), empire.cash)
 		} else {
 			// console.log('no troubleCash')
@@ -844,22 +889,24 @@ export const useTurnInternal = (
 			if (!interruptable) {
 				// let percent = condensed ? Math.round((1 - deserted) * 100) : 3
 				const percent = 3 * desertionTurns
-				message['desertion'] = `${percent}% of your ${
-					eraArray[empire.era].peasants
-				}, Troops, and ${
-					eraArray[empire.era].trpwiz
-				} have deserted due to lack of resources.`
+				message['desertion'] = desertionNotice(
+					language,
+					empire,
+					percent,
+					false,
+				)
 				current['messages'] = message
 				statsArray.push(current)
 			} else {
 				// let percent = condensed ? Math.round((1 - deserted) * 100) : 3
 				const percent = 3 * desertionTurns
 				// console.log(percent)
-				message['desertion'] = `${percent}% of your ${
-					eraArray[empire.era].peasants
-				}, Troops, and ${
-					eraArray[empire.era].trpwiz
-				} have deserted due to lack of resources. Turns have been stopped to prevent further losses.`
+				message['desertion'] = desertionNotice(
+					language,
+					empire,
+					percent,
+					true,
+				)
 				current['messages'] = message
 				statsArray.push(current)
 				break
@@ -883,6 +930,6 @@ export const useTurnInternal = (
 const router = Router()
 
 // game middleware needed, pass query param
-router.post('/', user, auth, attachGame, useTurns)
+router.post('/', user, auth, languageMiddleware, attachGame, useTurns)
 
 export default router

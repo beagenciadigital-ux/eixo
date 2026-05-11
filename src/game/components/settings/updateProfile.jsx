@@ -16,7 +16,7 @@ export default function UpdateProfile({ status, empire })
         initialValues: {
             empireId: empire.id,
             type: 'profile',
-            profile: empire.profile
+            profile: empire.profile ?? '',
         },
         validate: {
             profile: hasLength({ max: 499 }, t('settings:settings.profileValidation')),

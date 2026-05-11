@@ -134,6 +134,7 @@ const magic = async (req: Request, res: Response) => {
 						clan,
 						true,
 						game,
+						language,
 					)
 					let spellRes = spellTurns[0]
 					// console.log('spell res', spellRes)
@@ -190,6 +191,7 @@ const magic = async (req: Request, res: Response) => {
 						clan,
 						true,
 						game,
+						language,
 					)
 					let spellRes = spellTurns[0]
 					spellTurns = spellTurns[0]
@@ -253,6 +255,7 @@ const magic = async (req: Request, res: Response) => {
 						clan,
 						true,
 						game,
+						language,
 					)
 					console.log(empire.cash)
 					let spellRes = spellTurns[0]
@@ -330,6 +333,7 @@ const magic = async (req: Request, res: Response) => {
 							clan,
 							true,
 							game,
+							language,
 						)
 						let spellRes = spellTurns[0]
 						spellTurns = spellTurns[0]
@@ -404,6 +408,7 @@ const magic = async (req: Request, res: Response) => {
 							clan,
 							true,
 							game,
+							language,
 						)
 						let spellRes = spellTurns[0]
 						spellTurns = spellTurns[0]
@@ -463,6 +468,7 @@ const magic = async (req: Request, res: Response) => {
 						clan,
 						true,
 						game,
+						language,
 					)
 					let spellRes = spellTurns[0]
 					spellTurns = spellTurns[0]
@@ -517,6 +523,7 @@ const magic = async (req: Request, res: Response) => {
 						clan,
 						true,
 						game,
+						language,
 					)
 					const spellRes = spellTurns[0]
 					spellTurns = spellTurns[0]
@@ -576,7 +583,15 @@ const attackSpell = async (
 		attacker.spells++
 		attacker.health -= 8
 		// use two turns to cast spell
-		let spellTurns = useTurnInternal("magic", turns, attacker, clan, true, game)
+		let spellTurns = useTurnInternal(
+			"magic",
+			turns,
+			attacker,
+			clan,
+			true,
+			game,
+			language,
+		)
 		const spellRes = spellTurns[0]
 		spellTurns = spellTurns[0]
 

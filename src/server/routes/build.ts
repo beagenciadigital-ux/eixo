@@ -190,7 +190,7 @@ const build = async (req: Request, res: Response) => {
       // While there's anything left to build, consume one turn at a time and distribute capacity
       while (remainingList.some((x) => x.remaining > 0)) {
         // use one turn
-        let oneTurn = useTurnInternal("build", 1, empire, clan, true, game);
+        let oneTurn = useTurnInternal("build", 1, empire, clan, true, game, language);
         let turnRes = oneTurn[0];
 
         // Detect both wrapped and direct error responses from the turn function

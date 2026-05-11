@@ -73,5 +73,15 @@
 		"noPrice": "A price for the {{item}} must be entered.",
 		"itemRecalled": "Item recalled",
 		"priceChanged": "Price changed"
+	},
+	"turns": {
+		"desertion": "{{percent}}% of your {{peasants}}, Troops, and {{trpwiz}} have deserted due to lack of resources.",
+		"desertionStopped": "{{percent}}% of your {{peasants}}, Troops, and {{trpwiz}} have deserted due to lack of resources. Turns have been stopped to prevent further losses.",
+		"loanGrowingStopped": "Your loan is growing quickly. Turns have been stopped to allow you to make adjustments.",
+		"loanMaxedOut": "You have run out of money and your loan is maxed out!",
+		"rushToBank": "You have run out of money! You rush to the bank to take out a loan.",
+		"empireDisabled": "Your empire has been disabled by administration.",
+		"notEnoughTurns": "Not enough turns available.",
+		"specifyTurns": "Specify the number of turns to use."
 	}
 }
