@@ -36,6 +36,7 @@ i18n
       'tour',
       'achievements',
       'legal',
+      'admin',
     ],
     interpolation: {
       escapeValue: false,

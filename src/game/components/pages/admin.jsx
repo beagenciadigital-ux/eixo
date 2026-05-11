@@ -27,10 +27,12 @@ import { load, logout } from '../../store/userSlice'
 import ThemeToggle from '../../components/utilities/themeToggle'
 
 import AdminSidebar from '../admin/adminSidebar';
+import { useTranslation } from 'react-i18next'
 
 
 function Admin()
 {
+    const { t } = useTranslation('admin')
     const [opened, setOpened] = useState(false)
     const dispatch = useDispatch()
     const [modalOpened, setModalOpened] = useState(false);
@@ -126,7 +128,7 @@ function Admin()
                                         color='red'
                                         fullWidth
                                     >
-                                        Logout
+                                        {t('logout')}
                                     </Button>
                                 </Navbar.Section>
                             </Navbar>
@@ -146,7 +148,7 @@ function Admin()
                                             <Image src={neoIconSrc} height={38} width={38} sx={colorScheme === 'dark' ? ({ filter: 'invert(1)', opacity: '75%' }) : ({ filter: 'invert(0)', })} />
                                         </MediaQuery>
                                         <Title order={1} ml={0}>
-                                            Admin Dashboard
+                                            {t('dashboardTitle')}
                                         </Title>
                                     </Group>
                                     <Group>

@@ -1,0 +1,151 @@
+{
+	"headerButton": "Administração",
+	"dashboardTitle": "Painel de administração",
+	"logout": "Sair",
+	"sidebar": {
+		"homePage": "Página inicial",
+		"gameSelect": "Escolher partida",
+		"gamesIndex": "Índice de partidas (admin)",
+		"goToGame": "Ir ao jogo",
+		"manageGame": "Gerir partida",
+		"linkSummary": "Resumo",
+		"linkSettings": "Definições",
+		"linkUsers": "Utilizadores",
+		"linkEmpires": "Impérios",
+		"linkMail": "Correio",
+		"linkClanMail": "Correio de clã",
+		"linkMarket": "Mercado",
+		"linkNews": "Notícias"
+	},
+	"gamesManager": {
+		"overallSummary": "Resumo geral",
+		"noGames": "Nenhuma partida encontrada",
+		"createNew": "Criar uma partida nova"
+	},
+	"stats": {
+		"users": "Utilizadores:",
+		"empires": "Impérios:",
+		"mail": "Mensagens de correio (relatórios):",
+		"marketItems": "Itens no mercado:",
+		"newsEvents": "Eventos de notícias:"
+	},
+	"gameDetails": {
+		"maxTurns": "Turnos máx.:",
+		"storedTurns": "Turnos armazenados:",
+		"turnRateLabel": "Ritmo de turnos:",
+		"turnRate_one": "{{count}} turno / {{freq}} minutos",
+		"turnRate_other": "{{count}} turnos / {{freq}} minutos",
+		"roundStart": "Início da ronda:",
+		"roundEnd": "Fim da ronda:",
+		"players": "Jogadores:",
+		"avgLand": "Terras em média:",
+		"avgNetWorth": "Património líquido médio:"
+	},
+	"summary": {
+		"sectionTitle": "Resumo da partida",
+		"resetTitle": "Repor partida",
+		"resetDescription": "Repor a partida apagará todos os impérios, clãs, mensagens, itens do mercado, eventos de notícias, etc. Impérios, clãs e histórico da ronda serão guardados.",
+		"resetPlaceholder": "Introduza o código de reposição",
+		"resetButton": "Repor partida"
+	},
+	"createGame": {
+		"title": "Criar uma partida",
+		"submit": "Criar partida"
+	},
+	"editGame": {
+		"title": "Editar definições da partida",
+		"submit": "Guardar alterações"
+	},
+	"pageTitle": {
+		"users": "Utilizadores",
+		"empires": "Impérios",
+		"mail": "Correio",
+		"clanMail": "Correio de clã",
+		"market": "Mercado",
+		"news": "Notícias"
+	},
+	"menu": {
+		"edit": "Editar",
+		"delete": "Eliminar",
+		"disable": "Desativar",
+		"report": "Denunciar"
+	},
+	"users": {
+		"columns": {
+			"role": "Função",
+			"username": "Nome de utilizador",
+			"email": "E-mail",
+			"lastIp": "Último IP",
+			"createdAt": "Criado em",
+			"empireName": "Nome do império",
+			"empireId": "ID do império"
+		}
+	},
+	"empires": {
+		"columns": {
+			"mode": "Modo",
+			"created": "Criado",
+			"id": "ID",
+			"name": "Nome",
+			"flags": "Marcas",
+			"turns": "Turnos",
+			"turnsUsed": "Turnos usados",
+			"profile": "Perfil",
+			"rank": "Classificação",
+			"networth": "Património",
+			"land": "Terras",
+			"cash": "Dinheiro",
+			"food": "Comida"
+		}
+	},
+	"mail": {
+		"columns": {
+			"createdAt": "Criado em",
+			"reported": "Denunciado",
+			"sourceEmpireId": "ID império origem",
+			"sourceEmpireName": "Nome império origem",
+			"destinationEmpireId": "ID império destino",
+			"destinationEmpireName": "Nome império destino",
+			"messageBody": "Corpo da mensagem",
+			"conversationId": "ID da conversa",
+			"seen": "Visto"
+		}
+	},
+	"clanMail": {
+		"columns": {
+			"createdAt": "Criado em",
+			"reported": "Denunciado",
+			"clanId": "ID do clã",
+			"empireName": "Nome do império",
+			"messageBody": "Corpo da mensagem",
+			"seenBy": "Visto por"
+		}
+	},
+	"market": {
+		"columns": {
+			"createdAt": "Criado em",
+			"empireId": "ID do império",
+			"type": "Tipo",
+			"amount": "Quantidade",
+			"price": "Preço",
+			"timeOnMarket": "Tempo no mercado",
+			"conversationId": "ID da conversa",
+			"secret": "Segredo"
+		},
+		"hoursOnMarket_one": "{{count}} hora",
+		"hoursOnMarket_other": "{{count}} horas"
+	},
+	"news": {
+		"columns": {
+			"createdAt": "Criado em",
+			"type": "Tipo",
+			"result": "Resultado",
+			"sourceName": "Nome origem",
+			"sourceId": "ID origem",
+			"destinationName": "Nome destino",
+			"destinationId": "ID destino",
+			"personalContent": "Conteúdo pessoal",
+			"publicContent": "Conteúdo público"
+		}
+	}
+}

@@ -59,6 +59,7 @@ function App() {
 	const { t: tAchievements } = useTranslation("achievements")
 	const { t: tPages } = useTranslation("pages")
 	const { t: tLayout } = useTranslation("layout")
+	const { t: tAdmin } = useTranslation("admin")
 	const [opened, setOpened] = useState(false)
 	const isMobile = useMediaQuery("(max-width: 767px)", false, true)
 	const dispatch = useDispatch()
@@ -402,7 +403,7 @@ function App() {
 													compact
 													variant="light"
 												>
-													Admin
+													{tAdmin("headerButton")}
 												</Button>
 											) : (
 												""

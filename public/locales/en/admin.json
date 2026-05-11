@@ -1,0 +1,151 @@
+{
+	"headerButton": "Admin",
+	"dashboardTitle": "Admin Dashboard",
+	"logout": "Logout",
+	"sidebar": {
+		"homePage": "Home Page",
+		"gameSelect": "Game Select",
+		"gamesIndex": "Admin Games Index",
+		"goToGame": "Go to Game",
+		"manageGame": "Manage Game",
+		"linkSummary": "Summary",
+		"linkSettings": "Settings",
+		"linkUsers": "Users",
+		"linkEmpires": "Empires",
+		"linkMail": "Mail",
+		"linkClanMail": "Clan Mail",
+		"linkMarket": "Market",
+		"linkNews": "News"
+	},
+	"gamesManager": {
+		"overallSummary": "Overall Summary",
+		"noGames": "No games found",
+		"createNew": "Create a New Game"
+	},
+	"stats": {
+		"users": "Users:",
+		"empires": "Empires:",
+		"mail": "Mail Messages (reports):",
+		"marketItems": "Market Items:",
+		"newsEvents": "News Events:"
+	},
+	"gameDetails": {
+		"maxTurns": "Max Turns:",
+		"storedTurns": "Stored Turns:",
+		"turnRateLabel": "Turn Rate:",
+		"turnRate_one": "{{count}} turn / {{freq}} minutes",
+		"turnRate_other": "{{count}} turns / {{freq}} minutes",
+		"roundStart": "Round Start:",
+		"roundEnd": "Round End:",
+		"players": "Players:",
+		"avgLand": "Average Land:",
+		"avgNetWorth": "Average Net Worth:"
+	},
+	"summary": {
+		"sectionTitle": "Game Summary",
+		"resetTitle": "Reset Game",
+		"resetDescription": "Resetting the game will delete all empires, clans, mail messages, market items, news events, etc. Empires, clans, round history will be saved.",
+		"resetPlaceholder": "Enter reset code",
+		"resetButton": "Reset Game"
+	},
+	"createGame": {
+		"title": "Create A Game",
+		"submit": "Create Game"
+	},
+	"editGame": {
+		"title": "Edit Game Settings",
+		"submit": "Edit Game"
+	},
+	"pageTitle": {
+		"users": "Users",
+		"empires": "Empires",
+		"mail": "Mail",
+		"clanMail": "Clan Mail",
+		"market": "Market",
+		"news": "News"
+	},
+	"menu": {
+		"edit": "Edit",
+		"delete": "Delete",
+		"disable": "Disable",
+		"report": "Report"
+	},
+	"users": {
+		"columns": {
+			"role": "Role",
+			"username": "Username",
+			"email": "Email",
+			"lastIp": "Last IP",
+			"createdAt": "Created At",
+			"empireName": "Empire Name",
+			"empireId": "Empire ID"
+		}
+	},
+	"empires": {
+		"columns": {
+			"mode": "Mode",
+			"created": "Created",
+			"id": "ID",
+			"name": "Name",
+			"flags": "Flags",
+			"turns": "Turns",
+			"turnsUsed": "Turns Used",
+			"profile": "Profile",
+			"rank": "Rank",
+			"networth": "Networth",
+			"land": "Land",
+			"cash": "Cash",
+			"food": "Food"
+		}
+	},
+	"mail": {
+		"columns": {
+			"createdAt": "Created At",
+			"reported": "Reported",
+			"sourceEmpireId": "Source Empire Id",
+			"sourceEmpireName": "Source Empire Name",
+			"destinationEmpireId": "Destination Empire Id",
+			"destinationEmpireName": "Destination Empire Name",
+			"messageBody": "Message Body",
+			"conversationId": "Conversation Id",
+			"seen": "Seen"
+		}
+	},
+	"clanMail": {
+		"columns": {
+			"createdAt": "Created At",
+			"reported": "Reported",
+			"clanId": "Clan Id",
+			"empireName": "Empire Name",
+			"messageBody": "Message Body",
+			"seenBy": "Seen By"
+		}
+	},
+	"market": {
+		"columns": {
+			"createdAt": "Created At",
+			"empireId": "Empire ID",
+			"type": "Type",
+			"amount": "Amount",
+			"price": "Price",
+			"timeOnMarket": "Time on Market",
+			"conversationId": "Conversation Id",
+			"secret": "Secret"
+		},
+		"hoursOnMarket_one": "{{count}} hour",
+		"hoursOnMarket_other": "{{count}} hours"
+	},
+	"news": {
+		"columns": {
+			"createdAt": "Created At",
+			"type": "Type",
+			"result": "Result",
+			"sourceName": "Source Name",
+			"sourceId": "Source ID",
+			"destinationName": "Destination Name",
+			"destinationId": "Destination ID",
+			"personalContent": "Personal Content",
+			"publicContent": "Public Content"
+		}
+	}
+}

@@ -2,27 +2,26 @@ import { Button, Stack, Title } from '@mantine/core'
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
+const GAME_SECTION_LINKS = [
+    { route: 'Summary', labelKey: 'linkSummary' },
+    { route: 'Settings', labelKey: 'linkSettings' },
+    { route: 'Users', labelKey: 'linkUsers' },
+    { route: 'Empires', labelKey: 'linkEmpires' },
+    { route: 'Mail', labelKey: 'linkMail' },
+    { route: 'ClanMail', labelKey: 'linkClanMail' },
+    { route: 'Market', labelKey: 'linkMarket' },
+    { route: 'News', labelKey: 'linkNews' },
+]
 
 const AdminSidebar = () =>
 {
+    const { t } = useTranslation('admin')
     const activeGame = useSelector((state) => state.games.activeGame)
 
-    const infoLinks = [
-        'Summary',
-        'Settings',
-        'Users',
-        'Empires',
-        'Mail',
-        'ClanMail',
-        'Market',
-        'News',
-    ]
-
     const location = useLocation()
-    // console.log(location.pathname.split('/app/')[1])
     const locationString = location.pathname.split('/admin/')[1]
-    // console.log(locationString.split('%').length > 1)
 
     return (
         <Fragment>
@@ -33,7 +32,7 @@ const AdminSidebar = () =>
                     to={'/'}
                     variant='filled'
                 >
-                    Home Page
+                    {t('sidebar.homePage')}
                 </Button>
                 <Button
                     component={Link}
@@ -41,7 +40,7 @@ const AdminSidebar = () =>
                     to={'/select/'}
                     variant='filled'
                 >
-                    Game Select
+                    {t('sidebar.gameSelect')}
                 </Button>
                 <Button
                     component={Link}
@@ -49,7 +48,7 @@ const AdminSidebar = () =>
                     to={'/admin/'}
                     variant='filled'
                 >
-                    Admin Games Index
+                    {t('sidebar.gamesIndex')}
                 </Button>
                 {activeGame && <Title order={4} align='center'>{activeGame.name}</Title>}
                 <Button
@@ -58,26 +57,26 @@ const AdminSidebar = () =>
                     to='/app/'
                     variant='outline'
                 >
-                    Go to Game
+                    {t('sidebar.goToGame')}
                 </Button>
-                <Title order={4}>Manage Game</Title>
-                {activeGame && infoLinks.map((link, index) =>
+                <Title order={4}>{t('sidebar.manageGame')}</Title>
+                {activeGame && GAME_SECTION_LINKS.map(({ route, labelKey }) =>
                 {
                     let variant = 'subtle'
-                    if (locationString.split('%').length > 1 && locationString.split('%')[0] === link.split(' ')[0]) {
+                    if (locationString.split('%').length > 1 && locationString.split('%')[0] === route.split(' ')[0]) {
                         variant = 'filled'
-                    } else if (locationString === link) {
+                    } else if (locationString === route) {
                         variant = 'filled'
                     }
                     return (
                         <Button
                             component={Link}
                             compact
-                            to={`/admin/${activeGame?.game_id}/${link}`}
+                            to={`/admin/${activeGame?.game_id}/${route}`}
                             variant={variant}
-                            key={index}
+                            key={route}
                         >
-                            {link}
+                            {t(`sidebar.${labelKey}`)}
                         </Button>)
 
                 })}

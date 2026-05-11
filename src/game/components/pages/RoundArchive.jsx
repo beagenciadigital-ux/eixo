@@ -7,9 +7,11 @@ import HistoryCard from './HistoryCard'
 import { SlimHero } from './slimHero'
 import ClanHistoryCard from './ClanHistoryCard'
 import { useLocalStorage } from '@mantine/hooks'
+import { useTranslation } from 'react-i18next'
 
 const RoundArchive = () =>
 {
+    const { t } = useTranslation('pages')
     const { roundId } = useParams()
     // console.log(roundId)
 
@@ -65,8 +67,8 @@ const RoundArchive = () =>
                             </Text>
                             <Tabs defaultValue='empires'>
                                 <Tabs.List grow position="center">
-                                    <Tabs.Tab value='empires'>Empires</Tabs.Tab>
-                                    <Tabs.Tab value='clans'>Clans</Tabs.Tab>
+                                    <Tabs.Tab value='empires'>{t('archive.empires')}</Tabs.Tab>
+                                    <Tabs.Tab value='clans'>{t('archive.clans')}</Tabs.Tab>
                                 </Tabs.List>
 
                                 <Tabs.Panel value='empires'>

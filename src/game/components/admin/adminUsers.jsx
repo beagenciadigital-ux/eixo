@@ -4,15 +4,15 @@ import Axios from 'axios';
 import { IconSettings, IconTrash } from '@tabler/icons-react'
 import classes from './guide.module.css'
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function AdminUsers()
 {
+    const { t } = useTranslation('admin')
     const [users, setUsers] = useState([]);
     const [response, setResponse] = useState(null);
 
-    // get the gameId from the path
     const { gameId } = useParams();
-    // console.log(gameId);
 
     useEffect(() =>
     {
@@ -20,7 +20,6 @@ function AdminUsers()
         {
             const response = await Axios.get(`/admin/users?gameId=${gameId}`);
             const data = response.data;
-            // console.log(data);
             setUsers(data);
         }
 
@@ -47,8 +46,8 @@ function AdminUsers()
                         <Button size='xs' compact><IconSettings size={14} /></Button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
-                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteUser(user.uuid)}>Delete</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />}>{t('menu.edit')}</Menu.Item>
+                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteUser(user.uuid)}>{t('menu.delete')}</Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
             </td>
@@ -78,7 +77,7 @@ function AdminUsers()
 
     return (
         <Stack>
-            <Title>Users</Title>
+            <Title>{t('pageTitle.users')}</Title>
             <Text color='red'>{response?.message}</Text>
             {users.length > 0 &&
                 <div className={classes.guideTable}>
@@ -87,13 +86,13 @@ function AdminUsers()
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Role</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Last IP</th>
-                                <th>Created At</th>
-                                <th>Empire Name</th>
-                                <th>Empire ID</th>
+                                <th>{t('users.columns.role')}</th>
+                                <th>{t('users.columns.username')}</th>
+                                <th>{t('users.columns.email')}</th>
+                                <th>{t('users.columns.lastIp')}</th>
+                                <th>{t('users.columns.createdAt')}</th>
+                                <th>{t('users.columns.empireName')}</th>
+                                <th>{t('users.columns.empireId')}</th>
                             </tr>
                         </thead>
                         <tbody>

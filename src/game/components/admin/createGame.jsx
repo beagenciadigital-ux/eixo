@@ -1,5 +1,6 @@
 import { Container, Title, Text, Stack, Button } from "@mantine/core"
 import { useEffect, useState } from "react"
+import { useTranslation } from 'react-i18next'
 // import { UseForm } from "@mantine/form/lib/types"
 import { useSelector, useDispatch } from "react-redux"
 import { fetchGames, setActiveGame } from "../../store/gamesSlice"
@@ -8,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 
 function CreateGame()
 {
-
+    const { t } = useTranslation('admin')
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const games = useSelector(state => state.games.games)
@@ -61,7 +62,7 @@ function CreateGame()
 
     return (
         <Container>
-            <Title>Create A Game</Title>
+            <Title>{t('createGame.title')}</Title>
             <form onSubmit={handleSubmit}>
                 <Stack spacing='xs'>
                     {fields.map((field, index) =>
@@ -77,7 +78,7 @@ function CreateGame()
                             </label>
                         )
                     })}
-                    <Button type="submit">Create Game</Button>
+                    <Button type="submit">{t('createGame.submit')}</Button>
                 </Stack>
             </form>
         </Container>

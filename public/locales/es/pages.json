@@ -98,8 +98,11 @@
 		"racePlaceholder": "Elige una opción",
 		"submit": "Crear imperio",
 		"errors": {
-			"alreadyHasEmpire": "El usuario ya tiene un imperio en esta partida",
-			"requestFailed": "La solicitud falló"
+			"alreadyHasEmpire": "Ya tienes un imperio en esta partida",
+			"requestFailed": "La solicitud falló",
+			"nameExists": "Ese nombre de imperio ya está en uso",
+			"nameEmpty": "El nombre no puede estar vacío",
+			"generic": "Algo salió mal"
 		}
 	},
 	"archive": {

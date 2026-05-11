@@ -4,9 +4,11 @@ import Axios from 'axios';
 import { IconSettings, IconTrash, IconAlertTriangle } from '@tabler/icons-react'
 import classes from './guide.module.css'
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function AdminEmpires()
 {
+    const { t } = useTranslation('admin')
     const [empires, setEmpires] = useState([]);
     const [response, setResponse] = useState(null);
     const { gameId } = useParams();
@@ -17,7 +19,6 @@ function AdminEmpires()
         {
             const response = await Axios.get(`/admin/empires?gameId=${gameId}`);
             const data = response.data;
-            // console.log(data);
             setEmpires(data);
         }
         loadEmpires()
@@ -52,9 +53,9 @@ function AdminEmpires()
                         <Button size='xs' compact><IconSettings size={14} /></Button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
-                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteEmpire(item.uuid)}>Delete</Menu.Item>
-                        <Menu.Item color="orange" icon={<IconAlertTriangle size={14} />} onClick={() => disableEmpire(item.uuid)}>Disable</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />}>{t('menu.edit')}</Menu.Item>
+                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteEmpire(item.uuid)}>{t('menu.delete')}</Menu.Item>
+                        <Menu.Item color="orange" icon={<IconAlertTriangle size={14} />} onClick={() => disableEmpire(item.uuid)}>{t('menu.disable')}</Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
             </td>
@@ -102,7 +103,7 @@ function AdminEmpires()
 
     return (
         <Stack>
-            <Title>Empires</Title>
+            <Title>{t('pageTitle.empires')}</Title>
             <Text color='red'>{response?.message}</Text>
             {empires.length > 0 &&
                 <div className={classes.guideTable}>
@@ -110,19 +111,19 @@ function AdminEmpires()
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Mode</th>
-                                <th>Created</th>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Flags</th>
-                                <th>Turns</th>
-                                <th>Turns Used</th>
-                                <th>Profile</th>
-                                <th>Rank</th>
-                                <th>Networth</th>
-                                <th>Land</th>
-                                <th>Cash</th>
-                                <th>Food</th>
+                                <th>{t('empires.columns.mode')}</th>
+                                <th>{t('empires.columns.created')}</th>
+                                <th>{t('empires.columns.id')}</th>
+                                <th>{t('empires.columns.name')}</th>
+                                <th>{t('empires.columns.flags')}</th>
+                                <th>{t('empires.columns.turns')}</th>
+                                <th>{t('empires.columns.turnsUsed')}</th>
+                                <th>{t('empires.columns.profile')}</th>
+                                <th>{t('empires.columns.rank')}</th>
+                                <th>{t('empires.columns.networth')}</th>
+                                <th>{t('empires.columns.land')}</th>
+                                <th>{t('empires.columns.cash')}</th>
+                                <th>{t('empires.columns.food')}</th>
                             </tr>
                         </thead>
                         <tbody>

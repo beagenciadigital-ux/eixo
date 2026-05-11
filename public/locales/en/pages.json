@@ -98,8 +98,11 @@
 		"racePlaceholder": "Pick one",
 		"submit": "Create Empire",
 		"errors": {
-			"alreadyHasEmpire": "User already has an empire in this game",
-			"requestFailed": "Request failed"
+			"alreadyHasEmpire": "You already have an empire in this game",
+			"requestFailed": "Request failed",
+			"nameExists": "That empire name is already taken",
+			"nameEmpty": "Name cannot be empty",
+			"generic": "Something went wrong"
 		}
 	},
 	"archive": {

@@ -10,6 +10,28 @@ import { getTime } from '../../store/timeSlice'
 import { useLocalStorage } from '@mantine/hooks'
 import { useTranslation } from 'react-i18next'
 
+/** Server error strings from translate(errors:empire.*) / generic — all API locales */
+const API_EMPIRE_ALREADY = new Set([
+	'User already has an empire in this game',
+	'Ya tienes un imperio en esta partida',
+	'Já tens um império nesta partida',
+])
+const API_EMPIRE_NAME_EXISTS = new Set([
+	'Empire name already exists',
+	'Ese nombre de imperio ya existe',
+	'Esse nome de império já existe',
+])
+const API_EMPIRE_NAME_EMPTY = new Set([
+	'Name must not be empty',
+	'El nombre no puede estar vacío',
+	'O nome não pode estar vazio',
+])
+const API_GENERIC = new Set([
+	'Something went wrong',
+	'Algo salió mal',
+	'Algo deu errado',
+])
+
 const useStyles = createStyles(() => ({
 	form: {
 		minHeight: '100vh',
@@ -93,13 +115,15 @@ export default function CreateEmpire()
 
 	const empireErrorMessage = (raw) =>
 	{
-		if (raw === 'User already has an empire in this game') {
-			return t('createEmpire.errors.alreadyHasEmpire')
-		}
-		if (raw === 'request failed' || !raw) {
+		const s = raw == null ? '' : String(raw)
+		if (!s || s === 'request failed') {
 			return t('createEmpire.errors.requestFailed')
 		}
-		return raw
+		if (API_EMPIRE_ALREADY.has(s)) return t('createEmpire.errors.alreadyHasEmpire')
+		if (API_EMPIRE_NAME_EXISTS.has(s)) return t('createEmpire.errors.nameExists')
+		if (API_EMPIRE_NAME_EMPTY.has(s)) return t('createEmpire.errors.nameEmpty')
+		if (API_GENERIC.has(s)) return t('createEmpire.errors.generic')
+		return s
 	}
 
 	return (
@@ -129,7 +153,7 @@ export default function CreateEmpire()
 											{
 												console.log(err)
 												const msg = err?.error
-												if (msg === 'User already has an empire in this game') {
+												if (msg != null && API_EMPIRE_ALREADY.has(String(msg))) {
 													navigate('/app/')
 												}
 												setError(err)

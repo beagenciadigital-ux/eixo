@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Axios from 'axios'
-import { createGame, fetchGames } from '../../store/gamesSlice'
+import { fetchGames } from '../../store/gamesSlice'
 import { Card, Container, Title, Stack, Group, Text, Button } from '@mantine/core'
 import { CheckCircle } from '@phosphor-icons/react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useKickOut } from '../../hooks/useKickOut'
 import { setActiveGame } from '../../store/gamesSlice'
+import { useTranslation } from 'react-i18next'
 
 const GamesManager = () =>
 {
+  const { t } = useTranslation('admin')
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { games, status } = useSelector((state) => state.games)
-  const [newGame, setNewGame] = useState({ name: '', roundDescription: '' })
   const [stats, setStats] = useState({});
 
-  // console.log(games)
   const kickOut = useKickOut()
 
   useEffect(() =>
@@ -32,7 +32,6 @@ const GamesManager = () =>
         const data = response.data;
         setStats(data);
       } catch (err) {
-        // Assuming useKickOut returns a function you can call with an error
         kickOut(err);
       }
     }
@@ -40,12 +39,6 @@ const GamesManager = () =>
     loadStats();
 
   }, [status])
-
-  const handleCreateGame = () =>
-  {
-    dispatch(createGame(newGame))
-    setNewGame({ name: '', roundDescription: '' })
-  }
 
   const handleGameSelect = (game) =>
   {
@@ -57,14 +50,14 @@ const GamesManager = () =>
     <Container>
       <Stack>
         <Card withBorder shadow='sm'>
-          <Title>Overall Summary</Title>
-          <Text>Users: {stats.users}</Text>
-          <Text>Empires: {stats.empires}</Text>
-          <Text>Mail Messages (reports): {stats.mail} ({stats.reports})</Text>
-          <Text>Market Items: {stats.markets}</Text>
-          <Text>News Events: {stats.news}</Text>
+          <Title>{t('gamesManager.overallSummary')}</Title>
+          <Text>{t('stats.users')} {stats.users}</Text>
+          <Text>{t('stats.empires')} {stats.empires}</Text>
+          <Text>{t('stats.mail')} {stats.mail} ({stats.reports})</Text>
+          <Text>{t('stats.marketItems')} {stats.markets}</Text>
+          <Text>{t('stats.newsEvents')} {stats.news}</Text>
         </Card>
-        {games ? games.map((game, index) => (
+        {games ? games.map((game) => (
           <Card key={game.id} onClick={() => handleGameSelect(game)} shadow='sm' padding='sm' withBorder sx={(theme) => ({
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '',
             '&:hover': {
@@ -79,36 +72,37 @@ const GamesManager = () =>
             <Stack my='sm'>
               <Group spacing='xs'>
                 <Text align='left'>
-                  <b>Max Turns:</b> {game.turnsMax}</Text>
+                  <b>{t('gameDetails.maxTurns')}</b> {game.turnsMax}</Text>
                 <Text align='left'>
-                  <b>Stored Turns:</b> {game.turnsStored}</Text>
+                  <b>{t('gameDetails.storedTurns')}</b> {game.turnsStored}</Text>
                 <Text align='left'>
-                  <b>Turn Rate:</b> {game.turnsCount} turn{game.turnsCount > 1 && 's'} / {game.turnsFreq} minutes</Text>
+                  <b>{t('gameDetails.turnRateLabel')}</b>{' '}
+                  {t('gameDetails.turnRate', { count: game.turnsCount, freq: game.turnsFreq })}</Text>
                 <Text align='left'>
-                  <b>Round Start:</b> {new Date(game.roundStart).toLocaleDateString()}</Text>
+                  <b>{t('gameDetails.roundStart')}</b> {new Date(game.roundStart).toLocaleDateString()}</Text>
                 <Text align='left'>
-                  <b>Round End:</b> {new Date(game.roundEnd).toLocaleDateString()}</Text>
+                  <b>{t('gameDetails.roundEnd')}</b> {new Date(game.roundEnd).toLocaleDateString()}</Text>
               </Group>
 
               <Group spacing='xs'>
                 {game.numEmpires && <Text align='left'>
-                  <b>Players:</b> {game.numEmpires.toLocaleString()}</Text>}
+                  <b>{t('gameDetails.players')}</b> {game.numEmpires.toLocaleString()}</Text>}
                 {game.avgLand && (
                   <Text align="left">
-                    <b>Average Land:</b> {game.avgLand.toLocaleString()}
+                    <b>{t('gameDetails.avgLand')}</b> {game.avgLand.toLocaleString()}
                   </Text>
                 )}
                 {game.avgNetWorth && (
                   <Text align="left">
-                    <b>Average Net Worth:</b> $
+                    <b>{t('gameDetails.avgNetWorth')}</b> $
                     {game.avgNetWorth.toLocaleString()}
                   </Text>
                 )}
               </Group>
             </Stack>
           </Card>
-        )) : <Text>No games found</Text>}
-        <Button component={Link} to='/admin/create'>Create a New Game</Button>
+        )) : <Text>{t('gamesManager.noGames')}</Text>}
+        <Button component={Link} to='/admin/create'>{t('gamesManager.createNew')}</Button>
       </Stack>
     </Container>
   )

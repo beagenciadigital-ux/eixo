@@ -4,9 +4,11 @@ import Axios from 'axios';
 import { IconSettings, IconTrash } from '@tabler/icons-react'
 import classes from './guide.module.css'
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function AdminClanMail()
 {
+    const { t } = useTranslation('admin')
     const [items, setItems] = useState([]);
     const [response, setResponse] = useState(null);
 
@@ -35,14 +37,14 @@ function AdminClanMail()
         setResponse(data);
     }
 
-    // const toggleReport = async (uuid) =>
-    // {
-    //     console.log('toggling report')
-    //     const response = await Axios.get('/messages/togglereport/' + uuid);
-    //     const data = response.data;
-    //     console.log(data);
-    //     setResponse(data);
-    // }
+    const toggleReport = async (uuid) =>
+    {
+        console.log('toggling report')
+        const response = await Axios.get('/messages/togglereport/' + uuid);
+        const data = response.data;
+        console.log(data);
+        setResponse(data);
+    }
 
     const rows = items.map((item) =>
     (
@@ -53,9 +55,9 @@ function AdminClanMail()
                         <Button size='xs' compact><IconSettings size={14} /></Button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
-                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteItem(item.uuid)}>Delete</Menu.Item>
-                        <Menu.Item icon={<IconSettings size={14} />} onClick={() => toggleReport(item.uuid)}>Report</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />}>{t('menu.edit')}</Menu.Item>
+                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteItem(item.uuid)}>{t('menu.delete')}</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />} onClick={() => toggleReport(item.uuid)}>{t('menu.report')}</Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
             </td>
@@ -82,7 +84,7 @@ function AdminClanMail()
 
     return (
         <Stack>
-            <Title>Clan Mail</Title>
+            <Title>{t('pageTitle.clanMail')}</Title>
             <Text color='red'>{response?.message}</Text>
             {items.length > 0 &&
                 <div className={classes.guideTable}>
@@ -91,12 +93,12 @@ function AdminClanMail()
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Created At</th>
-                                <th>Reported</th>
-                                <th>Clan Id</th>
-                                <th>Empire Name</th>
-                                <th>Message Body</th>
-                                <th>Seen By</th>
+                                <th>{t('clanMail.columns.createdAt')}</th>
+                                <th>{t('clanMail.columns.reported')}</th>
+                                <th>{t('clanMail.columns.clanId')}</th>
+                                <th>{t('clanMail.columns.empireName')}</th>
+                                <th>{t('clanMail.columns.messageBody')}</th>
+                                <th>{t('clanMail.columns.seenBy')}</th>
                             </tr>
                         </thead>
                         <tbody>

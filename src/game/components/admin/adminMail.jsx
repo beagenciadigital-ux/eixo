@@ -4,9 +4,11 @@ import Axios from 'axios';
 import { IconSettings, IconTrash } from '@tabler/icons-react'
 import classes from './guide.module.css'
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function AdminMail()
 {
+    const { t } = useTranslation('admin')
     const [items, setItems] = useState([]);
     const [response, setResponse] = useState(null);
 
@@ -18,7 +20,6 @@ function AdminMail()
         {
             const response = await Axios.get('/admin/mail?gameId=' + gameId);
             const data = response.data;
-            // console.log(data);
             setItems(data);
         }
 
@@ -53,9 +54,9 @@ function AdminMail()
                         <Button size='xs' compact><IconSettings size={14} /></Button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
-                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteItem(item.uuid)}>Delete</Menu.Item>
-                        <Menu.Item icon={<IconSettings size={14} />} onClick={() => toggleReport(item.uuid)}>Report</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />}>{t('menu.edit')}</Menu.Item>
+                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteItem(item.uuid)}>{t('menu.delete')}</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />} onClick={() => toggleReport(item.uuid)}>{t('menu.report')}</Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
             </td>
@@ -91,7 +92,7 @@ function AdminMail()
 
     return (
         <Stack>
-            <Title>Mail</Title>
+            <Title>{t('pageTitle.mail')}</Title>
             <Text color='red'>{response?.message}</Text>
             {items.length > 0 &&
                 <div className={classes.guideTable}>
@@ -100,15 +101,15 @@ function AdminMail()
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Created At</th>
-                                <th>Reported</th>
-                                <th>Source Empire Id</th>
-                                <th>Source Empire Name</th>
-                                <th>Destination Empire Id</th>
-                                <th>Destination Empire Name</th>
-                                <th>Message Body</th>
-                                <th>Conversation Id</th>
-                                <th>Seen</th>
+                                <th>{t('mail.columns.createdAt')}</th>
+                                <th>{t('mail.columns.reported')}</th>
+                                <th>{t('mail.columns.sourceEmpireId')}</th>
+                                <th>{t('mail.columns.sourceEmpireName')}</th>
+                                <th>{t('mail.columns.destinationEmpireId')}</th>
+                                <th>{t('mail.columns.destinationEmpireName')}</th>
+                                <th>{t('mail.columns.messageBody')}</th>
+                                <th>{t('mail.columns.conversationId')}</th>
+                                <th>{t('mail.columns.seen')}</th>
                             </tr>
                         </thead>
                         <tbody>

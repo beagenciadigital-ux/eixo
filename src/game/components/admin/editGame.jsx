@@ -1,5 +1,6 @@
 import { Container, Title, Text, Stack, Button } from "@mantine/core"
 import { useState } from "react"
+import { useTranslation } from 'react-i18next'
 // import { UseForm } from "@mantine/form/lib/types"
 import { useSelector, useDispatch } from "react-redux"
 import { fetchGames } from "../../store/gamesSlice"
@@ -9,7 +10,7 @@ import { showNotification } from "@mantine/notifications"
 
 function EditGame()
 {
-
+    const { t } = useTranslation('admin')
     const dispatch = useDispatch()
     const { gameId } = useParams();
     const activeGame = useSelector(state => state.games.activeGame)
@@ -59,7 +60,7 @@ function EditGame()
 
     return (
         <Container>
-            <Title>Edit Game Settings</Title>
+            <Title>{t('editGame.title')}</Title>
             <form onSubmit={handleSubmit}>
                 <Stack spacing='xs'>
                     {fields.map((field, index) =>
@@ -75,7 +76,7 @@ function EditGame()
                             </label>
                         )
                     })}
-                    <Button type="submit">Edit Game</Button>
+                    <Button type="submit">{t('editGame.submit')}</Button>
                 </Stack>
             </form>
         </Container>

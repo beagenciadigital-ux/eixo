@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { IconSettings, IconTrash } from '@tabler/icons-react'
 import classes from './guide.module.css'
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const marketArray = [
     'trpArm', 'trpLnd', 'trpFly', 'trpSea', 'food', 'runes'
@@ -11,6 +12,7 @@ const marketArray = [
 
 function AdminMarket()
 {
+    const { t } = useTranslation('admin')
     const [items, setItems] = useState([]);
     const [response, setResponse] = useState(null);
 
@@ -22,7 +24,6 @@ function AdminMarket()
         {
             const response = await Axios.get('/admin/markets?gameId=' + gameId);
             const data = response.data;
-            // console.log(data);
             setItems(data);
         }
 
@@ -41,7 +42,9 @@ function AdminMarket()
 
 
     const rows = items.map((item) =>
-    (
+    {
+        const hours = Math.round((new Date().getTime() - new Date(item.createdAt).getTime()) / 1000 / 60 / 60)
+        return (
         <tr key={item.uuid}>
             <td>
                 <Menu shadow="md" width={100} mt='xs' position='top'>
@@ -49,8 +52,8 @@ function AdminMarket()
                         <Button size='xs' compact><IconSettings size={14} /></Button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                        <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
-                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteItem(item.uuid)}>Delete</Menu.Item>
+                        <Menu.Item icon={<IconSettings size={14} />}>{t('menu.edit')}</Menu.Item>
+                        <Menu.Item color="red" icon={<IconTrash size={14} />} onClick={() => deleteItem(item.uuid)}>{t('menu.delete')}</Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
             </td>
@@ -70,7 +73,7 @@ function AdminMarket()
                 {item.price.toLocaleString()}
             </td>
             <td>
-                {Math.round((new Date().getTime() - new Date(item.createdAt).getTime()) / 1000 / 60 / 60)} hours
+                {t('market.hoursOnMarket', { count: hours })}
             </td>
             <td>
                 {item.conversationId}
@@ -79,11 +82,12 @@ function AdminMarket()
                 {item.secret.toString()}
             </td>
         </tr>
-    ))
+        )
+    })
 
     return (
         <Stack>
-            <Title>Market</Title>
+            <Title>{t('pageTitle.market')}</Title>
             <Text color='red'>{response?.message}</Text>
             {items.length > 0 &&
                 <div className={classes.guideTable}>
@@ -92,13 +96,14 @@ function AdminMarket()
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Created At</th>
-                                <th>Empire ID</th>
-                                <th>Type</th>
-                                <th>Amount</th>
-                                <th>Price</th>
-                                <th>Time on Market</th>
-                                <th>Secret</th>
+                                <th>{t('market.columns.createdAt')}</th>
+                                <th>{t('market.columns.empireId')}</th>
+                                <th>{t('market.columns.type')}</th>
+                                <th>{t('market.columns.amount')}</th>
+                                <th>{t('market.columns.price')}</th>
+                                <th>{t('market.columns.timeOnMarket')}</th>
+                                <th>{t('market.columns.conversationId')}</th>
+                                <th>{t('market.columns.secret')}</th>
                             </tr>
                         </thead>
                         <tbody>
