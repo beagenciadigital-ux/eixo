@@ -63,10 +63,64 @@ function resolveDatabaseUrl(): string {
 	];
 	for (const raw of candidates) {
 		if (typeof raw === "string" && raw.trim().length > 0) {
-			return raw.trim();
+			return normalizeDatabaseUrl(raw.trim());
 		}
 	}
 	return "";
+}
+
+/** Aceita `postgres://` (comum em templates) e normaliza para `postgresql://`. */
+function normalizeDatabaseUrl(url: string): string {
+	if (url.startsWith("postgres://")) {
+		return `postgresql://${url.slice("postgres://".length)}`;
+	}
+	return url;
+}
+
+/**
+ * SSL explícito evita casos em que o pool ignora `sslmode` na URL (ex.: Postgres interno Docker / EasyPanel).
+ * Prioridade: DB_SSL → PGSSLMODE → query `sslmode` na URL → fallback do useSsl legado.
+ */
+function resolvePostgresSslForUrl(databaseUrl: string): boolean | { rejectUnauthorized: boolean } | undefined {
+	const explicit = process.env.DB_SSL?.toLowerCase();
+	if (explicit === "false" || explicit === "0") {
+		return false;
+	}
+	if (explicit === "true" || explicit === "1") {
+		return { rejectUnauthorized: false };
+	}
+
+	const mode = process.env.PGSSLMODE?.toLowerCase();
+	if (mode === "disable" || mode === "allow") {
+		return false;
+	}
+	if (mode === "require" || mode === "verify-ca" || mode === "verify-full") {
+		return { rejectUnauthorized: false };
+	}
+
+	try {
+		const forParse = databaseUrl.replace(/^postgres(?:ql)?:\/\//i, "http://");
+		const parsed = new URL(forParse);
+		const q = parsed.searchParams.get("sslmode")?.toLowerCase();
+		if (q === "disable" || q === "allow") {
+			return false;
+		}
+		if (q === "require" || q === "verify-ca" || q === "verify-full") {
+			return { rejectUnauthorized: false };
+		}
+	} catch {
+		// ignore
+	}
+
+	const legacyUseSsl =
+		process.env.DB_SSL === "true" ||
+		process.env.DB_SSL === "1" ||
+		process.env.PGSSLMODE === "require";
+	if (legacyUseSsl) {
+		return { rejectUnauthorized: false };
+	}
+
+	return undefined;
 }
 
 function assertEnv(): void {
@@ -118,9 +172,11 @@ function buildConnectionOptions() {
 	};
 
 	if (databaseUrl) {
+		const sslOpt = resolvePostgresSslForUrl(databaseUrl);
 		return {
 			type: "postgres" as const,
 			url: databaseUrl,
+			...(sslOpt !== undefined ? { ssl: sslOpt } : {}),
 			...common,
 		};
 	}
