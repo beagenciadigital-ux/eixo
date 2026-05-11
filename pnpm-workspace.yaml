@@ -1,3 +1,7 @@
+# Workspace de pacote único (raiz). Sem `packages`, o pnpm falha (ex.: Docker build).
+packages:
+  - "."
+
 # Permite scripts de instalação de dependências nativas (pnpm 10.26+ / Vercel).
 # Sem isto, o pnpm ignora postinstall e bcrypt/sharp falham em runtime.
 allowBuilds:

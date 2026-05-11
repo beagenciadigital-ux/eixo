@@ -11,7 +11,7 @@ FROM base AS deps
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends python3 make g++ \
 	&& rm -rf /var/lib/apt/lists/*
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable && corepack prepare pnpm@9 --activate
@@ -23,8 +23,9 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 # Build sem credenciais reais; DATABASE_URL dummy evita falhas se algo ler env no build
 ENV DATABASE_URL=postgresql://build:build@127.0.0.1:5432/build
-RUN corepack enable && corepack prepare pnpm@9 --activate \
-	&& pnpm run build
+# Chama o Next diretamente — evita `pnpm run` e o erro "packages field missing or empty"
+# quando o código em deploy ainda não inclui `packages:` em pnpm-workspace.yaml.
+RUN node ./node_modules/next/dist/bin/next build --webpack
 
 FROM base AS runner
 ENV NODE_ENV=production
