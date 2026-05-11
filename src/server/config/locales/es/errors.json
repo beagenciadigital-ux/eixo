@@ -66,7 +66,8 @@
 		"notEnoughRunes": "No tienes suficiente {{resource}} para lanzar este hechizo.",
 		"notEnoughHealth": "No tienes suficiente salud para lanzar este hechizo.",
 		"notEnoughTurns": "No tienes suficientes turnos para lanzar este hechizo.",
-		"notEnoughWiz": "No tienes suficientes {{trpwiz}} para lanzar este hechizo."
+		"notEnoughWiz": "No tienes suficientes {{trpwiz}} para lanzar este hechizo.",
+		"noEraToRegress": "No hay una era a la que retroceder"
 	},
 	"market": {
 		"notEnoughMoney": "No tienes suficiente dinero.",
@@ -74,6 +75,46 @@
 		"invalidPurchase": "Cantidad de compra inválida",
 		"notEnoughCash": "No hay suficiente dinero para realizar la compra",
 		"noItemsToSell": "No hay artículos para vender",
-		"invalidPrice": "Precio inválido"
+		"invalidPrice": "Precio inválido",
+		"empireIdMismatch": "El ID del imperio no coincide"
+	},
+	"empire": {
+		"nameExists": "Ese nombre de imperio ya existe",
+		"alreadyHasEmpireInGame": "Ya tienes un imperio en esta partida",
+		"nameEmpty": "El nombre no puede estar vacío",
+		"notFound": "Imperio no encontrado",
+		"gameIdRequired": "Se requiere el ID de la partida.",
+		"invalidRequestType": "Tipo de solicitud inválido",
+		"industryMustSum100": "Los valores deben sumar 100",
+		"nameChangeAlreadyUsed": "El cambio de nombre ya se usó",
+		"nameChangeFailed": "Error al cambiar el nombre"
+	},
+	"build": {
+		"empireIdRequired": "Se requiere el ID del imperio",
+		"empireWrongGame": "El imperio no pertenece a esta partida",
+		"invalidType": "Tipo inválido",
+		"exceedsLimits": "Los edificios solicitados superan los límites disponibles",
+		"notEnoughTurns": "No hay turnos suficientes",
+		"buildFailed": "La construcción falló"
+	},
+	"lottery": {
+		"invalidRequest": "Solicitud inválida",
+		"notAllowed": "No permitido",
+		"notEnoughMoneyTicket": "No hay dinero suficiente para el boleto",
+		"maxTicketsReached": "Número máximo de boletos alcanzado",
+		"invalidEmpireId": "ID de imperio inválido"
+	},
+	"land": {
+		"dropTooMuch": "No puedes abandonar tanta tierra"
+	},
+	"demolish": {
+		"tooManyStructures": "No puedes demoler tantas estructuras"
+	},
+	"clanList": {
+		"noneFound": "No se encontraron clanes",
+		"invalidRole": "Rol inválido",
+		"fetchFailed": "Algo salió mal al obtener el clan",
+		"fetchMembersFailed": "Algo salió mal al obtener los miembros del clan",
+		"fetchListFailed": "Algo salió mal al obtener la lista de clanes"
 	}
 }

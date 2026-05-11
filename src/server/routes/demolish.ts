@@ -12,6 +12,8 @@ import { attachGame } from '../middleware/game'
 import type Game from '../entity/Game'
 import { updateEmpire } from '../services/actions/updateEmpire'
 import { getServerStats } from '../services/game/serverStats'
+import { translate } from '../util/translation'
+import { language as languageMiddleware } from '../middleware/language'
 
 // FIXED?: created new turn function for use in loops that is not async use returned values to update empire
 
@@ -37,6 +39,7 @@ const getDemolishAmounts = async (empire: Empire, cost: number, gameId: number) 
 }
 
 const demolish = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	// request will have object with type of building and number to build
 	const {
 		type,
@@ -51,7 +54,7 @@ const demolish = async (req: Request, res: Response) => {
 	} = req.body
 	const game: Game = res.locals.game
 	if (type !== 'demolish') {
-		return res.json({ error: 'Something went wrong' })
+		return res.json({ error: translate('errors:generic', language) })
 	}
 
 	const empire = await Empire.findOne({ id: empireId })
@@ -74,7 +77,9 @@ const demolish = async (req: Request, res: Response) => {
 		demoCash + demoPop + demoCost + demoDef + demoFood + demoTroop + demoWiz
 
 	if (demoTotal > canDemolish) {
-		return res.json({ error: "Can't demolish that many structures" })
+		return res.json({
+			error: translate('errors:demolish.tooManyStructures', language),
+		})
 	}
 
 	// console.log(buildRate)
@@ -166,6 +171,6 @@ const demolish = async (req: Request, res: Response) => {
 
 const router = Router()
 
-router.post('/', user, auth, attachGame, demolish)
+router.post('/', user, auth, languageMiddleware, attachGame, demolish)
 
 export default router

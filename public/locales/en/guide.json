@@ -38,7 +38,9 @@
 			"spendingTurns": "Spending Turns",
 			"finance": "Finance",
 			"diplomacy": "Diplomacy",
-			"management": "Management"
+			"management": "Management",
+			"race": "Races",
+			"protection": "Protection"
 		},
 		"pages": {
 			"newPlayer": "Personalized Tips",

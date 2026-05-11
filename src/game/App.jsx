@@ -51,8 +51,10 @@ import ResumeTutorialButton from "./components/utilities/resumeTutorialButton"
 import { LanguageSelector } from "./components/utilities/LanguageSelector"
 import { axiosSessionCheckConfig } from "./config/apiOrigin"
 import { BRAND_NAME } from "./config/oldConfig"
+import { useTranslation } from "react-i18next"
 
 function App() {
+	const { t: tAchievements } = useTranslation("achievements")
 	const [opened, setOpened] = useState(false)
 	const isMobile = useMediaQuery("(max-width: 767px)", false, true)
 	const dispatch = useDispatch()
@@ -210,15 +212,15 @@ function App() {
 				new Date(achievements[key].timeAwarded).getTime() + 1000 > Date.now()
 			) {
 				// console.log(key)
-				const { message, icon } = processAchievement(key)
+				const { message, icon } = processAchievement(key, tAchievements)
 				showNotification({
-					title: "Achievement Awarded",
+					title: tAchievements("notificationAwarded"),
 					message: message,
 					icon: icon,
 				})
 			}
 		}
-	}, [achievements])
+	}, [achievements, tAchievements])
 
 	useEffect(() => {
 		if (meta === "new player tour") {
@@ -260,9 +262,10 @@ function App() {
 		setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"))
 
 	function FallbackComponent() {
+		const { t } = useTranslation("layout")
 		return (
 			<Center h="100vh">
-				<Title>An error has occurred, please refresh the website</Title>
+				<Title>{t("layout.shell.errorBoundaryMessage")}</Title>
 			</Center>
 		)
 	}

@@ -19,12 +19,15 @@ import {
 	getEmpireSnapshotRepo,
 	getMarketRepo,
 } from "@/lib/db"
+import { translate } from "../util/translation"
+import { language as languageMiddleware } from "../middleware/language"
 
 const Filter = require("bad-words")
 const filter = new Filter()
 
 //CREATE
 const createEmpire = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	let { name, race } = req.body
 	// console.log(res.locals.game)
 	const {
@@ -64,7 +67,9 @@ const createEmpire = async (req: Request, res: Response) => {
 			(empire) => empire.name.toLowerCase() === name.toLowerCase(),
 		)
 	) {
-		return res.status(400).json({ error: "Empire name already exists" })
+		return res
+			.status(400)
+			.json({ error: translate("errors:empire.nameExists", language) })
 	}
 
 	// see how many days have passed since round started
@@ -91,13 +96,15 @@ const createEmpire = async (req: Request, res: Response) => {
 
 	// check if user.empires contains an empire with the same game_id already
 	if (user.empires.some((empire) => empire.game_id === game_id)) {
-		return res
-			.status(400)
-			.json({ error: "User already has an empire in this game" })
+		return res.status(400).json({
+			error: translate("errors:empire.alreadyHasEmpireInGame", language),
+		})
 	}
 
 	if (name.trim() === "") {
-		return res.status(400).json({ error: "Name must not be empty" })
+		return res
+			.status(400)
+			.json({ error: translate("errors:empire.nameEmpty", language) })
 	}
 
 	try {
@@ -206,7 +213,9 @@ const createEmpire = async (req: Request, res: Response) => {
 		return res.status(201).json(empire)
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "Something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
@@ -282,6 +291,7 @@ const getOtherEmpires = async (req: Request, res: Response) => {
 
 // GET EMPIRE LIST FOR SCORES
 const getScores = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const raw = req.query.gameId
 	const gameIdStr = Array.isArray(raw) ? raw[0] : raw
 	const gameIdNum =
@@ -289,7 +299,9 @@ const getScores = async (req: Request, res: Response) => {
 			? Number(gameIdStr)
 			: NaN
 	if (gameIdStr === undefined || gameIdStr === "" || !Number.isFinite(gameIdNum)) {
-		return res.status(400).json({ error: "Game ID is required." })
+		return res.status(400).json({
+			error: translate("errors:empire.gameIdRequired", language),
+		})
 	}
 
 	try {
@@ -368,6 +380,7 @@ const getScores = async (req: Request, res: Response) => {
 // UPDATE
 
 const updateTax = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 	const { tax } = req.body
 
@@ -378,11 +391,14 @@ const updateTax = async (req: Request, res: Response) => {
 		return res.json(empire)
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
 const updateProfile = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 	const { type, profile } = req.body
 	const user = res.locals.user as User
@@ -394,11 +410,15 @@ const updateProfile = async (req: Request, res: Response) => {
 		)
 
 		if (!empire.user || empire.user.username !== user.username) {
-			return res.status(403).json({ error: "Forbidden" })
+			return res.status(403).json({
+				error: translate("errors:unauthorized", language),
+			})
 		}
 
 		if (type !== "profile") {
-			return res.status(400).json({ error: "Invalid request type" })
+			return res.status(400).json({
+				error: translate("errors:empire.invalidRequestType", language),
+			})
 		}
 
 		const profileStr = typeof profile === "string" ? profile : ""
@@ -411,11 +431,14 @@ const updateProfile = async (req: Request, res: Response) => {
 		return res.json(empire)
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
 const updateIcon = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { empireId, type, icon } = req.body
 
 	try {
@@ -428,17 +451,22 @@ const updateIcon = async (req: Request, res: Response) => {
 		}
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
 const updateIndustry = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 	const { indArmy, indFly, indLnd, indSea } = req.body
 
 	// console.log(req.body)
 	if (indArmy + indFly + indLnd + indSea !== 100) {
-		return res.status(500).json({ error: "Must add up to 100" })
+		return res.status(500).json({
+			error: translate("errors:empire.industryMustSum100", language),
+		})
 	}
 
 	try {
@@ -467,12 +495,15 @@ const updateIndustry = async (req: Request, res: Response) => {
 		return res.json(empire)
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
 // Change Race
 const changeRace = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 	const { race } = req.body
 
@@ -504,12 +535,15 @@ const changeRace = async (req: Request, res: Response) => {
 		return res.json(empire)
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
 // Bank
 const bank = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 	let { depositAmt, withdrawAmt, type, loanAmt, repayAmt } = req.body
 	const game: Game = res.locals.game
@@ -587,12 +621,15 @@ const bank = async (req: Request, res: Response) => {
 		return res.json(bankResult)
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
 // DELETE
 const deleteEmpire = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 
 	try {
@@ -643,7 +680,9 @@ const deleteEmpire = async (req: Request, res: Response) => {
 		return res.json({ message: "empire deleted" })
 	} catch (error) {
 		console.log(error)
-		return res.status(500).json({ error: "something went wrong" })
+		return res.status(500).json({
+			error: translate("errors:generic", language),
+		})
 	}
 }
 
@@ -932,12 +971,15 @@ const getAchievements = async (req: Request, res: Response) => {
 }
 
 const nameChange = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { uuid } = req.params
 	const { name } = req.body
 	const game_id = res.locals.game.game_id
 
 	if (name.trim() === "") {
-		return res.status(400).json({ error: "Name must not be empty" })
+		return res
+			.status(400)
+			.json({ error: translate("errors:empire.nameEmpty", language) })
 	}
 
 	try {
@@ -954,7 +996,9 @@ const nameChange = async (req: Request, res: Response) => {
 				(empire) => empire.name.toLowerCase() === name.toLowerCase(),
 			)
 		) {
-			return res.status(400).json({ error: "Empire name already exists" })
+			return res
+			.status(400)
+			.json({ error: translate("errors:empire.nameExists", language) })
 		}
 
 		if (empire.changeName < 1) {
@@ -968,14 +1012,20 @@ const nameChange = async (req: Request, res: Response) => {
 			return res.status(201).json(empire)
 		}
 
-		return res.status(400).json({ error: "Name change already used" })
+		return res.status(400).json({
+			error: translate("errors:empire.nameChangeAlreadyUsed", language),
+		})
 	} catch (error) {
 		console.log(error)
-		return res.status(404).json({ error: "Error changing name" })
+		return res.status(404).json({
+			error: translate("errors:empire.nameChangeFailed", language),
+		})
 	}
 }
 
 const router = Router()
+
+router.use(languageMiddleware)
 
 router.post("/", user, auth, attachGame, createEmpire)
 router.get("/", getEmpires)

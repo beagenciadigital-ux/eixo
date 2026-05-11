@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "promote-admin": "node scripts/promote-user-admin.cjs",
-    "generate:cron-secret": "node scripts/generate-cron-secret.cjs"
+    "generate:cron-secret": "node scripts/generate-cron-secret.cjs",
+    "locale:diff": "node scripts/locale-key-diff.cjs",
+    "generate:achievements": "node scripts/generate-achievements-json.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.485.0",

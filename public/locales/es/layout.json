@@ -65,6 +65,9 @@
 		},
 		"theme": {
 			"toggle": "Cambiar esquema de colores"
+		},
+		"shell": {
+			"errorBoundaryMessage": "Ha ocurrido un error. Actualiza la página."
 		}
 	}
 }

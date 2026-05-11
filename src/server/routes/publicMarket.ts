@@ -179,23 +179,29 @@ const pubBuyTwo = async (req: Request, res: Response) => {
 };
 
 const pubSell = async (req: Request, res: Response) => {
-	// request will have object with number of each unit to sell and price
-	const {
-		type,
-		empireId,
-		sellArm,
-		priceArm,
-		sellLnd,
-		priceLnd,
-		sellFly,
-		priceFly,
-		sellSea,
-		priceSea,
-		sellFood,
-		priceFood,
-		sellRunes,
-		priceRunes,
-	} = req.body;
+	const body = req.body as Record<string, unknown>;
+	const num = (v: unknown): number => {
+		const n = Number(v);
+		return Number.isFinite(n) ? n : 0;
+	};
+	const sellQty = (v: unknown): number => Math.max(0, Math.floor(num(v)));
+
+	const type = body.type;
+	const empireId = Math.floor(num(body.empireId));
+
+	const sellArm = sellQty(body.sellArm);
+	const sellLnd = sellQty(body.sellLnd);
+	const sellFly = sellQty(body.sellFly);
+	const sellSea = sellQty(body.sellSea);
+	const sellFood = sellQty(body.sellFood);
+	const sellRunes = sellQty(body.sellRunes);
+
+	const priceArm = num(body.priceArm);
+	const priceLnd = num(body.priceLnd);
+	const priceFly = num(body.priceFly);
+	const priceSea = num(body.priceSea);
+	const priceFood = num(body.priceFood);
+	const priceRunes = num(body.priceRunes);
 
 	const game: Game = res.locals.game;
 	const language = res.locals.language;
@@ -204,14 +210,17 @@ const pubSell = async (req: Request, res: Response) => {
 		return sendError(res, 400)("generic", language);
 	}
 
-	if (
-		sellArm < 1 &&
-		sellLnd < 1 &&
-		sellFly < 1 &&
-		sellSea < 1 &&
-		sellFood < 1 &&
-		sellRunes < 1
-	) {
+	const sellArray = [sellArm, sellLnd, sellFly, sellSea, sellFood, sellRunes];
+	const priceArray = [
+		priceArm,
+		priceLnd,
+		priceFly,
+		priceSea,
+		priceFood,
+		priceRunes,
+	];
+
+	if (sellArray.every((amount) => amount < 1)) {
 		return sendError(res, 400)("noItemsToSell", language);
 	}
 
@@ -225,25 +234,23 @@ const pubSell = async (req: Request, res: Response) => {
 		game.pvtmRunes,
 	];
 
-	const empire = await Empire.findOne({ id: empireId });
-	// console.log(empire.networth)
-	const priceArray = [
-		priceArm,
-		priceLnd,
-		priceFly,
-		priceSea,
-		priceFood,
-		priceRunes,
-	];
-
+	// Only validate listing price for goods actually being sold (avoids rejecting
+	// the whole request when unused rows send 0 or stale values from the client).
 	for (let index = 0; index < priceArray.length; index++) {
+		if (sellArray[index] < 1) {
+			continue;
+		}
 		const price = priceArray[index];
 		if (price < basePrices[index] * 0.33 || price > basePrices[index] * 2) {
 			return sendError(res, 400)("invalidPrice", language);
 		}
 	}
 
-	const sellArray = [sellArm, sellLnd, sellFly, sellSea, sellFood, sellRunes];
+	const empire = await Empire.findOne({ id: empireId });
+	if (!empire) {
+		return sendError(res, 400)("generic", language);
+	}
+	// console.log(empire.networth)
 	const trpArray = [
 		empire.trpArm,
 		empire.trpLnd,
@@ -535,7 +542,9 @@ const recallItem = async (req: Request, res: Response) => {
 		const empire = await Empire.findOne({ id: empireId });
 
 		if (item.empire_id !== empire.id) {
-			return res.status(500).json({ error: "Empire ID mismatch" });
+			return res.status(500).json({
+				error: translate("errors:market.empireIdMismatch", language),
+			});
 		}
 
 		empire[itemArray[item.type]] += Math.round(item.amount * 0.75);
@@ -599,11 +608,15 @@ const editPrice = async (req: Request, res: Response) => {
 		const empire = await Empire.findOne({ id: empireId });
 
 		if (item.empire_id !== empire.id) {
-			return res.status(500).json({ error: "Empire ID mismatch" });
+			return res.status(500).json({
+				error: translate("errors:market.empireIdMismatch", language),
+			});
 		}
 
 		if (price < prices[item.type] * 0.33 || price > prices[item.type] * 2) {
-			return res.status(500).json({ error: "Invalid price" });
+			return res.status(500).json({
+				error: translate("errors:market.invalidPrice", language),
+			});
 		}
 
 		item.amount = Math.round(item.amount * 0.9);

@@ -190,22 +190,22 @@ export default memo(function PublicMarketSell({ empire }) {
 		form.setFieldValue("sellRunes", 0)
 	}
 	if (form.values["priceArm"] === undefined) {
-		form.setFieldValue("priceArm", 0)
+		form.setFieldValue("priceArm", costs.arm)
 	}
 	if (form.values["priceLnd"] === undefined) {
-		form.setFieldValue("priceLnd", 0)
+		form.setFieldValue("priceLnd", costs.lnd)
 	}
 	if (form.values["priceFly"] === undefined) {
-		form.setFieldValue("priceFly", 0)
+		form.setFieldValue("priceFly", costs.fly)
 	}
 	if (form.values["priceSea"] === undefined) {
-		form.setFieldValue("priceSea", 0)
+		form.setFieldValue("priceSea", costs.sea)
 	}
 	if (form.values["priceFood"] === undefined) {
-		form.setFieldValue("priceFood", 0)
+		form.setFieldValue("priceFood", costs.food)
 	}
 	if (form.values["priceRunes"] === undefined) {
-		form.setFieldValue("priceRunes", 0)
+		form.setFieldValue("priceRunes", costs.runes)
 	}
 
 	// console.log(result)
@@ -343,19 +343,6 @@ export default memo(function PublicMarketSell({ empire }) {
 											const price = `price${unit}`
 											const sell = `sell${unit}`
 											let classN = "" // indy races
-											let defPrice = getCost(
-												unit.toLowerCase(),
-												form.values[price],
-												otherItems,
-											)
-											// console.log(otherItems[unit.toLowerCase()][0].price
-											if (
-												otherItems[unit.toLowerCase()][0].price !== 0 &&
-												otherItems[unit.toLowerCase()][0].price !==
-													form.values[price]
-											) {
-												defPrice = otherItems[unit.toLowerCase()][0].price
-											}
 											if (unit === "Food") {
 												troop = "food"
 												eraTroop = "food"
@@ -377,9 +364,8 @@ export default memo(function PublicMarketSell({ empire }) {
 													<td align="center">
 														<NumberInput
 															hideControls
-															min={prices[index] * 0.25}
+															min={prices[index] * 0.33}
 															max={prices[index] * 2}
-															defaultValue={defPrice}
 															{...form.getInputProps(`${price}`)}
 															styles={{ input: { textAlign: "center" } }}
 															parser={(value) =>

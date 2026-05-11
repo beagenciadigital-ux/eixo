@@ -65,6 +65,9 @@
 		},
 		"theme": {
 			"toggle": "Toggle color scheme"
+		},
+		"shell": {
+			"errorBoundaryMessage": "An error has occurred. Please refresh the page."
 		}
 	}
 }

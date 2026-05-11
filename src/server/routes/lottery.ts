@@ -8,6 +8,8 @@ import Lottery from '../entity/Lottery'
 import { generalLog } from '../functions/functions'
 import { attachGame } from '../middleware/game'
 import type Game from '../entity/Game'
+import { translate } from '../util/translation'
+import { language as languageMiddleware } from '../middleware/language'
 // lottery
 // set base jackpot
 
@@ -15,22 +17,29 @@ import type Game from '../entity/Game'
 // add to lottery db
 // check if enough money, limit on tickets, etc
 const buyTicket = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { empireId, type } = req.body
 
 	const game: Game = res.locals.game
 
 	if (type !== 'lottery') {
-		return res.status(400).json({ error: 'invalid request' })
+		return res.status(400).json({
+			error: translate('errors:lottery.invalidRequest', language),
+		})
 	}
 
 	const empire = await Empire.findOne({ id: empireId })
 
 	if (!empire) {
-		return res.status(404).json({ error: 'Empire not found' })
+		return res.status(404).json({
+			error: translate('errors:empire.notFound', language),
+		})
 	}
 
 	if (empire.turnsUsed < game.turnsProtection || empire.mode === 'demo') {
-		return res.status(400).json({ error: 'not allowed' })
+		return res.status(400).json({
+			error: translate('errors:lottery.notAllowed', language),
+		})
 	}
 
 	const empireTickets = await Lottery.find({
@@ -45,13 +54,15 @@ const buyTicket = async (req: Request, res: Response) => {
 	)
 
 	if (empire.cash < ticketCost) {
-		return res
-			.status(400)
-			.json({ error: 'Not enough money to purchase ticket' })
+		return res.status(400).json({
+			error: translate('errors:lottery.notEnoughMoneyTicket', language),
+		})
 	}
 
 	if (empireTickets.length >= game.lotteryMaxTickets) {
-		return res.status(400).json({ error: 'Max tickets reached' })
+		return res.status(400).json({
+			error: translate('errors:lottery.maxTicketsReached', language),
+		})
 	}
 
 	empire.cash -= ticketCost
@@ -100,14 +111,19 @@ const getJackpot = async (req: Request, res: Response) => {
 }
 
 const getTickets = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const empireId = Number(req.params.empireId)
 	if (!Number.isFinite(empireId)) {
-		return res.status(400).json({ error: 'Invalid empire id' })
+		return res.status(400).json({
+			error: translate('errors:lottery.invalidEmpireId', language),
+		})
 	}
 
 	const empire = await Empire.findOne({ id: empireId })
 	if (!empire) {
-		return res.status(404).json({ error: 'Empire not found' })
+		return res.status(404).json({
+			error: translate('errors:empire.notFound', language),
+		})
 	}
 
 	const tickets = await Lottery.findAndCount({
@@ -118,10 +134,13 @@ const getTickets = async (req: Request, res: Response) => {
 }
 
 const getTotalTickets = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { gameId } = req.query
 	const gameIdNum = Number(gameId)
 	if (!Number.isFinite(gameIdNum)) {
-		return res.status(400).json({ error: 'Game ID is required.' })
+		return res.status(400).json({
+			error: translate('errors:empire.gameIdRequired', language),
+		})
 	}
 
 	const tickets = await Lottery.findAndCount({
@@ -135,9 +154,9 @@ const getTotalTickets = async (req: Request, res: Response) => {
 
 const router = Router()
 
-router.post('/buyTicket', user, auth, attachGame, buyTicket)
+router.post('/buyTicket', user, auth, languageMiddleware, attachGame, buyTicket)
 router.get('/getJackpot', attachGame, getJackpot)
-router.get('/getTickets/:empireId', getTickets)
-router.get('/getTotalTickets', getTotalTickets)
+router.get('/getTickets/:empireId', languageMiddleware, getTickets)
+router.get('/getTotalTickets', languageMiddleware, getTotalTickets)
 
 export default router

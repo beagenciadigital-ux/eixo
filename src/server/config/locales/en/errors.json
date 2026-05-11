@@ -66,7 +66,8 @@
 		"notEnoughRunes": "You do not have enough {{resource}} to cast this spell.",
 		"notEnoughHealth": "You do not have enough health to cast this spell.",
 		"notEnoughTurns": "You do not have enough turns to cast this spell.",
-		"notEnoughWiz": "You do not have enough {{trpwiz}} to cast this spell."
+		"notEnoughWiz": "You do not have enough {{trpwiz}} to cast this spell.",
+		"noEraToRegress": "There is no era to regress to"
 	},
 	"market": {
 		"notEnoughMoney": "You do not have enough money.",
@@ -74,6 +75,46 @@
 		"invalidPurchase": "Invalid purchase amount",
 		"notEnoughCash": "Not enough money to make purchase",
 		"noItemsToSell": "No items to sell",
-		"invalidPrice": "Invalid price"
+		"invalidPrice": "Invalid price",
+		"empireIdMismatch": "Empire ID mismatch"
+	},
+	"empire": {
+		"nameExists": "Empire name already exists",
+		"alreadyHasEmpireInGame": "User already has an empire in this game",
+		"nameEmpty": "Name must not be empty",
+		"notFound": "Empire not found",
+		"gameIdRequired": "Game ID is required.",
+		"invalidRequestType": "Invalid request type",
+		"industryMustSum100": "Values must add up to 100",
+		"nameChangeAlreadyUsed": "Name change already used",
+		"nameChangeFailed": "Error changing name"
+	},
+	"build": {
+		"empireIdRequired": "Empire ID is required",
+		"empireWrongGame": "Empire is not in this game",
+		"invalidType": "Invalid type",
+		"exceedsLimits": "Requested buildings exceed available limits",
+		"notEnoughTurns": "Not enough turns",
+		"buildFailed": "Build failed"
+	},
+	"lottery": {
+		"invalidRequest": "Invalid request",
+		"notAllowed": "Not allowed",
+		"notEnoughMoneyTicket": "Not enough money to purchase ticket",
+		"maxTicketsReached": "Max tickets reached",
+		"invalidEmpireId": "Invalid empire id"
+	},
+	"land": {
+		"dropTooMuch": "Can't drop that much land"
+	},
+	"demolish": {
+		"tooManyStructures": "Can't demolish that many structures"
+	},
+	"clanList": {
+		"noneFound": "No clans found",
+		"invalidRole": "Invalid role",
+		"fetchFailed": "Something went wrong when getting clan",
+		"fetchMembersFailed": "Something went wrong when getting clan members",
+		"fetchListFailed": "Something went wrong when getting clans"
 	}
 }

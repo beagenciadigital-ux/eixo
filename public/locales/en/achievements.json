@@ -1,1 +1,415 @@
-{}
+{
+	"notificationAwarded": "Achievement Awarded",
+	"pageTitle": "Achievements",
+	"awardedOn": "Awarded on {{date}}",
+	"categories": {
+		"turns": "Turns Used",
+		"exploreGains": "Exploration",
+		"income": "Income",
+		"expenses": "Expenses",
+		"food": "Food Production",
+		"foodcon": "Food Consumption",
+		"networth": "Net Worth",
+		"peasants": "Population",
+		"land": "Total Land",
+		"indy": "Industrial Production",
+		"magic": "Magical Production",
+		"trpArm": "Ground troops",
+		"trpLnd": "Siege troops",
+		"trpFly": "Air troops",
+		"trpSea": "Naval troops",
+		"trpWiz": "Magic troops",
+		"attackGains": "Attack Gains",
+		"attacks": "Successful Attacks",
+		"defends": "Successful Defenses",
+		"rank": "Rank",
+		"build": "Buildings",
+		"joinClan": "Clans"
+	},
+	"items": {
+		"income4": {
+			"title": "Money Maker 5",
+			"subtitle": "Total Income of ${{amount}}"
+		},
+		"income3": {
+			"title": "Money Maker 4",
+			"subtitle": "Total Income of ${{amount}}"
+		},
+		"income2": {
+			"title": "Money Maker 3",
+			"subtitle": "Total Income of ${{amount}}"
+		},
+		"income1": {
+			"title": "Money Maker 2",
+			"subtitle": "Total Income of ${{amount}}"
+		},
+		"income0": {
+			"title": "Money Maker 1",
+			"subtitle": "Total Income of ${{amount}}"
+		},
+		"indyProd4": {
+			"title": "Industrialist 5",
+			"subtitle": "Total Industrial Output of ${{amount}}"
+		},
+		"indyProd3": {
+			"title": "Industrialist 4",
+			"subtitle": "Total Industrial Output of ${{amount}}"
+		},
+		"indyProd2": {
+			"title": "Industrialist 3",
+			"subtitle": "Total Industrial Output of ${{amount}}"
+		},
+		"indyProd1": {
+			"title": "Industrialist 2",
+			"subtitle": "Total Industrial Output of ${{amount}}"
+		},
+		"indyProd0": {
+			"title": "Industrialist 1",
+			"subtitle": "Total Industrial Output of ${{amount}}"
+		},
+		"magicProd4": {
+			"title": "Alchemy 5",
+			"subtitle": "Total Magical Output of ${{amount}}"
+		},
+		"magicProd3": {
+			"title": "Alchemy 4",
+			"subtitle": "Total Magical Output of ${{amount}}"
+		},
+		"magicProd2": {
+			"title": "Alchemy 3",
+			"subtitle": "Total Magical Output of ${{amount}}"
+		},
+		"magicProd1": {
+			"title": "Alchemy 2",
+			"subtitle": "Total Magical Output of ${{amount}}"
+		},
+		"magicProd0": {
+			"title": "Alchemy 1",
+			"subtitle": "Total Magical Output of ${{amount}}"
+		},
+		"expenses4": {
+			"title": "Big Spender 5",
+			"subtitle": "Total Expenses of ${{amount}}"
+		},
+		"expenses3": {
+			"title": "Big Spender 4",
+			"subtitle": "Total Expenses of ${{amount}}"
+		},
+		"expenses2": {
+			"title": "Big Spender 3",
+			"subtitle": "Total Expenses of ${{amount}}"
+		},
+		"expenses1": {
+			"title": "Big Spender 2",
+			"subtitle": "Total Expenses of ${{amount}}"
+		},
+		"expenses0": {
+			"title": "Big Spender 1",
+			"subtitle": "Total Expenses of ${{amount}}"
+		},
+		"foodcon4": {
+			"title": "Foodie 5",
+			"subtitle": "Total Food Consumption of {{amount}}"
+		},
+		"foodcon3": {
+			"title": "Foodie 4",
+			"subtitle": "Total Food Consumption of {{amount}}"
+		},
+		"foodcon2": {
+			"title": "Foodie 3",
+			"subtitle": "Total Food Consumption of {{amount}}"
+		},
+		"foodcon1": {
+			"title": "Foodie 2",
+			"subtitle": "Total Food Consumption of {{amount}}"
+		},
+		"foodcon0": {
+			"title": "Foodie 1",
+			"subtitle": "Total Food Consumption of {{amount}}"
+		},
+		"food4": {
+			"title": "Farmer 5",
+			"subtitle": "Total Food Production of {{amount}}"
+		},
+		"food3": {
+			"title": "Farmer 4",
+			"subtitle": "Total Food Production of {{amount}}"
+		},
+		"food2": {
+			"title": "Farmer 3",
+			"subtitle": "Total Food Production of {{amount}}"
+		},
+		"food1": {
+			"title": "Farmer 2",
+			"subtitle": "Total Food Production of {{amount}}"
+		},
+		"food0": {
+			"title": "Farmer 1",
+			"subtitle": "Total Food Production of {{amount}}"
+		},
+		"exploreGains4": {
+			"title": "Explorer 5",
+			"subtitle": "Total Exploration Gains of {{amount}} land"
+		},
+		"exploreGains3": {
+			"title": "Explorer 4",
+			"subtitle": "Total Exploration Gains of {{amount}} land"
+		},
+		"exploreGains2": {
+			"title": "Explorer 3",
+			"subtitle": "Total Exploration Gains of {{amount}} land"
+		},
+		"exploreGains1": {
+			"title": "Explorer 2",
+			"subtitle": "Total Exploration Gains of {{amount}} land"
+		},
+		"exploreGains0": {
+			"title": "Explorer 1",
+			"subtitle": "Total Exploration Gains of {{amount}} land"
+		},
+		"land4": {
+			"title": "Expansionist 5",
+			"subtitle": "Total Land of {{amount}}"
+		},
+		"land3": {
+			"title": "Expansionist 4",
+			"subtitle": "Total Land of {{amount}}"
+		},
+		"land2": {
+			"title": "Expansionist 3",
+			"subtitle": "Total Land of {{amount}}"
+		},
+		"land1": {
+			"title": "Expansionist 2",
+			"subtitle": "Total Land of {{amount}}"
+		},
+		"land0": {
+			"title": "Expansionist 1",
+			"subtitle": "Total Land of {{amount}}"
+		},
+		"networth4": {
+			"title": "Net Worth 5",
+			"subtitle": "Reach Net Worth of ${{amount}}"
+		},
+		"networth3": {
+			"title": "Net Worth 4",
+			"subtitle": "Reach Net Worth of ${{amount}}"
+		},
+		"networth2": {
+			"title": "Net Worth 3",
+			"subtitle": "Reach Net Worth of ${{amount}}"
+		},
+		"networth1": {
+			"title": "Net Worth 2",
+			"subtitle": "Reach Net Worth of ${{amount}}"
+		},
+		"networth0": {
+			"title": "Net Worth 1",
+			"subtitle": "Reach Net Worth of ${{amount}}"
+		},
+		"peasants4": {
+			"title": "Populist 5",
+			"subtitle": "Total Population of {{amount}}"
+		},
+		"peasants3": {
+			"title": "Populist 4",
+			"subtitle": "Total Population of {{amount}}"
+		},
+		"peasants2": {
+			"title": "Populist 3",
+			"subtitle": "Total Population of {{amount}}"
+		},
+		"peasants1": {
+			"title": "Populist 2",
+			"subtitle": "Total Population of {{amount}}"
+		},
+		"peasants0": {
+			"title": "Populist 1",
+			"subtitle": "Total Population of {{amount}}"
+		},
+		"trpArm4": {
+			"title": "Guerilla Master 5",
+			"subtitle": "Total Guerilla Units of {{amount}}"
+		},
+		"trpArm3": {
+			"title": "Guerilla Master 4",
+			"subtitle": "Total Guerilla Units of {{amount}}"
+		},
+		"trpArm2": {
+			"title": "Guerilla Master 3",
+			"subtitle": "Total Guerilla Units of {{amount}}"
+		},
+		"trpArm1": {
+			"title": "Guerilla Master 2",
+			"subtitle": "Total Guerilla Units of {{amount}}"
+		},
+		"trpArm0": {
+			"title": "Guerilla Master 1",
+			"subtitle": "Total Guerilla Units of {{amount}}"
+		},
+		"trpLnd4": {
+			"title": "Siege Master 5",
+			"subtitle": "Total Siege Units of {{amount}}"
+		},
+		"trpLnd3": {
+			"title": "Siege Master 4",
+			"subtitle": "Total Siege Units of {{amount}}"
+		},
+		"trpLnd2": {
+			"title": "Siege Master 3",
+			"subtitle": "Total Siege Units of {{amount}}"
+		},
+		"trpLnd1": {
+			"title": "Siege Master 2",
+			"subtitle": "Total Siege Units of {{amount}}"
+		},
+		"trpLnd0": {
+			"title": "Siege Master 1",
+			"subtitle": "Total Siege Units of {{amount}}"
+		},
+		"trpFly4": {
+			"title": "Air Master 5",
+			"subtitle": "Total Air Strike Units of {{amount}}"
+		},
+		"trpFly3": {
+			"title": "Air Master 4",
+			"subtitle": "Total Air Strike Units of {{amount}}"
+		},
+		"trpFly2": {
+			"title": "Air Master 3",
+			"subtitle": "Total Air Strike Units of {{amount}}"
+		},
+		"trpFly1": {
+			"title": "Air Master 2",
+			"subtitle": "Total Air Strike Units of {{amount}}"
+		},
+		"trpFly0": {
+			"title": "Air Master 1",
+			"subtitle": "Total Air Strike Units of {{amount}}"
+		},
+		"trpSea4": {
+			"title": "Sea Master 5",
+			"subtitle": "Total Coastal Assault Units of {{amount}}"
+		},
+		"trpSea3": {
+			"title": "Sea Master 4",
+			"subtitle": "Total Coastal Assault Units of {{amount}}"
+		},
+		"trpSea2": {
+			"title": "Sea Master 3",
+			"subtitle": "Total Coastal Assault Units of {{amount}}"
+		},
+		"trpSea1": {
+			"title": "Sea Master 2",
+			"subtitle": "Total Coastal Assault Units of {{amount}}"
+		},
+		"trpSea0": {
+			"title": "Sea Master 1",
+			"subtitle": "Total Coastal Assault Units of {{amount}}"
+		},
+		"trpWiz4": {
+			"title": "Magic Men 5",
+			"subtitle": "Total Magic Units of {{amount}}"
+		},
+		"trpWiz3": {
+			"title": "Magic Men 4",
+			"subtitle": "Total Magic Units of {{amount}}"
+		},
+		"trpWiz2": {
+			"title": "Magic Men 3",
+			"subtitle": "Total Magic Units of {{amount}}"
+		},
+		"trpWiz1": {
+			"title": "Magic Men 2",
+			"subtitle": "Total Magic Units of {{amount}}"
+		},
+		"trpWiz0": {
+			"title": "Magic Men 1",
+			"subtitle": "Total Magic Units of {{amount}}"
+		},
+		"attackGains4": {
+			"title": "Conqueror 5",
+			"subtitle": "Total Attack Gains of {{amount}} land"
+		},
+		"attackGains3": {
+			"title": "Conqueror 4",
+			"subtitle": "Total Attack Gains of {{amount}} land"
+		},
+		"attackGains2": {
+			"title": "Conqueror 3",
+			"subtitle": "Total Attack Gains of {{amount}} land"
+		},
+		"attackGains1": {
+			"title": "Conqueror 2",
+			"subtitle": "Total Attack Gains of {{amount}} land"
+		},
+		"attackGains0": {
+			"title": "Conqueror 1",
+			"subtitle": "Total Attack Gains of {{amount}} land"
+		},
+		"turns2": {
+			"title": "Committed",
+			"subtitle": "Used 2,600 Turns"
+		},
+		"turns1": {
+			"title": "Sticking With It",
+			"subtitle": "Used 1,000 Turns"
+		},
+		"turns0": {
+			"title": "Into The World",
+			"subtitle": "Exited New Player Protection"
+		},
+		"attacks4": {
+			"title": "Tactical Edge 5",
+			"subtitle": "{{amount}} Successful Attacks"
+		},
+		"attacks3": {
+			"title": "Tactical Edge 4",
+			"subtitle": "{{amount}} Successful Attacks"
+		},
+		"attacks2": {
+			"title": "Tactical Edge 3",
+			"subtitle": "{{amount}} Successful Attacks"
+		},
+		"attacks1": {
+			"title": "Tactical Edge 2",
+			"subtitle": "{{amount}} Successful Attacks"
+		},
+		"attacks0": {
+			"title": "Tactical Edge 1",
+			"subtitle": "{{amount}} Successful Attacks"
+		},
+		"defends4": {
+			"title": "Iron Wall 5",
+			"subtitle": "{{amount}} Successful Defenses"
+		},
+		"defends3": {
+			"title": "Iron Wall 4",
+			"subtitle": "{{amount}} Successful Defenses"
+		},
+		"defends2": {
+			"title": "Iron Wall 3",
+			"subtitle": "{{amount}} Successful Defenses"
+		},
+		"defends1": {
+			"title": "Iron Wall 2",
+			"subtitle": "{{amount}} Successful Defenses"
+		},
+		"defends0": {
+			"title": "Iron Wall 1",
+			"subtitle": "{{amount}} Successful Defenses"
+		},
+		"rank1": {
+			"title": "Top of the World",
+			"subtitle": "Take the number 1 rank"
+		},
+		"build": {
+			"title": "Fully Built",
+			"subtitle": "Build on all available land"
+		},
+		"joinClan": {
+			"title": "Join a Clan",
+			"subtitle": "Join or create a clan"
+		}
+	}
+}

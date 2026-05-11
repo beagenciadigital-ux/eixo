@@ -13,6 +13,8 @@ import type Game from "../entity/Game";
 import type User from "../entity/User";
 import { updateEmpire } from "../services/actions/updateEmpire";
 import { getServerStats } from "../services/game/serverStats";
+import { translate } from "../util/translation";
+import { language as languageMiddleware } from "../middleware/language";
 
 // FIXED?: created new turn function for use in loops that is not async use returned values to update empire
 
@@ -41,29 +43,39 @@ const getBuildAmounts = async (empire: Empire, cost: number, gameId: number) => 
 
 /** GET — same caps as POST /build so the client does not underestimate build cost. */
 const getBuildLimits = async (req: Request, res: Response) => {
+	const language = res.locals.language;
 	const game: Game = res.locals.game;
 	const user = res.locals.user as User;
 	const empireId = Number.parseInt(String(req.query.empireId), 10);
 
 	if (!Number.isFinite(empireId)) {
 		return res.status(400).json({
-			error: "empireId is required",
+			error: translate("errors:build.empireIdRequired", language),
 			code: "MISSING_EMPIRE_ID",
 		});
 	}
 
 	const empire = await Empire.findOne({ id: empireId });
 	if (!empire) {
-		return res.status(404).json({ error: "Empire not found", code: "EMPIRE_NOT_FOUND" });
+		return res.status(404).json({
+			error: translate("errors:empire.notFound", language),
+			code: "EMPIRE_NOT_FOUND",
+		});
 	}
 
 	if (empire.game_id !== game.game_id) {
-		return res.status(403).json({ error: "Empire is not in this game", code: "GAME_MISMATCH" });
+		return res.status(403).json({
+			error: translate("errors:build.empireWrongGame", language),
+			code: "GAME_MISMATCH",
+		});
 	}
 
 	const owned = user.empires?.some((e) => e.id === empire.id) ?? false;
 	if (!owned) {
-		return res.status(403).json({ error: "Forbidden", code: "FORBIDDEN" });
+		return res.status(403).json({
+			error: translate("errors:unauthorized", language),
+			code: "FORBIDDEN",
+		});
 	}
 
 	const amounts = await getBuildAmounts(empire, game.buildCost, game.game_id);
@@ -71,6 +83,7 @@ const getBuildLimits = async (req: Request, res: Response) => {
 };
 
 const build = async (req: Request, res: Response) => {
+	const language = res.locals.language;
 	// request will have object with type of building and number to build
 	const {
 		type,
@@ -87,12 +100,18 @@ const build = async (req: Request, res: Response) => {
 	const game: Game = res.locals.game;
 
 	if (type !== "build") {
-		return res.status(400).json({ error: "Invalid type", code: "INVALID_TYPE" });
+		return res.status(400).json({
+			error: translate("errors:build.invalidType", language),
+			code: "INVALID_TYPE",
+		});
 	}
 
 	const empire = await Empire.findOne({ id: empireId });
 	if (!empire) {
-		return res.status(404).json({ error: "Empire not found", code: "EMPIRE_NOT_FOUND" });
+		return res.status(404).json({
+			error: translate("errors:empire.notFound", language),
+			code: "EMPIRE_NOT_FOUND",
+		});
 	}
 
 	let clan = null;
@@ -129,7 +148,7 @@ const build = async (req: Request, res: Response) => {
 			freeLand: empire.freeLand,
 		});
 		return res.status(400).json({
-			error: "Requested buildings exceed available limits",
+			error: translate("errors:build.exceedsLimits", language),
 			code: "REQUEST_EXCEEDS_LIMITS",
 			details: { requested: buildTotal, maxByCash, maxByTurns, maxByLand },
 		});
@@ -158,7 +177,7 @@ const build = async (req: Request, res: Response) => {
   const buildLoop = async () => {
     try {
       if (requiredTurns > empire.turns) {
-        return [{ error: "Not enough turns", code: "NOT_ENOUGH_TURNS", requiredTurns, availableTurns: empire.turns }];
+        return [{ error: translate("errors:build.notEnoughTurns", language), code: "NOT_ENOUGH_TURNS", requiredTurns, availableTurns: empire.turns }];
       }
       let resultArray = [];
 
@@ -203,7 +222,7 @@ const build = async (req: Request, res: Response) => {
 
         // Guard in case turns run out mid-process
         if (empire.turns <= 0 && remainingList.some((x) => x.remaining > 0)) {
-          resultArray.push({ error: "Not enough turns", code: "NOT_ENOUGH_TURNS", requiredTurns, availableTurns: 0 });
+          resultArray.push({ error: translate("errors:build.notEnoughTurns", language), code: "NOT_ENOUGH_TURNS", requiredTurns, availableTurns: 0 });
           break;
         }
       }
@@ -212,7 +231,7 @@ const build = async (req: Request, res: Response) => {
       return resultArray;
     } catch (err) {
       console.log(err);
-      return [{ error: "Build failed", code: "BUILD_ERROR" }];
+      return [{ error: translate("errors:build.buildFailed", language), code: "BUILD_ERROR" }];
     }
   };
 
@@ -234,7 +253,7 @@ const build = async (req: Request, res: Response) => {
 
 const router = Router();
 
-router.get("/limits", user, auth, attachGame, getBuildLimits);
-router.post("/", user, auth, attachGame, build);
+router.get("/limits", user, auth, languageMiddleware, attachGame, getBuildLimits);
+router.post("/", user, auth, languageMiddleware, attachGame, build);
 
 export default router;

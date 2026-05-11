@@ -385,7 +385,9 @@ const magic = async (req: Request, res: Response) => {
 					let allowed = await regress_allow(empire, language)
 					// console.log('regress allow', allowed)
 					if (!allowed) {
-						let spellTurns = { error: "There is no era to regress to" }
+						let spellTurns = {
+							error: translate("errors:magic.noEraToRegress", language),
+						}
 						resultArray.push(spellTurns)
 						break
 					} else if (typeof allowed === "string") {

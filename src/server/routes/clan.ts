@@ -394,6 +394,7 @@ const kickFromClan = async (req: Request, res: Response) => {
 };
 
 const getClan = async (req: Request, res: Response) => {
+	const language = res.locals.language;
 	const { clanId } = req.body;
 
 	try {
@@ -420,13 +421,14 @@ const getClan = async (req: Request, res: Response) => {
 		return res.json(clan);
 	} catch (err) {
 		console.log(err);
-		return res
-			.status(500)
-			.json({ error: "Something went wrong when getting clan" });
+		return res.status(500).json({
+			error: translate("errors:clanList.fetchFailed", language),
+		});
 	}
 };
 
 const getClanMembers = async (req: Request, res: Response) => {
+	const language = res.locals.language;
 	const { clanId } = req.body;
 	// console.log(req.body)
 	try {
@@ -439,13 +441,14 @@ const getClanMembers = async (req: Request, res: Response) => {
 		return res.json(empires);
 	} catch (err) {
 		console.log(err);
-		return res
-			.status(500)
-			.json({ error: "Something went wrong when getting clan members" });
+		return res.status(500).json({
+			error: translate("errors:clanList.fetchMembersFailed", language),
+		});
 	}
 };
 
 const getClans = async (req: Request, res: Response) => {
+	const language = res.locals.language;
 	const { gameId } = req.query;
 
 	try {
@@ -455,19 +458,22 @@ const getClans = async (req: Request, res: Response) => {
 		});
 
 		if (clans.length === 0) {
-			return res.status(400).json({ error: "No clans found" });
+			return res.status(400).json({
+				error: translate("errors:clanList.noneFound", language),
+			});
 		}
 
 		return res.json(clans);
 	} catch (err) {
 		console.log(err);
-		return res
-			.status(500)
-			.json({ error: "Something went wrong when getting clans" });
+		return res.status(500).json({
+			error: translate("errors:clanList.fetchListFailed", language),
+		});
 	}
 };
 
 const getClansData = async (req: Request, res: Response) => {
+	const language = res.locals.language;
 	const { gameId } = req.query;
 	// console.log(gameId);
 	try {
@@ -491,7 +497,9 @@ const getClansData = async (req: Request, res: Response) => {
 		});
 
 		if (clans.length === 0) {
-			return res.status(400).json({ error: "No clans found" });
+			return res.status(400).json({
+				error: translate("errors:clanList.noneFound", language),
+			});
 		}
 
 		const clanNetworths = await Promise.all(
@@ -519,9 +527,9 @@ const getClansData = async (req: Request, res: Response) => {
 		return res.json(clanNetworths);
 	} catch (err) {
 		console.log(err);
-		return res
-			.status(500)
-			.json({ error: "Something went wrong when getting clans" });
+		return res.status(500).json({
+			error: translate("errors:clanList.fetchListFailed", language),
+		});
 	}
 };
 
@@ -564,7 +572,9 @@ const assignClanRole = async (req: Request, res: Response) => {
 		} else if (clanRole === "agent2") {
 			clan.empireIdAgent2 = member.id;
 		} else {
-			return res.status(400).json({ error: "Invalid role" });
+			return res.status(400).json({
+				error: translate("errors:clanList.invalidRole", language),
+			});
 		}
 
 		await clan.save();
@@ -605,7 +615,9 @@ const removeClanRole = async (req: Request, res: Response) => {
 		} else if (clanRole === "agent2") {
 			clan.empireIdAgent2 = 0;
 		} else {
-			return res.status(400).json({ error: "Invalid role" });
+			return res.status(400).json({
+				error: translate("errors:clanList.invalidRole", language),
+			});
 		}
 
 		await clan.save();
@@ -940,10 +952,10 @@ router.post("/join", user, auth, language, attachGame, joinClan);
 router.post("/leave", user, auth, language, attachGame, leaveClan);
 router.post("/disband", user, auth, language, attachGame, disbandClan);
 router.post("/kick", user, auth, language, attachGame, kickFromClan);
-router.post("/get", user, auth, getClan);
-router.post("/getMembers", user, auth, getClanMembers);
-router.get("/getClans", getClans);
-router.get("/getClansData", getClansData);
+router.post("/get", user, auth, language, getClan);
+router.post("/getMembers", user, auth, language, getClanMembers);
+router.get("/getClans", language, getClans);
+router.get("/getClansData", language, getClansData);
 router.post("/assignRole", user, auth, language, assignClanRole);
 router.post("/removeRole", user, auth, language, removeClanRole);
 router.post("/declareWar", user, auth, language, attachGame, declareWar);

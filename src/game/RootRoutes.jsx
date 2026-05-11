@@ -402,7 +402,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Black%20Market"
+									path="Black Market"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<PrivateMarket />
@@ -410,7 +410,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Public%20Market"
+									path="Public Market"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<PublicMarket />
@@ -418,7 +418,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="The%20Bank"
+									path="The Bank"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<WorldBank />
@@ -426,7 +426,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Magic%20Center"
+									path="Magic Center"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<MagicCenter />
@@ -434,7 +434,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Empire%20Settings"
+									path="Empire Settings"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<ManageEmpire />
@@ -442,7 +442,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="War%20Council"
+									path="War Council"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<Attack />
@@ -450,7 +450,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Intel%20Center"
+									path="Intel Center"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<IntelCenter />
@@ -458,7 +458,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="World%20News"
+									path="World News"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<WorldNews />
@@ -474,7 +474,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Foreign%20Aid"
+									path="Foreign Aid"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<ForeignAid />
@@ -490,7 +490,7 @@ export default function RootRoutes() {
 									}
 								/>
 								<Route
-									path="Clan%20Stats"
+									path="Clan Stats"
 									element={
 										<Suspense fallback={<LoadingComponent />}>
 											<ClanStats />

@@ -1,1 +1,415 @@
-{}
+{
+	"notificationAwarded": "Logro obtenido",
+	"pageTitle": "Logros",
+	"awardedOn": "Obtenido el {{date}}",
+	"categories": {
+		"turns": "Turnos usados",
+		"exploreGains": "Exploración",
+		"income": "Ingresos",
+		"expenses": "Gastos",
+		"food": "Producción de alimentos",
+		"foodcon": "Consumo de alimentos",
+		"networth": "Valor neto",
+		"peasants": "Población",
+		"land": "Tierras totales",
+		"indy": "Producción industrial",
+		"magic": "Producción mágica",
+		"trpArm": "Tropas terrestres",
+		"trpLnd": "Tropas de asedio",
+		"trpFly": "Tropas aéreas",
+		"trpSea": "Tropas navales",
+		"trpWiz": "Tropas mágicas",
+		"attackGains": "Ganancias de ataque",
+		"attacks": "Ataques exitosos",
+		"defends": "Defensas exitosas",
+		"rank": "Rango",
+		"build": "Edificios",
+		"joinClan": "Clanes"
+	},
+	"items": {
+		"income4": {
+			"title": "Generador de dinero 5",
+			"subtitle": "Ingresos totales de ${{amount}}"
+		},
+		"income3": {
+			"title": "Generador de dinero 4",
+			"subtitle": "Ingresos totales de ${{amount}}"
+		},
+		"income2": {
+			"title": "Generador de dinero 3",
+			"subtitle": "Ingresos totales de ${{amount}}"
+		},
+		"income1": {
+			"title": "Generador de dinero 2",
+			"subtitle": "Ingresos totales de ${{amount}}"
+		},
+		"income0": {
+			"title": "Generador de dinero 1",
+			"subtitle": "Ingresos totales de ${{amount}}"
+		},
+		"indyProd4": {
+			"title": "Industrial 5",
+			"subtitle": "Producción industrial total de ${{amount}}"
+		},
+		"indyProd3": {
+			"title": "Industrial 4",
+			"subtitle": "Producción industrial total de ${{amount}}"
+		},
+		"indyProd2": {
+			"title": "Industrial 3",
+			"subtitle": "Producción industrial total de ${{amount}}"
+		},
+		"indyProd1": {
+			"title": "Industrial 2",
+			"subtitle": "Producción industrial total de ${{amount}}"
+		},
+		"indyProd0": {
+			"title": "Industrial 1",
+			"subtitle": "Producción industrial total de ${{amount}}"
+		},
+		"magicProd4": {
+			"title": "Alquimia 5",
+			"subtitle": "Producción mágica total de ${{amount}}"
+		},
+		"magicProd3": {
+			"title": "Alquimia 4",
+			"subtitle": "Producción mágica total de ${{amount}}"
+		},
+		"magicProd2": {
+			"title": "Alquimia 3",
+			"subtitle": "Producción mágica total de ${{amount}}"
+		},
+		"magicProd1": {
+			"title": "Alquimia 2",
+			"subtitle": "Producción mágica total de ${{amount}}"
+		},
+		"magicProd0": {
+			"title": "Alquimia 1",
+			"subtitle": "Producción mágica total de ${{amount}}"
+		},
+		"expenses4": {
+			"title": "Gran gastador 5",
+			"subtitle": "Gastos totales de ${{amount}}"
+		},
+		"expenses3": {
+			"title": "Gran gastador 4",
+			"subtitle": "Gastos totales de ${{amount}}"
+		},
+		"expenses2": {
+			"title": "Gran gastador 3",
+			"subtitle": "Gastos totales de ${{amount}}"
+		},
+		"expenses1": {
+			"title": "Gran gastador 2",
+			"subtitle": "Gastos totales de ${{amount}}"
+		},
+		"expenses0": {
+			"title": "Gran gastador 1",
+			"subtitle": "Gastos totales de ${{amount}}"
+		},
+		"foodcon4": {
+			"title": "Gourmet 5",
+			"subtitle": "Consumo total de alimentos de {{amount}}"
+		},
+		"foodcon3": {
+			"title": "Gourmet 4",
+			"subtitle": "Consumo total de alimentos de {{amount}}"
+		},
+		"foodcon2": {
+			"title": "Gourmet 3",
+			"subtitle": "Consumo total de alimentos de {{amount}}"
+		},
+		"foodcon1": {
+			"title": "Gourmet 2",
+			"subtitle": "Consumo total de alimentos de {{amount}}"
+		},
+		"foodcon0": {
+			"title": "Gourmet 1",
+			"subtitle": "Consumo total de alimentos de {{amount}}"
+		},
+		"food4": {
+			"title": "Agricultor 5",
+			"subtitle": "Producción total de alimentos de {{amount}}"
+		},
+		"food3": {
+			"title": "Agricultor 4",
+			"subtitle": "Producción total de alimentos de {{amount}}"
+		},
+		"food2": {
+			"title": "Agricultor 3",
+			"subtitle": "Producción total de alimentos de {{amount}}"
+		},
+		"food1": {
+			"title": "Agricultor 2",
+			"subtitle": "Producción total de alimentos de {{amount}}"
+		},
+		"food0": {
+			"title": "Agricultor 1",
+			"subtitle": "Producción total de alimentos de {{amount}}"
+		},
+		"exploreGains4": {
+			"title": "Explorador 5",
+			"subtitle": "Ganancias totales de exploración de {{amount}} tierras"
+		},
+		"exploreGains3": {
+			"title": "Explorador 4",
+			"subtitle": "Ganancias totales de exploración de {{amount}} tierras"
+		},
+		"exploreGains2": {
+			"title": "Explorador 3",
+			"subtitle": "Ganancias totales de exploración de {{amount}} tierras"
+		},
+		"exploreGains1": {
+			"title": "Explorador 2",
+			"subtitle": "Ganancias totales de exploración de {{amount}} tierras"
+		},
+		"exploreGains0": {
+			"title": "Explorador 1",
+			"subtitle": "Ganancias totales de exploración de {{amount}} tierras"
+		},
+		"land4": {
+			"title": "Expansionista 5",
+			"subtitle": "Tierras totales de {{amount}}"
+		},
+		"land3": {
+			"title": "Expansionista 4",
+			"subtitle": "Tierras totales de {{amount}}"
+		},
+		"land2": {
+			"title": "Expansionista 3",
+			"subtitle": "Tierras totales de {{amount}}"
+		},
+		"land1": {
+			"title": "Expansionista 2",
+			"subtitle": "Tierras totales de {{amount}}"
+		},
+		"land0": {
+			"title": "Expansionista 1",
+			"subtitle": "Tierras totales de {{amount}}"
+		},
+		"networth4": {
+			"title": "Valor neto 5",
+			"subtitle": "Alcanza un valor neto de ${{amount}}"
+		},
+		"networth3": {
+			"title": "Valor neto 4",
+			"subtitle": "Alcanza un valor neto de ${{amount}}"
+		},
+		"networth2": {
+			"title": "Valor neto 3",
+			"subtitle": "Alcanza un valor neto de ${{amount}}"
+		},
+		"networth1": {
+			"title": "Valor neto 2",
+			"subtitle": "Alcanza un valor neto de ${{amount}}"
+		},
+		"networth0": {
+			"title": "Valor neto 1",
+			"subtitle": "Alcanza un valor neto de ${{amount}}"
+		},
+		"peasants4": {
+			"title": "Populista 5",
+			"subtitle": "Población total de {{amount}}"
+		},
+		"peasants3": {
+			"title": "Populista 4",
+			"subtitle": "Población total de {{amount}}"
+		},
+		"peasants2": {
+			"title": "Populista 3",
+			"subtitle": "Población total de {{amount}}"
+		},
+		"peasants1": {
+			"title": "Populista 2",
+			"subtitle": "Población total de {{amount}}"
+		},
+		"peasants0": {
+			"title": "Populista 1",
+			"subtitle": "Población total de {{amount}}"
+		},
+		"trpArm4": {
+			"title": "Maestro guerrillero 5",
+			"subtitle": "Unidades de guerrilla totales de {{amount}}"
+		},
+		"trpArm3": {
+			"title": "Maestro guerrillero 4",
+			"subtitle": "Unidades de guerrilla totales de {{amount}}"
+		},
+		"trpArm2": {
+			"title": "Maestro guerrillero 3",
+			"subtitle": "Unidades de guerrilla totales de {{amount}}"
+		},
+		"trpArm1": {
+			"title": "Maestro guerrillero 2",
+			"subtitle": "Unidades de guerrilla totales de {{amount}}"
+		},
+		"trpArm0": {
+			"title": "Maestro guerrillero 1",
+			"subtitle": "Unidades de guerrilla totales de {{amount}}"
+		},
+		"trpLnd4": {
+			"title": "Maestro de asedio 5",
+			"subtitle": "Unidades de asedio totales de {{amount}}"
+		},
+		"trpLnd3": {
+			"title": "Maestro de asedio 4",
+			"subtitle": "Unidades de asedio totales de {{amount}}"
+		},
+		"trpLnd2": {
+			"title": "Maestro de asedio 3",
+			"subtitle": "Unidades de asedio totales de {{amount}}"
+		},
+		"trpLnd1": {
+			"title": "Maestro de asedio 2",
+			"subtitle": "Unidades de asedio totales de {{amount}}"
+		},
+		"trpLnd0": {
+			"title": "Maestro de asedio 1",
+			"subtitle": "Unidades de asedio totales de {{amount}}"
+		},
+		"trpFly4": {
+			"title": "Maestro aéreo 5",
+			"subtitle": "Unidades de ataque aéreo totales de {{amount}}"
+		},
+		"trpFly3": {
+			"title": "Maestro aéreo 4",
+			"subtitle": "Unidades de ataque aéreo totales de {{amount}}"
+		},
+		"trpFly2": {
+			"title": "Maestro aéreo 3",
+			"subtitle": "Unidades de ataque aéreo totales de {{amount}}"
+		},
+		"trpFly1": {
+			"title": "Maestro aéreo 2",
+			"subtitle": "Unidades de ataque aéreo totales de {{amount}}"
+		},
+		"trpFly0": {
+			"title": "Maestro aéreo 1",
+			"subtitle": "Unidades de ataque aéreo totales de {{amount}}"
+		},
+		"trpSea4": {
+			"title": "Maestro naval 5",
+			"subtitle": "Unidades de asalto costero totales de {{amount}}"
+		},
+		"trpSea3": {
+			"title": "Maestro naval 4",
+			"subtitle": "Unidades de asalto costero totales de {{amount}}"
+		},
+		"trpSea2": {
+			"title": "Maestro naval 3",
+			"subtitle": "Unidades de asalto costero totales de {{amount}}"
+		},
+		"trpSea1": {
+			"title": "Maestro naval 2",
+			"subtitle": "Unidades de asalto costero totales de {{amount}}"
+		},
+		"trpSea0": {
+			"title": "Maestro naval 1",
+			"subtitle": "Unidades de asalto costero totales de {{amount}}"
+		},
+		"trpWiz4": {
+			"title": "Mago de guerra 5",
+			"subtitle": "Unidades mágicas totales de {{amount}}"
+		},
+		"trpWiz3": {
+			"title": "Mago de guerra 4",
+			"subtitle": "Unidades mágicas totales de {{amount}}"
+		},
+		"trpWiz2": {
+			"title": "Mago de guerra 3",
+			"subtitle": "Unidades mágicas totales de {{amount}}"
+		},
+		"trpWiz1": {
+			"title": "Mago de guerra 2",
+			"subtitle": "Unidades mágicas totales de {{amount}}"
+		},
+		"trpWiz0": {
+			"title": "Mago de guerra 1",
+			"subtitle": "Unidades mágicas totales de {{amount}}"
+		},
+		"attackGains4": {
+			"title": "Conquistador 5",
+			"subtitle": "Ganancias totales de ataque de {{amount}} tierras"
+		},
+		"attackGains3": {
+			"title": "Conquistador 4",
+			"subtitle": "Ganancias totales de ataque de {{amount}} tierras"
+		},
+		"attackGains2": {
+			"title": "Conquistador 3",
+			"subtitle": "Ganancias totales de ataque de {{amount}} tierras"
+		},
+		"attackGains1": {
+			"title": "Conquistador 2",
+			"subtitle": "Ganancias totales de ataque de {{amount}} tierras"
+		},
+		"attackGains0": {
+			"title": "Conquistador 1",
+			"subtitle": "Ganancias totales de ataque de {{amount}} tierras"
+		},
+		"turns2": {
+			"title": "Comprometido",
+			"subtitle": "Usaste 2.600 turnos"
+		},
+		"turns1": {
+			"title": "Persistente",
+			"subtitle": "Usaste 1.000 turnos"
+		},
+		"turns0": {
+			"title": "Al mundo",
+			"subtitle": "Saliste de la protección para jugadores nuevos"
+		},
+		"attacks4": {
+			"title": "Ventaja táctica 5",
+			"subtitle": "{{amount}} ataques exitosos"
+		},
+		"attacks3": {
+			"title": "Ventaja táctica 4",
+			"subtitle": "{{amount}} ataques exitosos"
+		},
+		"attacks2": {
+			"title": "Ventaja táctica 3",
+			"subtitle": "{{amount}} ataques exitosos"
+		},
+		"attacks1": {
+			"title": "Ventaja táctica 2",
+			"subtitle": "{{amount}} ataques exitosos"
+		},
+		"attacks0": {
+			"title": "Ventaja táctica 1",
+			"subtitle": "{{amount}} ataques exitosos"
+		},
+		"defends4": {
+			"title": "Muro de hierro 5",
+			"subtitle": "{{amount}} defensas exitosas"
+		},
+		"defends3": {
+			"title": "Muro de hierro 4",
+			"subtitle": "{{amount}} defensas exitosas"
+		},
+		"defends2": {
+			"title": "Muro de hierro 3",
+			"subtitle": "{{amount}} defensas exitosas"
+		},
+		"defends1": {
+			"title": "Muro de hierro 2",
+			"subtitle": "{{amount}} defensas exitosas"
+		},
+		"defends0": {
+			"title": "Muro de hierro 1",
+			"subtitle": "{{amount}} defensas exitosas"
+		},
+		"rank1": {
+			"title": "Cima del mundo",
+			"subtitle": "Alcanza el puesto número 1"
+		},
+		"build": {
+			"title": "Totalmente construido",
+			"subtitle": "Construye en todas las tierras disponibles"
+		},
+		"joinClan": {
+			"title": "Únete a un clan",
+			"subtitle": "Únete o crea un clan"
+		}
+	}
+}

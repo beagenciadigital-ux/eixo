@@ -65,6 +65,9 @@
 		},
 		"theme": {
 			"toggle": "Alternar tema claro/escuro"
+		},
+		"shell": {
+			"errorBoundaryMessage": "Ocorreu um erro. Atualize a página."
 		}
 	}
 }

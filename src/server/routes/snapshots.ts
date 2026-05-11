@@ -7,6 +7,8 @@ import type User from '../entity/User'
 import { Raw } from 'typeorm'
 import { Parser } from 'json2csv'
 import { Readable } from 'node:stream'
+import { translate } from '../util/translation'
+import { language as languageMiddleware } from '../middleware/language'
 
 // READ
 const getSnapshot = async (req: Request, res: Response) => {
@@ -30,11 +32,14 @@ const getSnapshot = async (req: Request, res: Response) => {
 }
 
 const getRecentSnapshot = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { id } = req.params
 	const user: User = res.locals.user
 
 	if (user.empires[0].id !== Number(id)) {
-		return res.status(500).json({ error: 'Empire ID mismatch' })
+		return res.status(500).json({
+			error: translate('errors:market.empireIdMismatch', language),
+		})
 	}
 
 	try {
@@ -86,11 +91,14 @@ const paginateSnapshot = async (req: Request, res: Response) => {
 }
 
 const downloadSnapshots = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	const { id } = req.params
 	const user: User = res.locals.user
 
 	if (user.empires[0].id !== Number(id)) {
-		return res.status(500).json({ error: 'Empire ID mismatch' })
+		return res.status(500).json({
+			error: translate('errors:market.empireIdMismatch', language),
+		})
 	}
 	console.log('download...')
 
@@ -148,8 +156,8 @@ const router = Router()
 
 router.get('/all/delayed', delayedData)
 router.get('/:id', user, auth, getSnapshot)
-router.get('/:id/recent', user, auth, getRecentSnapshot)
+router.get('/:id/recent', user, auth, languageMiddleware, getRecentSnapshot)
 router.post('/:id/paginate', user, auth, paginateSnapshot)
-router.get('/:id/download', user, auth, downloadSnapshots)
+router.get('/:id/download', user, auth, languageMiddleware, downloadSnapshots)
 
 export default router

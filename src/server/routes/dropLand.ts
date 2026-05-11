@@ -10,6 +10,8 @@ import { takeSnapshot } from '../services/actions/snaps'
 import { updateEmpire } from '../services/actions/updateEmpire'
 import type Game from '../entity/Game'
 import { attachGame } from '../middleware/game'
+import { translate } from '../util/translation'
+import { language as languageMiddleware } from '../middleware/language'
 
 const getDropAmounts = (empire: Empire) => {
 	let dropRate = Math.max(
@@ -35,11 +37,12 @@ const getDropAmounts = (empire: Empire) => {
 }
 
 const dropLand = async (req: Request, res: Response) => {
+	const language = res.locals.language
 	// request will have object with type of building and number to build
 	const { type, empireId, drop } = req.body
 	const game: Game = res.locals.game
 	if (type !== 'drop') {
-		return res.json({ error: 'Something went wrong' })
+		return res.json({ error: translate('errors:generic', language) })
 	}
 
 	const empire = await Empire.findOne({ id: empireId })
@@ -55,7 +58,9 @@ const dropLand = async (req: Request, res: Response) => {
 	const { dropRate, canDrop } = getDropAmounts(empire)
 
 	if (drop > canDrop) {
-		return res.json({ error: "Can't drop that much land" })
+		return res.json({
+			error: translate('errors:land.dropTooMuch', language),
+		})
 	}
 
 	let turns = Math.ceil(drop / dropRate)
@@ -110,6 +115,6 @@ const dropLand = async (req: Request, res: Response) => {
 
 const router = Router()
 
-router.post('/', user, auth, attachGame, dropLand)
+router.post('/', user, auth, languageMiddleware, attachGame, dropLand)
 
 export default router

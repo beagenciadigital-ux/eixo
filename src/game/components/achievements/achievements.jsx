@@ -1,36 +1,32 @@
 import { memo, useMemo } from "react"
-import { Title, Notification, Group, Box } from "@mantine/core"
+import { Title, Notification, Group, Box, Text } from "@mantine/core"
 import { processAchievement } from "../../functions/processAchievement"
-import { eraArray } from "../../config/eras"
 import { useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
 
-function categoryName(name, era) {
-	if (name === "income") return "Income"
-	if (name === "expenses") return "Expenses"
-	if (name === "indy") return "Industrial Production"
-	if (name === "magic") return "Magical Production"
-	if (name === "foodcon") return "Food Consumption"
-	if (name === "food") return "Food Production"
-	if (name === "exploreGains") return "Exploration"
-	if (name === "land") return "Total Land"
-	if (name === "networth") return "Net Worth"
-	if (name === "peasants") return "Population"
-	if (name === "trpArm") return `${eraArray[era].trparm}`
-	if (name === "trpLnd") return `${eraArray[era].trplnd}`
-	if (name === "trpFly") return `${eraArray[era].trpfly}`
-	if (name === "trpSea") return `${eraArray[era].trpsea}`
-	if (name === "trpWiz") return `${eraArray[era].trpwiz}`
-	if (name === "attackGains") return "Attack Gains"
-	if (name === "turns") return "Turns Used"
-	if (name === "attacks") return "Successful Attacks"
-	if (name === "defends") return "Successful Defenses"
-	if (name === "rank") return "Rank"
-	if (name === "build") return "Buildings"
-	if (name === "joinClan") return "Clans"
+const ERA_KEYS = ["past", "present", "future"]
+
+function categoryLabel(category, era, t) {
+	const pk = ERA_KEYS[era ?? 0] ?? "past"
+	if (category === "trpArm")
+		return t(`eras:eras.${pk}.trparm`)
+	if (category === "trpLnd")
+		return t(`eras:eras.${pk}.trplnd`)
+	if (category === "trpFly")
+		return t(`eras:eras.${pk}.trpfly`)
+	if (category === "trpSea")
+		return t(`eras:eras.${pk}.trpsea`)
+	if (category === "trpWiz")
+		return t(`eras:eras.${pk}.trpwiz`)
+	return t(`achievements:categories.${category}`)
 }
 
 const AchievementNotification = memo(({ achievement }) => {
-	const { message, icon } = processAchievement(achievement.name)
+	const { t, i18n } = useTranslation("achievements")
+	const { message, icon } = processAchievement(achievement.name, t)
+	const dateStr = achievement.time
+		? new Date(achievement.time).toLocaleDateString(i18n.language)
+		: ""
 	return (
 		<Notification
 			title={message}
@@ -41,15 +37,18 @@ const AchievementNotification = memo(({ achievement }) => {
 			radius={0}
 			h={87}
 		>
-			{achievement.awarded
-				? "Awarded on " + new Date(achievement.time).toLocaleDateString()
-				: ""}
+			{achievement.awarded && dateStr ? (
+				<Text size="xs" color="dimmed">
+					{t("awardedOn", { date: dateStr })}
+				</Text>
+			) : null}
 		</Notification>
 	)
 })
 
 function Achievements() {
 	const { empire } = useSelector((state) => state.empire)
+	const { t } = useTranslation(["achievements", "eras"])
 
 	const achievementsByCategory = useMemo(() => {
 		const achievements = empire.achievements
@@ -109,7 +108,7 @@ function Achievements() {
 	return (
 		<div>
 			<Title order={1} align="center" mb="sm">
-				Achievements
+				{t("achievements:pageTitle")}
 			</Title>
 
 			<Group
@@ -119,7 +118,7 @@ function Achievements() {
 				{achievementsByCategory.map(({ category, achievements }) => (
 					<Box w={400} key={category} mt="sm">
 						<Title order={3} align="center" mb="sm">
-							{categoryName(category, empire.era)}
+							{categoryLabel(category, empire.era, t)}
 						</Title>
 						{achievements.map(
 							(achievement) =>
