@@ -89,5 +89,23 @@
 		"seeRules": "Ver regras do jogo",
 		"appeal": "Para recorrer à equipe, envie um e-mail.",
 		"email": "E-mail para administradores"
+	},
+	"createEmpire": {
+		"title": "Crie o seu império",
+		"nameLabel": "Nome",
+		"namePlaceholder": "nome do império",
+		"raceLabel": "Escolha a sua raça",
+		"racePlaceholder": "Escolha uma opção",
+		"submit": "Criar império",
+		"errors": {
+			"alreadyHasEmpire": "O utilizador já tem um império neste jogo",
+			"requestFailed": "Pedido falhou"
+		}
+	},
+	"archive": {
+		"title": "Arquivos de rodadas",
+		"intro": "Aqui encontra os resultados de rodadas anteriores.",
+		"empires": "Impérios",
+		"clans": "Clãs"
 	}
 }

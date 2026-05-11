@@ -35,6 +35,7 @@ i18n
       'races',
       'tour',
       'achievements',
+      'legal',
     ],
     interpolation: {
       escapeValue: false,

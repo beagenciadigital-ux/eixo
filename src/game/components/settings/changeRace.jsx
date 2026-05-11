@@ -1,18 +1,12 @@
 import { Stack, Button, Group, Text, Select, Image } from '@mantine/core'
 import { raceArray } from '../../config/races'
 import { useForm } from '@mantine/form'
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import Axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { empireLoaded } from '../../store/empireSlice'
 import { showNotification } from '@mantine/notifications'
 import { useTranslation } from 'react-i18next'
-
-const raceObjects = raceArray.map((race, index) => ({
-    icon: index,
-    label: race.name,
-    value: index
-}))
 
 const RaceItem = forwardRef(({ icon, label, ...others }, ref) => (
     <div ref={ref} {...others}>
@@ -27,7 +21,14 @@ function ChangeRace({ status, empire })
 {
     const dispatch = useDispatch()
     const { t } = useTranslation('settings')
+    const { t: tRaces } = useTranslation('races')
     const { turnsProtection, turnsMax } = useSelector((state) => state.games.activeGame)
+
+    const raceObjects = useMemo(() => raceArray.map((race, index) => ({
+        icon: index,
+        label: tRaces(`names.${race.name.toLowerCase()}`, { defaultValue: race.name }),
+        value: index
+    })), [tRaces])
 
     const raceForm = useForm({
         initialValues: {
@@ -76,7 +77,7 @@ function ChangeRace({ status, empire })
             <Stack spacing='sm' align='center'>
                 <Image
                     src={`/images/races/${selectedRace.name.toLowerCase()}.webp`}
-                    alt={selectedRace.name}
+                    alt={tRaces(`names.${selectedRace.name.toLowerCase()}`, { defaultValue: selectedRace.name })}
                     radius='md'
                     fit='cover'
                     width='100%'

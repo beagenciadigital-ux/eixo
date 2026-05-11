@@ -57,6 +57,8 @@ import { useTranslation } from "react-i18next"
 
 function App() {
 	const { t: tAchievements } = useTranslation("achievements")
+	const { t: tPages } = useTranslation("pages")
+	const { t: tLayout } = useTranslation("layout")
 	const [opened, setOpened] = useState(false)
 	const isMobile = useMediaQuery("(max-width: 767px)", false, true)
 	const dispatch = useDispatch()
@@ -332,7 +334,7 @@ function App() {
 											color="red"
 											fullWidth
 										>
-											Mode Select
+											{tPages("hero.select")}
 										</Button>
 									</Navbar.Section>
 								</Navbar>
@@ -429,8 +431,7 @@ function App() {
 										<Center style={{ minHeight: "40vh" }}>
 											<Stack align="center" spacing="sm">
 												<Title order={4} ta="center">
-													Could not load round clock. Check your connection
-													and try again.
+													{tLayout("layout.shell.clockError")}
 												</Title>
 												<Button
 													variant="light"
@@ -439,7 +440,7 @@ function App() {
 															dispatch(getTime(activeGame.game_id))
 													}}
 												>
-													Retry
+													{tLayout("layout.shell.retry")}
 												</Button>
 											</Stack>
 										</Center>
@@ -548,7 +549,7 @@ function App() {
 											fullWidth
 											onClick={() => setOpened(false)}
 										>
-											Mode Select
+											{tPages("hero.select")}
 										</Button>
 									</Stack>
 								</Stack>

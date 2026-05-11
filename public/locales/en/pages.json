@@ -89,5 +89,23 @@
 		"seeRules": "See game rules",
 		"appeal": "If you would like to appeal to the admins please send an email.",
 		"email": "Email Admins"
+	},
+	"createEmpire": {
+		"title": "Create Your Empire",
+		"nameLabel": "Name",
+		"namePlaceholder": "empire name",
+		"raceLabel": "Choose Your Race",
+		"racePlaceholder": "Pick one",
+		"submit": "Create Empire",
+		"errors": {
+			"alreadyHasEmpire": "User already has an empire in this game",
+			"requestFailed": "Request failed"
+		}
+	},
+	"archive": {
+		"title": "Round Archives",
+		"intro": "Here you can find the results of previous rounds.",
+		"empires": "Empires",
+		"clans": "Clans"
 	}
 }

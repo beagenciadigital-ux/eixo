@@ -1,4 +1,20 @@
 {
+	"names": {
+		"human": "Humano",
+		"elf": "Elfo",
+		"dwarf": "Anão",
+		"troll": "Troll",
+		"gnome": "Gnomo",
+		"gremlin": "Gremlin",
+		"orc": "Orc",
+		"drow": "Drow",
+		"goblin": "Goblin",
+		"hobbit": "Hobbit",
+		"ghoul": "Carniçal",
+		"minotaur": "Minotauro",
+		"vampire": "Vampiro",
+		"pixie": "Pixie"
+	},
 	"dwarf": {
 		"welcome": "Bem-vindo, líder Anão! Os anões especializam-se em produção industrial e têm forte vantagem defensiva. Este tutorial mostra os primeiros passos do império.",
 		"land": "Todo o império precisa de terras. Sob proteção de jogador novo, a única forma de ganhar terras é explorar. Clique em Explorar na barra lateral.",

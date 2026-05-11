@@ -1,13 +1,14 @@
 import { Button, Paper, Stack, TextInput, Title, Select, Container, createStyles, Table, Text, Group, Image, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { create } from '../../store/empireSlice'
-import { useEffect, forwardRef, useState } from 'react'
+import { useEffect, forwardRef, useState, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { raceArray } from '../../config/races'
 import { load } from '../../store/userSlice'
 import { getTime } from '../../store/timeSlice'
 import { useLocalStorage } from '@mantine/hooks'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = createStyles(() => ({
 	form: {
@@ -27,12 +28,6 @@ const useStyles = createStyles(() => ({
 	}
 }));
 
-const raceObjects = raceArray.map((race, index) => ({
-	icon: index,
-	label: race.name,
-	value: index
-}))
-
 const RaceItem = forwardRef(({ icon, label, ...others }, ref) => (
 	<div ref={ref} {...others} key={label}>
 		<Group>
@@ -44,14 +39,21 @@ const RaceItem = forwardRef(({ icon, label, ...others }, ref) => (
 
 export default function CreateEmpire()
 {
+	const { t } = useTranslation('pages')
+	const { t: tGuide } = useTranslation('guide')
+	const { t: tRaces } = useTranslation('races')
 
 	const { isLoggedIn, user } = useSelector((state) => state.user)
-	// console.log(games)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const [error, setError] = useState(null)
 	const { game_id } = useSelector((state) => state.games.activeGame)
-	// console.log(game_id)
+
+	const raceObjects = useMemo(() => raceArray.map((race, index) => ({
+		icon: index,
+		label: tRaces(`names.${race.name.toLowerCase()}`, { defaultValue: race.name }),
+		value: index
+	})), [tRaces])
 
 	useEffect(() =>
 	{
@@ -63,9 +65,8 @@ export default function CreateEmpire()
 			navigate('/demo')
 		}
 
-	}, [user, dispatch])
+	}, [user, dispatch, navigate, isLoggedIn])
 
-	// set up server side validation response
 	const form = useForm({
 		initialValues: {
 			name: '',
@@ -81,7 +82,6 @@ export default function CreateEmpire()
 		},
 	})
 
-	// const onSubmit = (data: Object) => {dispatch(signupUser(data))}
 	const { classes } = useStyles();
 
 	const [colorScheme, setColorScheme] = useLocalStorage({
@@ -91,6 +91,17 @@ export default function CreateEmpire()
 	const toggleColorScheme = (value) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
+	const empireErrorMessage = (raw) =>
+	{
+		if (raw === 'User already has an empire in this game') {
+			return t('createEmpire.errors.alreadyHasEmpire')
+		}
+		if (raw === 'request failed' || !raw) {
+			return t('createEmpire.errors.requestFailed')
+		}
+		return raw
+	}
+
 	return (
 		<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 			<MantineProvider theme={{ colorScheme }} withGlobalStyles>
@@ -99,117 +110,115 @@ export default function CreateEmpire()
 						<Paper className={classes.form} radius={0} >
 							<Stack align='left'>
 								<Title order={1} align='center'>
-									Create Your Empire
+									{t('createEmpire.title')}
 								</Title>
 								<form
 									onSubmit={form.onSubmit((values) =>
 									{
-										// console.log(values)
 										dispatch(create({ values, game_id }))
 											.unwrap()
 											.then(() =>
 											{
-												// console.log('created')
 												dispatch(load())
 													.then(() =>
 													{
-														// console.log('loaded user')
 														dispatch(getTime(game_id)).then(() => navigate('/app/'))
 													})
 											})
-											.catch((error) =>
+											.catch((err) =>
 											{
-												console.log(error)
-												if (error.error === 'User already has an empire in this game') {
+												console.log(err)
+												const msg = err?.error
+												if (msg === 'User already has an empire in this game') {
 													navigate('/app/')
 												}
-												setError(error)
+												setError(err)
 											})
 									})}
 								>
 									<Stack spacing='sm' align='center'>
 										<Image
 											src={`/images/races/${(raceArray[Number(form.values.race ?? 0)] ?? raceArray[0]).name.toLowerCase()}.webp`}
-											alt={(raceArray[Number(form.values.race ?? 0)] ?? raceArray[0]).name}
+											alt={tRaces(`names.${(raceArray[Number(form.values.race ?? 0)] ?? raceArray[0]).name.toLowerCase()}`, { defaultValue: (raceArray[Number(form.values.race ?? 0)] ?? raceArray[0]).name })}
 											radius='md'
 											fit='cover'
 											width='100%'
 											sx={{ maxWidth: 500 }}
 										/>
 										<TextInput
-											label='Name'
-											placeholder='empire name'
+											label={t('createEmpire.nameLabel')}
+											placeholder={t('createEmpire.namePlaceholder')}
 											type='text'
 											required
 											{...form.getInputProps('name')}
 										/>
 										<Select
-											label="Choose Your Race"
-											placeholder="Pick one"
+											label={t('createEmpire.raceLabel')}
+											placeholder={t('createEmpire.racePlaceholder')}
 											required
 											itemComponent={RaceItem}
 											data={raceObjects}
 											{...form.getInputProps('race')}
 										/>
-										<Button type='submit'>Create Empire</Button>
-										{error && <Text color='red'>{error.error}</Text>}
+										<Button type='submit'>{t('createEmpire.submit')}</Button>
+										{error && <Text color='red'>{empireErrorMessage(error.error)}</Text>}
 									</Stack>
 								</form>
 
-								<Title order={3}>Races</Title>
-								<Text>There are many different races in the world, each with their own distinct advantages and disadvantages in the following areas:</Text>
+								<Title order={3}>{tGuide('guide.content.race.title')}</Title>
+								<Text>{tGuide('guide.content.race.description')}</Text>
 								<dl>
-									<dt>Offense</dt>
-									<dd>Your offensive power while attacking other empires.</dd>
-									<dt>Defense</dt>
-									<dd>Your defensive power when being attacked by other empires.</dd>
-									<dt>Building</dt>
-									<dd>How quickly you can construct (and demolish) structures.</dd>
-									<dt>Upkeep*</dt>
-									<dd>The amount of money you must pay for upkeep on your military units.</dd>
-									<dt>Magic</dt>
-									<dd>Your magical power, used when casting spells and when other empires cast spells on you.</dd>
-									<dt>Industry</dt>
-									<dd>Your ability to produce military units.</dd>
-									<dt>Economy</dt>
-									<dd>Your Per Capita Income, how much money your citizens make each turn.</dd>
-									<dt>Exploration</dt>
-									<dd>How much land you gain per turn spent exploring.</dd>
-									<dt>Market*</dt>
-									<dd>The prices of military units on the private market.</dd>
-									<dt>Consumption*</dt>
-									<dd>The amount of food your population and military consumes each turn.</dd>
-									<dt>Energy</dt>
-									<dd>The rate at which your wizards produce mana.</dd>
-									<dt>Agriculture</dt>
-									<dd>The rate at which your farms produce food.</dd>
+									<dt>{tGuide('guide.content.race.attributes.offense.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.offense.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.defense.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.defense.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.building.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.building.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.upkeep.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.upkeep.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.magic.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.magic.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.industry.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.industry.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.economy.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.economy.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.exploration.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.exploration.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.market.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.market.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.consumption.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.consumption.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.energy.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.energy.description')}</dd>
+									<dt>{tGuide('guide.content.race.attributes.agriculture.name')}</dt>
+									<dd>{tGuide('guide.content.race.attributes.agriculture.description')}</dd>
 								</dl>
-								<i>Scroll to see more attributes</i>
+								<i>{tGuide('guide.content.race.scroll')}</i>
 								<div className={classes.guideTable}>
 									<Table highlightOnHover striped style={{ width: 1300 }}>
 										<thead>
 											<tr>
-												<th>Race</th>
-												<th>Offense</th>
-												<th>Defense</th>
-												<th>Building</th>
-												<th>Upkeep*</th>
-												<th>Magic</th>
-												<th>Industry</th>
-												<th>Economy</th>
-												<th>Exploration</th>
-												<th>Market*</th>
-												<th>Consumption*</th>
-												<th>Energy</th>
-												<th>Agriculture</th>
+												<th>{tGuide('guide.content.race.attributes.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.offense.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.defense.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.building.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.upkeep.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.magic.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.industry.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.economy.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.exploration.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.market.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.consumption.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.energy.name')}</th>
+												<th>{tGuide('guide.content.race.attributes.agriculture.name')}</th>
 											</tr>
 										</thead>
 										<tbody>
-											{raceArray.map(race => 
+											{raceArray.map(race =>
 											{
 												return (
 													<tr key={race.name}>
-														<td>{race.name}</td>
+														<td>{tRaces(`names.${race.name.toLowerCase()}`, { defaultValue: race.name })}</td>
 														<td style={race.mod_offense >= 0 ? { color: 'green' } : { color: 'red' }}>{race.mod_offense}%</td>
 														<td style={race.mod_defense >= 0 ? { color: 'green' } : { color: 'red' }}>{race.mod_defense}%</td>
 														<td style={race.mod_buildrate >= 0 ? { color: 'green' } : { color: 'red' }}>{race.mod_buildrate}%</td>
@@ -228,7 +237,7 @@ export default function CreateEmpire()
 										</tbody>
 									</Table>
 								</div>
-								<p>For all of the above values, a positive percentage works to your empire's advantage while a negative percentage acts as a penalty. For attributes noted with a "*", this may seem backwards - for example, a food consumption penalty (negative) will <i>increase</i> how much food your units require, while an upkeep bonus (positive) will <i>decrease</i> your expenses.</p>
+								<p>{tGuide('guide.content.race.note')}</p>
 
 							</Stack>
 						</Paper>

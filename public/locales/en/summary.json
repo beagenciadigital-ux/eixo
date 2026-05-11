@@ -69,6 +69,9 @@
 		"role": "Role",
 		"attack": "Attack",
 		"castSpell": "Cast Spell",
-		"chat": "Chat"
+		"chat": "Chat",
+		"loading": "Loading...",
+		"dr": "DR: {{pct}}%",
+		"roleOfClan": "{{role}} of {{clan}}"
 	}
 }

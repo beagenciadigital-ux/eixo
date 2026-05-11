@@ -1,4 +1,20 @@
 {
+	"names": {
+		"human": "Humano",
+		"elf": "Elfo",
+		"dwarf": "Enano",
+		"troll": "Troll",
+		"gnome": "Gnomo",
+		"gremlin": "Gremlin",
+		"orc": "Orco",
+		"drow": "Drow",
+		"goblin": "Goblin",
+		"hobbit": "Hobbit",
+		"ghoul": "Ghoul",
+		"minotaur": "Minotauro",
+		"vampire": "Vampiro",
+		"pixie": "Pixie"
+	},
 	"dwarf": {
 		"welcome": "¡Bienvenido nuevo líder Enano! Los Enanos se especializan en producción industrial y también tienen una fuerte ventaja defensiva. Este tutorial te mostrará los pasos para comenzar con tu imperio.",
 		"land": "Todo imperio necesita tanta tierra como pueda conseguir. Mientras estés bajo protección de nuevo jugador, tu única opción para obtener más tierra es explorando. Haz clic en Explorar en la barra lateral.",

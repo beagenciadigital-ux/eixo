@@ -67,7 +67,13 @@
 			"toggle": "Cambiar esquema de colores"
 		},
 		"shell": {
-			"errorBoundaryMessage": "Ha ocurrido un error. Actualiza la página."
+			"errorBoundaryMessage": "Ha ocurrido un error. Actualiza la página.",
+			"clockError": "No se pudo cargar el reloj de la ronda. Comprueba tu conexión e inténtalo de nuevo.",
+			"retry": "Reintentar"
+		},
+		"lazy": {
+			"reloadLog": "Nueva versión de este módulo encontrada. Recargando...",
+			"reloadError": "Nueva versión de este módulo encontrada. Recarga la página."
 		}
 	}
 }

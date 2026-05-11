@@ -5,10 +5,11 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import { SlimHero } from './slimHero'
 import { useLocalStorage } from '@mantine/hooks'
+import { useTranslation } from 'react-i18next'
 
 const Archive = () =>
 {
-
+    const { t } = useTranslation('pages')
     const [rounds, setRounds] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -51,8 +52,8 @@ const Archive = () =>
             <MantineProvider theme={{ colorScheme }} withGlobalStyles>
                 <SlimHero />
                 <Container size='lg' mt='lg'>
-                    <Title order={2}>Round Archives</Title>
-                    <p>Here you can find the results of previous rounds.</p>
+                    <Title order={2}>{t('archive.title')}</Title>
+                    <p>{t('archive.intro')}</p>
                     {loading ? <Loader /> : (rounds ?? []).map((round) =>
                     {
                         // console.log(round)
@@ -65,8 +66,8 @@ const Archive = () =>
                             })} key={round.id} component={Link} to={`/archive/${round.round_h_id}`}>
                                 <Title order={3}>{round.name} - v{round?.gameVersion}</Title>
                                 <Text>{new Date(round.startDate).toLocaleDateString()} - {new Date(round.stopDate).toLocaleDateString()}</Text>
-                                <Text>Empires: {round.allEmpires}</Text>
-                                <Text>Clans: {round.allClans}</Text>
+                                <Text>{t('archive.empires')}: {round.allEmpires}</Text>
+                                <Text>{t('archive.clans')}: {round.allClans}</Text>
                             </Card>
                         )
                     })}

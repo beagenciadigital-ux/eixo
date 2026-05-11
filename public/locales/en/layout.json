@@ -67,7 +67,13 @@
 			"toggle": "Toggle color scheme"
 		},
 		"shell": {
-			"errorBoundaryMessage": "An error has occurred. Please refresh the page."
+			"errorBoundaryMessage": "An error has occurred. Please refresh the page.",
+			"clockError": "Could not load round clock. Check your connection and try again.",
+			"retry": "Retry"
+		},
+		"lazy": {
+			"reloadLog": "New version for this module found. Reloading ...",
+			"reloadError": "New version for this module found. Please reload the page."
 		}
 	}
 }

@@ -374,545 +374,545 @@
 				}
 			},
 			"summary": {
-				"title": "Empire Summary",
-				"description": "This is the first page you will see each time you login. On it is displayed brief statistics for your empire and when you should expect to receive your next set of turns.",
+				"title": "Resumo do império",
+				"description": "Esta es la primera página que verás sempre que inicies sessão. En ella são mostradas estadísticas breves de o seu império e cuándo deberías esperar recibir o seu próximo conjunto de turnos.",
 				"statistics": {
-					"intro": "In the center of the page, a table will display the following vital statistics of your empire:",
+					"intro": "Em el centro de la página, una tabla mostrará las siguientes estadísticas vitales de o seu império:",
 					"stats": {
 						"empireInfo": {
-							"name": "Empire Name and Icon",
-							"description": "Your display name, icon, and public profile that show on the Scores page. You can change your icon and profile text in the Empire Settings."
+							"name": "Nombre e Icono del Império",
+							"description": "O seu nombre de visualização, icono e perfil público que são mostradas en la página de Puntuações. Pode cambiar o seu icono e texto de perfil en la Configuração del Império."
 						},
 						"turns": {
-							"name": "Turns",
-							"description": "The number of turns you currently have available to use (and the maximum you are allowed to accumulate)."
+							"name": "Turnos",
+							"description": "O número de turnos que tem disponíveis para usar (e o máximo que pode acumular)."
 						},
 						"storedTurns": {
-							"name": "Stored Turns",
-							"description": "The number of turns you have stored in reserve (and the maximum allowed). See the Introduction for more information."
+							"name": "Turnos Almacenados",
+							"description": "O número de turnos que tem almacenados en reserva (y el máximo permitido). Ver la Introducción para más informação."
 						},
 						"rank": {
-							"name": "Rank",
-							"description": "Your empire's current rank among all other empires, based on its net worth."
+							"name": "Rango",
+							"description": "O rango actual de o seu império entre todos los demás impérios, basado en o seu património."
 						},
 						"population": {
 							"name": "{{peasantName}}",
-							"description": "The current population of your empire."
+							"description": "A poblação actual de o seu império."
 						},
 						"land": {
-							"name": "Land Acres",
-							"description": "The current size of your empire."
+							"name": "Acres de terra",
+							"description": "O tamanho actual de o seu império."
 						},
 						"money": {
-							"name": "Money",
-							"description": "The amount of money your empire has on hand, not counting any funds you may have stored in the Bank."
+							"name": "Dinero",
+							"description": "A cantidad de dinero que o seu império tiene a mano, sin contar los fondos que puedas tener almacenados en el Banco."
 						},
 						"food": {
 							"name": "{{foodType}}",
-							"description": "The amount of food your empire has stockpiled. Without food, your citizens and army will starve!"
+							"description": "A cantidad de comida que o seu império tiene almacenada. ¡Sin comida, os seus cidadãos e exército morirán de hambre!"
 						},
 						"runes": {
 							"name": "{{runeType}}",
-							"description": "The amount of energy your empire's {{wizardType}} have available for casting spells."
+							"description": "A cantidad de energía que los {{wizardType}} de o seu império tienen disponível para lançar feitiços."
 						},
 						"netWorth": {
-							"name": "Net Worth",
-							"description": "The estimated value of your empire, taking all significant assets into account."
+							"name": "Património",
+							"description": "O valor estimado de o seu império, teniendo en cuenta todos los activos significativos."
 						},
 						"era": {
 							"name": "Era",
-							"description": "The Time Period during which your empire exists."
+							"description": "O Período de tempo durante el cual existe o seu império."
 						},
 						"race": {
-							"name": "Race",
-							"description": "The Race of your empire's inhabitants."
+							"name": "Raça",
+							"description": "A Raça de los habitantes de o seu império."
 						},
 						"health": {
-							"name": "Health",
-							"description": "The health and happiness of your empire's citizens and army."
+							"name": "Salud",
+							"description": "A salud e felicidad de los cidadãos e exército de o seu império."
 						},
 						"taxRate": {
-							"name": "Tax Rate",
-							"description": "Your empire's tax rate, which influences both the income of your empire's government and the happiness of its citizens."
+							"name": "Tasa de Impuestos",
+							"description": "A tasa de impuestos de o seu império, que influye tanto en los rendas del gobierno de o seu império como en la felicidad de os seus cidadãos."
 						},
 						"military": {
 							"name": "{{armoredUnit}}, {{landUnit}}, {{airUnit}}, {{seaUnit}}",
-							"description": "The number of units of each type your empire currently employs or maintains in its army."
+							"description": "O número de unidades de cada tipo que o seu império emplea o mantiene en o seu exército."
 						},
 						"wizards": {
 							"name": "{{wizardType}}",
-							"description": "The number of spell casters your empire has at its disposal."
+							"description": "O número de conjuradores de feitiços que o seu império tiene a o seu disposición."
 						}
 					}
 				},
-				"roundInfo": "Below this table is displayed the state of the current round (e.g. how long before it starts or ends), as well as the rate at which turns are given out and how long you should expect to wait before receiving additional turns.",
-				"newsInfo": "If any other empires have interacted with you recently, whether it be via the public market, or a rival empire attacking you, an indicator on the news clipping button will be displayed. Clicking the \"Mark News as Read\" link will dismiss the indicator."
+				"roundInfo": "Abaixo de esta tabla é mostrada el estado de la ronda actual (por ejemplo, cuánto falta para que comience o termine), así como la frecuencia con la que se otorgan los turnos e cuánto deberías esperar para recibir turnos adicionales.",
+				"newsInfo": "Se otros impérios han interactuado contigo recientemente, ya sea a través del mercado público o un império rival atacándote, se mostrará un indicador en el botón de noticias. Hacer clic en el enlace \"Marcar Noticias como Leídas\" descartará el indicador."
 			},
 			"overview": {
-				"title": "Detailed Overview",
-				"description": "This page provides detailed statistics about your empire and its economy, divided into 6 overall sections. The red or green numbers indicate how your stats have been effected by Race or Era modifiers.",
+				"title": "Visão detalhada",
+				"description": "Esta página proporciona estadísticas detalladas sobre o seu império e o seu economía, divididas en 6 secções generales. Los números rojos o verdes indican cómo os seus estadísticas han sido afectadas por modificadores de Raça o Era.",
 				"sections": {
 					"empire": {
-						"title": "Empire",
+						"title": "Império",
 						"stats": {
 							"turnsUsed": {
-								"name": "Turns Used",
-								"description": "This is the number of turns you have used since your empire was first created."
+								"name": "Turnos Usados",
+								"description": "Este es el número de turnos que has usado desde que o seu império fue creado por primera vez."
 							},
 							"money": {
-								"name": "Money",
-								"description": "Funds your empire has available on-hand."
+								"name": "Dinero",
+								"description": "Fondos que o seu império tiene disponíveis a mano."
 							},
 							"rank": {
-								"name": "Rank",
-								"description": "Your empire's rank, determined by its networth, compared to other empires in the game."
+								"name": "Rango",
+								"description": "O rango de o seu império, determinado por o seu património, comparado con otros impérios en el jogo."
 							},
 							"netWorth": {
-								"name": "Net Worth",
-								"description": "Your empire's networth is calculated based on all of its available assets - acres of land, cash, {{foodType}}, your citizens, and your military - and provides a rough indication of how much your empire is worth."
+								"name": "Património",
+								"description": "O património de o seu império se calcula basado en todos os seus activos disponíveis - acres de terra, dinero, {{foodType}}, os seus cidadãos e o seu exército - e proporciona una indicação aproximada de cuánto vale o seu império."
 							},
 							"population": {
-								"name": "Population",
-								"description": "This is the number of {{peasantName}} that live in your empire. {{peasantName}} are necessary for making money to finance your empire."
+								"name": "Poblação",
+								"description": "Este es el número de {{peasantName}} que viven en o seu império. Los {{peasantName}} son necesarios para generar dinero para financiar o seu império."
 							},
 							"race": {
-								"name": "Race",
-								"description": "The Race of your empire's inhabitants."
+								"name": "Raça",
+								"description": "A Raça de los habitantes de o seu império."
 							},
 							"era": {
 								"name": "Era",
-								"description": "The Time Period during which your empire exists."
+								"description": "O Período de tempo durante el cual existe o seu império."
 							}
 						}
 					},
 					"agriculture": {
-						"title": "Agriculture",
+						"title": "Agricultura",
 						"stats": {
 							"production": {
-								"name": "Production",
-								"description": "{{farmType}} and unused land both help to produce {{foodType}} with which to feed your citizens and army. This number indicates approximately how much they will produce each turn."
+								"name": "Producción",
+								"description": "Os {{farmType}} e la tierra sin usar ayudan a producir {{foodType}} para alimentar a os seus cidadãos e exército. Este número indica aproximadamente cuánto producirán por turno."
 							},
 							"consumption": {
-								"name": "Consumption",
-								"description": "Your military, {{peasantName}}, and {{wizardType}} all require {{foodType}} to survive. This number shows your estimated consumption per turn."
+								"name": "Consumo",
+								"description": "O seu exército, {{peasantName}} e {{wizardType}} requieren {{foodType}} para sobrevivir. Este número muestra o seu consumo estimado por turno."
 							},
 							"net": {
-								"name": "Net",
-								"description": "This number indicates whether you are gaining or losing {{foodType}} overall per turn. It is usually a good idea to keep an eye on this number, lest you run out and your people starve."
+								"name": "Neto",
+								"description": "Este número indica si estás ganando o perdiendo {{foodType}} en general por turno. Generalmente es una buena idea mantener un ojo en este número, para evitar quedarte sin comida e que o seu gente muera de hambre."
 							}
 						}
 					},
 					"other": {
-						"title": "Other",
+						"title": "Otros",
 						"stats": {
 							"exploration": {
-								"name": "Exploration",
-								"description": "How much land you will gain from one turn exploring"
+								"name": "Exploração",
+								"description": "Cuánta tierra ganarás por un turno de exploração"
 							},
 							"blackMarket": {
-								"name": "Black Market",
-								"description": "Shows your racial bonus relating to price discounts or penalties on your Black Market"
+								"name": "Mercado negro",
+								"description": "Muestra o seu bonificação racial relacionada con descuentos o penalizações en o seu Mercado negro"
 							},
 							"luck": {
-								"name": "Luck",
-								"description": "Luck is the percent chance to have a turn yield 1.5x production. This applies to new land when exploring, {{foodType}} when farming, income when cashing, troop production when doing industry, and {{runeType}} when meditating."
+								"name": "Suerte",
+								"description": "Suerte es el porcentaje de probabilidad de que un turno produzca 1.5x producción. Esto se aplica a nueva tierra al explorar, {{foodType}} al cultivar, rendas al cobrar, producción de tropas al hacer industria, e {{runeType}} al meditar."
 							}
 						}
 					},
 					"landDivision": {
-						"title": "Land Division",
-						"description": "Each row in this table indicates the number of each type of structure your empire has built on its land, as well as how many acres are currently unused."
+						"title": "Divisão de Tierra",
+						"description": "Cada fila en esta tabla indica el número de cada tipo de estructura que o seu império ha construido en o seu tierra, así como cuántos acres están actualmente sin usar."
 					},
 					"finances": {
-						"title": "Finances",
+						"title": "Finanças",
 						"stats": {
 							"perCapIncome": {
-								"name": "Per Cap Income",
-								"description": "This is your empire's per capita income, indicating how much money each of its {{peasantName}} make each turn. A percentage of this income is gained based on tax rate."
+								"name": "Renda Per Cápita",
+								"description": "Este es el renda per cápita de o seu império, indicando cuánto dinero gana cada uno de os seus {{peasantName}} por turno. Un porcentaje de este renda se obtiene según la tasa de impuestos."
 							},
 							"income": {
-								"name": "Income",
-								"description": "Your empire's income is determined by the number of {{peasantName}} it has, its per capita income, its tax rate, and its overall health."
+								"name": "Rendas",
+								"description": "Os rendas de o seu império están determinados por el número de {{peasantName}} que tiene, o seu renda per cápita, o seu tasa de impuestos e o seu salud general."
 							},
 							"expenses": {
-								"name": "Expenses",
-								"description": "Your empire's expenses consist mainly of military upkeep and land taxes. {{barracksType}} can help to lower these expenses."
+								"name": "Despesas",
+								"description": "Os despesas de o seu império consisten principalmente en mantenimiento militar e impuestos sobre la tierra. Los {{barracksType}} pueden ayudar a reducir estos despesas."
 							},
 							"loanPayment": {
-								"name": "Loan Payment",
-								"description": "If you have borrowed any money from the World Bank, 0.5% of your loan is paid off each turn. Your loan payment for the next turn you take is indicated here."
+								"name": "Pago de Empréstimo",
+								"description": "Se has pedido prestado dinero del Banco, el 0.5% de o seu empréstimo se paga cada turno. O seu pago de empréstimo para el próximo turno se indica aquí."
 							},
 							"net": {
-								"name": "Net",
-								"description": "This indicates your empire's net income, whether it is gaining or losing money overall each turn. It is highly recommended to keep an eye on this value, lest you run out of money and are forced to take out a potentially expensive loan."
+								"name": "Neto",
+								"description": "Esto indica los rendas netos de o seu império, si está ganando o perdiendo dinero en general cada turno. Es altamente recomendable mantener un ojo en este valor, para evitar quedarte sin dinero e verte forzado a tomar un empréstimo potencialmente costoso."
 							},
 							"savingsBalance": {
-								"name": "Savings Balance",
-								"description": "This indicates how much money your empire currently has saved in the World Bank. Your account's interest rate is indicated in parentheses."
+								"name": "Saldo de Poupança",
+								"description": "Esto indica cuánto dinero tiene actualmente o seu império ahorrado en el Banco. A taxa de interés de o seu cuenta se indica entre paréntesis."
 							},
 							"loanBalance": {
-								"name": "Loan Balance",
-								"description": "Here is indicated the amount of money your empire currently owes to the World Bank. The loan's interest rate is shown in parentheses."
+								"name": "Saldo de Empréstimo",
+								"description": "Aqui se indica la cantidad de dinero que o seu império debe actualmente al Banco. A taxa de interés del empréstimo é mostrada entre paréntesis."
 							}
 						}
 					},
 					"military": {
-						"title": "Military",
-						"description": "The top rows indicate how many of each unit your empire currently has in its army.",
+						"title": "Militar",
+						"description": "As filas superiores indican cuántas unidades de cada tipo tiene actualmente o seu império en o seu exército.",
 						"stats": {
 							"offensivePower": {
-								"name": "Offensive Power",
-								"description": "This number indicates your empire's total calculated offensive power (see Military Units for more information)."
+								"name": "Poder Ofensivo",
+								"description": "Este número indica el poder ofensivo total calculado de o seu império (ver Unidades Militares para más informação)."
 							},
 							"defensivePower": {
-								"name": "Defensive Power",
-								"description": "Your empire's total calculated defensive power is shown here."
+								"name": "Poder Defensivo",
+								"description": "Aqui é mostrada el poder defensivo total calculado de o seu império."
 							}
 						}
 					},
 					"relations": {
-						"title": "Relations",
+						"title": "Relações",
 						"stats": {
 							"clan": {
-								"name": "Member of Clan",
-								"description": "If you are in a clan, its name is indicated here. If you are independent, this will simply say \"None.\""
+								"name": "Membro de Clã",
+								"description": "Se estás en un clã, o seu nombre se indica aquí. Si eres independiente, simplemente dirá \"Nenhum.\""
 							},
 							"enemies": {
-								"name": "Enemies",
-								"description": "If you are in a clan, clans you are at war with are listed here."
+								"name": "Inimigos",
+								"description": "Se estás en un clã, los clãs con los que estás en guerra se listan aquí."
 							},
 							"offensiveActions": {
-								"name": "Offensive Actions",
-								"description": "Indicates how many times you have attacked other empires, as well as the percentage of successful attacks (in parentheses)."
+								"name": "Acções Ofensivas",
+								"description": "Indica cuántas veces has atacado a otros impérios, así como el porcentaje de ataques exitosos (entre paréntesis)."
 							},
 							"defenses": {
-								"name": "Defenses",
-								"description": "Indicates how many times your empire has been attacked by others, as well as the percentage of attacks that have been successfully resisted (in parentheses)."
+								"name": "Defesas",
+								"description": "Indica cuántas veces o seu império ha sido atacado por otros, así como el porcentaje de ataques que han sido resistidos exitosamente (entre paréntesis)."
 							}
 						}
 					}
 				}
 			},
 			"scores": {
-				"title": "Scores List",
-				"description": "This page lists the empires in the game. A pulsing blue dot indicates that a player is currently or was recently online. It is best to not interrupt players as they are using their turns so as not to spark a damaging conflict.",
+				"title": "Lista de Puntuações",
+				"description": "Esta página muestra los impérios en el jogo. Un punto azul parpadeante indica que un jogador está actualmente o estuvo recientemente en línea. Es mejor no interrumpir a los jogadores mientras están usando os seus turnos para no provocar un conflicto danhino.",
 				"empireTypes": {
 					"protected": {
-						"name": "Protected",
-						"description": "Empires in this color are protected from being attacked by other empires."
+						"name": "Protegido",
+						"description": "Os impérios en este color están protegidos de ser atacados por otros impérios."
 					},
 					"demo": {
-						"name": "Demo Accounts",
-						"description": "Empires in this color are demo accounts."
+						"name": "Cuentas de Demostração",
+						"description": "Os impérios en este color son cuentas de demostração."
 					},
 					"war": {
-						"name": "War",
-						"description": "If your clan has declared war on another clan, its members will indicated by this icon."
+						"name": "Guerra",
+						"description": "Se o seu clã ha declarado la guerra a otro clã, os seus membros estarán indicados por este ícono."
 					},
 					"locked": {
-						"name": "Locked",
-						"description": "These empires have been disabled by the Administration for violating the established Rules."
+						"name": "Bloqueado",
+						"description": "Estos impérios han sido desativados por la Administração por violar las Reglas establecidas."
 					},
 					"admin": {
-						"name": "Administrator",
-						"description": "These empires are responsible for keeping the game running smoothly. If you're experiencing technical difficulties playing the game, these are the people to talk to. To find bugs and test new features the admins may be active players in the game."
+						"name": "Administrador",
+						"description": "Estos impérios son responsables de mantener el jogo funcionando sin problemas. Si estás experimentando dificultades técnicas jugando el jogo, estas son las personas con quienes deve hablar. Para encontrar errores e probar nuevas funções, los administradores pueden ser jogadores activos en el jogo."
 					},
 					"self": {
-						"name": "Yourself",
-						"description": "Your own empire is always displayed in this color, making it easier to locate yourself in the score list."
+						"name": "Tú mismo",
+						"description": "O seu propio império siempre é mostrada en este color, facilitando o seu ubicação en la lista de puntuações."
 					}
 				},
 				"statistics": {
-					"intro": "Each empire is listed in the table with the following statistics displayed:",
+					"intro": "Cada império se enumera en la tabla con las siguientes estadísticas mostradas:",
 					"stats": {
 						"rank": {
-							"name": "Rank",
-							"description": "The empire's rank (based on networth), compared to all other empires in the game."
+							"name": "Rango",
+							"description": "O rango del império (basado en el património), comparado con todos los otros impérios en el jogo."
 						},
 						"empire": {
-							"name": "Empire",
-							"description": "The empire's icon, name, and identification number."
+							"name": "Império",
+							"description": "O ícono del império, nombre e número de identificação."
 						},
 						"netWorth": {
-							"name": "Net Worth",
-							"description": "A calculated number indicating the empire's overall value."
+							"name": "Património",
+							"description": "Um número calculado que indica el valor general del império."
 						},
 						"land": {
-							"name": "Land",
-							"description": "The total amount of land the empire occupies."
+							"name": "Tierra",
+							"description": "A cantidad total de tierra que ocupa el império."
 						},
 						"era": {
 							"name": "Era",
-							"description": "The time period in which the empire exists."
+							"description": "O período de tempo en el que existe el império."
 						},
 						"race": {
-							"name": "Race",
-							"description": "The race of the empire's inhabitants."
+							"name": "Raça",
+							"description": "A raça de los habitantes del império."
 						},
 						"dr": {
-							"name": "DR",
-							"description": "The empire's current diminishing returns value. As an empire is attacked, their DR percentage increases which causes them to lose less land each successive attack. The rate of increase is affected by building guard towers."
+							"name": "RD",
+							"description": "O valor actual de retornos decrecientes del império. A medida que un império es atacado, o seu porcentaje de RD aumenta, lo que hace que pierda menos tierra en cada ataque sucesivo. A taxa de aumento se ve afectada por la construcción de torres de guardia."
 						}
 					}
 				},
-				"interaction": "Click on an empire to view their public profile, time of last action, and to see options on how to interact with them directly from the scores page. You can see recent news from that empire, view or get new intel, send aid, an attack or cast a spell, all from the scores page."
+				"interaction": "Clique en un império para ver o seu perfil público, el tiempo de última acción e para ver opções sobre cómo interactuar con ellos directamente desde la página de puntuações. Pode ver noticias recientes de ese império, ver u obtener nueva inteligencia, enviar ayuda, un ataque o lançar un feitiço, todo desde la página de puntuações."
 			},
 			"clanStats": {
-				"title": "Clan Statistics",
-				"description": "This page lists all clans of sufficient size and provides various statistics - the clan's name, how many members it has, the average net worth of all members, and the summed net worth of all members.",
-				"interaction": "Clicking on a clan's name will list all of its members."
+				"title": "Estadísticas de Clãs",
+				"description": "Esta página muestra todos los clãs de tamanho suficiente e proporciona varias estadísticas - el nombre del clã, cuántos membros tiene, el património promedio de todos los membros e o património sumado de todos los membros.",
+				"interaction": "Al clicar en el nombre de un clã se listarán todos os seus membros."
 			},
 			"mailbox": {
-				"title": "Mailbox",
-				"description": "This section allows you to send private messages to other empires, whether to exchange information, forge alliances, or taunt your foes.",
-				"moderation": "There is a profanity filter on all messages but if you receive a message which you believe to be inappropriate or in violation of the game's rules, contact the Moderators and Administrators. Violators may have their empires Silenced or Disabled at the discretion of the Administration. Reports should only be used as a last resort - whenever possible, please attempt to resolve disputes personally so as to not place excess burden on the Administration."
+				"title": "Correio",
+				"description": "Esta sección te permite enviar mensajes privados a otros impérios, ya sea para intercambiar informação, forjar alianzas o provocar a os seus inimigos.",
+				"moderation": "Há un filtro de profanidad en todos los mensajes, pero si recibes un mensaje que consideras inapropiado o que viola las reglas del jogo, contacta a los Moderadores e Administradores. Los infractores pueden ver os seus impérios Silenciados o Desativados a discreción de la Administração. Los reportes solo deben usarse como último recurso - siempre que sea posible, intenta resolver las disputas personalmente para no sobrecargar a la Administração."
 			},
 			"worldNews": {
-				"title": "World News",
-				"description": "Here you can see news from all the empires in the game. News is categorized into Attacks, Spells, and Market events. You can search for events based on which empire is involved and the type of event.",
-				"usage": "Checking news is a valuable way to get insights into who you may want to attack or what is in demand on the markets."
+				"title": "Notícias do mundo",
+				"description": "Aqui pode ver noticias de todos los impérios en el jogo. Las noticias están categorizadas en Ataques, Feitiços e eventos del Mercado. Pode buscar eventos según el império involucrado e o tipo de evento.",
+				"usage": "Revisar las noticias es una forma valiosa de obtener informação sobre a quién podrías querer atacar o qué está en demanda en los mercados."
 			},
 			"farm": {
-				"title": "Agriculture Focus",
-				"description": "Here you may choose to spend time with extra focus placed on producing {{foodType}} to sustain your citizens and military.",
-				"bonus": "While spending turns here, your empire's gross production of {{foodType}} will increase by 25%."
+				"title": "Foco na agricultura",
+				"description": "Aqui pode elegir pasar tiempo con un enfoque extra en la producción de {{foodType}} para mantener a os seus cidadãos e exército.",
+				"bonus": "Mientras gastas turnos aquí, la producción bruta de {{foodType}} de o seu império aumentará en un 25%."
 			},
 			"cash": {
-				"title": "Economic Focus",
-				"description": "Here you may choose to spend time with extra focus placed on your empire's economy.",
-				"bonus": "While spending turns here, your empire's gross income will increase by 25%.",
-				"taxRate": "You can also adjust your empire's tax rate. A high tax rate will cause people to leave your empire and limit your maximum health but you will make more money per person. A lower tax rate will encourage people to move to your empire but you will make less money per person."
+				"title": "Foco económico",
+				"description": "Aqui pode elegir pasar tiempo con un enfoque extra en la economía de o seu império.",
+				"bonus": "Mientras gastas turnos aquí, el renda bruto de o seu império aumentará en un 25%.",
+				"taxRate": "Também pode ajustar la tasa de impuestos de o seu império. Una tasa de impuestos alta hará que la gente abandone o seu império e limitará o seu salud máxima, pero ganarás más dinero por persona. Una tasa de impuestos más baja animará a la gente a mudarse a o seu império, pero ganarás menos dinero por persona."
 			},
 			"explore": {
-				"title": "Exploration",
-				"description": "For small empires, attacking others to gain land is infeasible - their time is better spent exploring.",
-				"action": "While spending turns here, your empire will expand its borders and gain additional land.",
-				"warning": "Be warned - as your empire grows larger, it will become more and more difficult to find usable land, at which point you will have to resort to attacking other empires to steal their land."
+				"title": "Exploração",
+				"description": "Para impérios pequenhos, atacar a otros para ganar tierras es inviable - es mejor que pasen o seu tiempo explorando.",
+				"action": "Mientras gastas turnos aquí, o seu império expandirá os seus fronteras e ganará tierra adicional.",
+				"warning": "Ten cuidado - a medida que o seu império crece, se volverá cada vez más difícil encontrar tierra utilizable, momento en el cual tendrás que recurrir a atacar otros impérios para robar os seus tierras."
 			},
 			"industry": {
-				"title": "Industrial Focus",
-				"description": "Here you may choose to spend time with extra focus placed on your empire's troop production.",
-				"bonus": "While spending turns here, your Blacksmiths troop production will increase by 25%.",
-				"allocation": "You can set the percentage of production to dedicate to each troop type. The total must add up to 100."
+				"title": "Foco industrial",
+				"description": "Aqui pode elegir pasar tiempo con un enfoque adicional en la producción de tropas de o seu império.",
+				"bonus": "Mientras gastes turnos aquí, la producción de tropas de os seus Herrerías aumentará en un 25%.",
+				"allocation": "Pode establecer el porcentaje de producción que dedicarás a cada tipo de tropa. El total debe sumar 100."
 			},
 			"healing": {
-				"title": "Healing Focus",
-				"description": "Here you may choose to spend time with extra focus placed on healing your Military and {{wizardType}}.",
-				"effect": "While spending turns here, your empire's gross production of all resources will be 66% of their baseline value. In return you will gain 1 additional health point per turn up to 100%. Having a high health value is very important for successfully attacking and defending."
+				"title": "Enfoque en Curação",
+				"description": "Aqui pode elegir pasar tiempo con un enfoque adicional en la curação de o seu Exército e {{wizardType}}.",
+				"effect": "Mientras gastes turnos aquí, la producción bruta de todos los recursos de o seu império será del 66% de o seu valor base. A cambio, ganarás 1 punto de salud adicional por turno hasta llegar a 100%. Tener un valor alto de salud es muy importante para atacar e defender con éxito."
 			},
 			"meditate": {
-				"title": "Meditate",
-				"description": "Here you may choose to spend time with extra focus placed on your empire's {{runeType}} production.",
-				"bonus": "While spending turns here, your {{wizardType}} {{runeType}} production will increase by 25%."
+				"title": "Meditar",
+				"description": "Aqui pode elegir pasar tiempo con un enfoque adicional en la producción de {{runeType}} de o seu império.",
+				"bonus": "Mientras gastes turnos aquí, la producción de {{runeType}} de os seus {{wizardType}} aumentará en un 25%."
 			},
 			"magicCenter": {
-				"title": "Casting Spells",
-				"description": "From here, your {{wizardType}} can spend {{runeType}} and turns to cast spells on your own empire.",
-				"healthWarning": "Spells cannot be cast if your empire's health is below 20%.",
-				"powerWarning": "If your empire's magic power is not great enough, high level spells will result in a magical explosion and kill some of your {{wizardType}}.",
+				"title": "Lançamento de Feitiços",
+				"description": "Desde aquí, os seus {{wizardType}} pueden gastar {{runeType}} e turnos para lançar feitiços sobre o seu propio império.",
+				"healthWarning": "Os feitiços no se pueden lançar si la salud de o seu império está por abaixo del 20%.",
+				"powerWarning": "Se el poder mágico de o seu império no es lo suficientemente grande, los feitiços de alto nivel resultarán en una explosión mágica e matarán a algunos de os seus {{wizardType}}.",
 				"spells": {
-					"title": "Utility Spells",
+					"title": "Feitiços Utilitários",
 					"shield": {
 						"name": "{{spellShield}}",
-						"description": "This will allow you to partially protect your empire from magical attacks from other empires. Casting once will protect your empire for 24 hours, and each additional cast will extend it by 3 hours. If your empire has less than 14 hours of protection remaining, it will automatically be renewed to 24 hours."
+						"description": "Esto te permitirá proteger parcialmente o seu império de los ataques mágicos de otros impérios. Lançarlo una vez protegerá o seu império durante 24 horas, e cada lançamento adicional lo extenderá por 3 horas. Si o seu império tiene menos de 14 horas de protección restantes, se renovará automáticamente a 24 horas."
 					},
 					"food": {
 						"name": "{{spellFood}}",
-						"description": "This spell will create an amount of {{foodType}} to feed your citizens and army, the amount being proportional to the size of your empire and the number of {{wizardType}} at your disposal."
+						"description": "Este feitiço creará una cantidad de {{foodType}} para alimentar a os seus cidadãos e exército, siendo la cantidad proporcional al tamanho de o seu império e al número de {{wizardType}} a o seu disposición."
 					},
 					"cash": {
 						"name": "{{spellCash}}",
-						"description": "This spell will create cash to fund your empire, the amount being proportional to the size of your empire and the number of {{wizardType}} at your disposal."
+						"description": "Este feitiço creará dinero para financiar o seu império, siendo la cantidad proporcional al tamanho de o seu império e al número de {{wizardType}} a o seu disposición."
 					},
 					"gate": {
 						"name": "{{spellGate}}",
-						"description": "This spell will open a Time Gate, allowing your empire to attack other empires in any time period. Casting once will open the gate for 12 hours, and each additional cast will extend it by 3 hours. If your empire's gate has less than 9 hours remaining, it will automatically be renewed to 12 hours."
+						"description": "Este feitiço abrirá un Portal do tempo, permitiendo que o seu império ataque a otros impérios en cualquier período de tempo. Lançarlo una vez abrirá el portal durante 12 horas, e cada lançamento adicional lo extenderá por 3 horas. Si el portal de o seu império tiene menos de 9 horas restantes, se renovará automáticamente a 12 horas."
 					},
 					"ungate": {
 						"name": "{{spellUngate}}",
-						"description": "If your empire currently has an open Time Gate, this spell will close it, protecting your empire from attacks by other empires in different time periods (unless they themselves have open time gates)."
+						"description": "Se o seu império actualmente tiene un Portal do tempo abierto, este feitiço lo cerrará, protegiendo a o seu império de ataques de otros impérios en diferentes períodos de tiempo (a menos que ellos mismos tengan portales temporales abiertos)."
 					},
 					"advance": {
 						"name": "{{spellAdvance}}",
-						"description": "This spell advances your empire from its current era to the next one (if such an era exists). At least 72 hours must be spent in your current era before you may cast this spell."
+						"description": "Este feitiço avanza o seu império desde o seu era actual a la siguiente (si existe tal era). Se debe pasar al menos 72 horas en o seu era actual antes de poder lançar este feitiço."
 					},
 					"regress": {
 						"name": "{{spellRegress}}",
-						"description": "This spell regresses your empire from its current era to the previous one (if such an era exists). At least 72 hours must be spent in your current era before you may cast this spell."
+						"description": "Este feitiço retrocede o seu império desde o seu era actual a la anterior (si existe tal era). Se debe pasar al menos 72 horas en o seu era actual antes de poder lançar este feitiço."
 					}
 				}
 			},
 			"build": {
-				"title": "Construction",
-				"description": "From here, you may spend time constructing structures to increase your empire's land, economy, and military capabilities.",
-				"speed": "Constructing structures is faster than demolishing (due to the ease of building), but some of the original costs cannot be recovered.",
-				"landReduction": "Unused acres of land can also be dropped from your empire, though the need to relocate citizens and troops, not to mention the paperwork, makes this a slow process."
+				"title": "Construcción",
+				"description": "Desde aquí, pode dedicar tiempo a construir estructuras para aumentar la tierra, economía e capacidades militares de o seu império.",
+				"speed": "Construir estructuras es más rápido que demolerlas (debido a la facilidad de construcción), pero algunos de los costos originales no se pueden recuperar.",
+				"landReduction": "Os acres de terra sin usar também pueden ser eliminados de o seu império, aunque la necesidad de reubicar cidadãos e tropas, sin mencionar el papeleo, hace que este sea un proceso lento."
 			},
 			"demolish": {
-				"title": "Demolition",
-				"description": "From time to time, an empire may need to shift its focus to better cope with its situation - from here, you may spend time demolishing structures to make room for new structures to build.",
-				"speed": "Demolishing structures is slower than building (due to the difficulty of disposing of the remains), but some of the original costs can be recovered.",
-				"landReduction": "Unused acres of land can also be dropped from your empire, though the need to relocate citizens and troops, not to mention the paperwork, makes this a slow process."
+				"title": "Demolición",
+				"description": "De vez en cuando, un império puede necesitar cambiar o seu enfoque para adaptarse mejor a o seu situação - desde aquí, pode dedicar tiempo a demoler estructuras para hacer espacio para construir nuevas estructuras.",
+				"speed": "Demoler estructuras es más lento que construirlas (debido a la dificultad de deshacerse de los restos), pero algunos de los costos originales se pueden recuperar.",
+				"landReduction": "Os acres de terra sin usar também pueden ser eliminados de o seu império, aunque la necesidad de reubicar cidadãos e tropas, sin mencionar el papeleo, hace que este sea un proceso lento."
 			},
 			"favorites": {
-				"title": "Favorites",
-				"description": "Add actions from the Use Turns or War Council pages to create your own custom page of most used actions. Streamline attacking, building, healing, etc by clicking the star on each page to add them to your favorites."
+				"title": "Favoritos",
+				"description": "Anhade acções desde las páginas de Usar Turnos o Consejo de Guerra para crear o seu propia página personalizada de acções más utilizadas. Agilize los ataques, construcción, curação, etc. haciendo clic en la estrella en cada página para anhadirlos a os seus favoritos."
 			},
 			"blackMarket": {
 				"buying": {
-					"title": "The Black Market - Buying",
-					"description": "Within every empire, there exist those who train mercenaries, build instruments of war, and stockpile food. If your empire's {{militaryBuilding}} and {{farmBuilding}} do not produce enough to sustain its citizens and army, you may spend your money here to purchase these goods.",
-					"replenishment": "Only a finite number of goods can be purchased from the black market in a given time span - once depleted, you will need to wait for more to be produced. The rate at which units and food are replenished is based on both the overall size of your empire and how many {{barracksBuilding}} and {{farmBuilding}} you have, respectively.",
-					"pricing": "The cost of goods on the black market is affected by your economy and your ability to maintain such units - having a large percentage of your empire occupied by {{economyBuilding}} and {{barracksBuilding}} will reduce the purchase prices of military units by up to 40%; however, food prices are not affected."
+					"title": "O Mercado negro - Comprar",
+					"description": "Dentro de cada império, existen aquellos que entrenan mercenarios, construyen instrumentos de guerra e almacenan comida. Si los {{militaryBuilding}} e {{farmBuilding}} de o seu império no producen lo suficiente para mantener a os seus cidadãos e exército, pode gastar o seu dinero aqui para comprar estos bienes.",
+					"replenishment": "Solo se puede comprar una cantidad limitada de bienes en el mercado negro en un período de tempo determinado - una vez agotados, tendrás que esperar a que se produzcan más. A taxa de reposición de unidades e comida se basa tanto en el tamanho general de o seu império como en la cantidad de {{barracksBuilding}} e {{farmBuilding}} que tienes, respectivamente.",
+					"pricing": "O costo de los bienes en el mercado negro se ve afectado por o seu economía e o seu capacidad para mantener dichas unidades - tener un gran porcentaje de o seu império ocupado por {{economyBuilding}} e {{barracksBuilding}} reducirá los precios de compra de las unidades militares hasta en un 40%; sin embargo, los precios de la comida no se ven afectados."
 				},
 				"selling": {
-					"title": "The Black Market - Selling",
-					"description": "Just as you can purchase from the black market, you can also quickly sell your excess goods to it, though for significantly lower returns.",
-					"pricing": "As is the case with buying, having a large percentage of your empire occupied by {{economyBuilding}} and {{barracksBuilding}} will increase the selling prices of military units to up to 50% of their usual purchase price.",
-					"limit": "A maximum of {{maxSellPercent}}% of each type of military unit can be sold on the black market in a given time span - in order to sell more, you must wait a while."
+					"title": "O Mercado negro - Vender",
+					"description": "Así como pode comprar en el mercado negro, também pode vender rápidamente os seus bienes excedentes, aunque con retornos significativamente más bajos.",
+					"pricing": "Como en el caso de la compra, tener un gran porcentaje de o seu império ocupado por {{economyBuilding}} e {{barracksBuilding}} aumentará los precios de venta de las unidades militares hasta el 50% de o seu precio de compra habitual.",
+					"limit": "Se puede vender un máximo de {{maxSellPercent}}% de cada tipo de unidad militar en el mercado negro en un período de tempo determinado - para vender más, deve esperar un tiempo."
 				}
 			},
 			"publicMarket": {
 				"buying": {
-					"title": "The Public Market - Buying",
-					"description": "While the private market is convenient and reliable, its prices may be prohibitive if your empire does not focus strongly on its economy. Goods can be purchased from other empires via the public market, often at much better prices.",
-					"bestPrices": "Of all goods available on the public market, the least expensive will be shown to you. The identities of the empires you are purchasing from are not revealed to you, nor is your identity revealed to them.",
-					"priceChanges": "If less expensive goods become available while you are browsing, you will automatically purchase as many as possible at the reduced price before buying the rest at the price you originally were quoted. If somebody else buys goods while you are browsing, you will only buy what remains at the price you requested - if you require more units, you can purchase them separately at a higher price.",
-					"ownGoods": "When browsing, your own goods will never be listed for sale to you."
+					"title": "O Mercado público - Comprar",
+					"description": "Aunque el mercado privado es conveniente e confiable, os seus precios pueden ser prohibitivos si o seu império no se centra fuertemente en o seu economía. Los bienes se pueden comprar a otros impérios a través del mercado público, a menudo a mejores precios.",
+					"bestPrices": "De todos los bienes disponíveis en el mercado público, lhe mostrarán los menos costosos. Las identidades de los impérios a los que compras no lhe revelan, ni o seu identidad se revela a ellos.",
+					"priceChanges": "Se hay bienes menos costosos disponíveis mientras navegas, automáticamente comprarás tantos como sea posible al precio reducido antes de comprar el resto al precio que originalmente lhe cotizó. Si alguien más compra bienes mientras navegas, solo comprarás lo que queda al precio que solicitaste - si necesitas más unidades, pode comprarlas por separado a un precio más alto.",
+					"ownGoods": "Mientras navegas, os seus propios bienes nunca se listarán para vendértelos."
 				},
 				"selling": {
-					"title": "The Public Market - Selling",
-					"description": "While the private market is a convenient place to rid yourself of excess food and equipment, you likely will not be well compensated. Using the public market, you can sell your goods to other empires willing to purchase them, often at much better prices.",
-					"listingDelay": "Once you place items on the public market, they will take {{startHours}} hour(s) to reach the marketplace and become available for sale.",
+					"title": "O Mercado público - Vender",
+					"description": "Aunque el mercado privado es un lugar conveniente para deshacerte del exceso de comida e equipo, probablemente no serás bien compensado. Usando el mercado público, pode vender os seus bienes a otros impérios dispuestos a comprarlos, a menudo a mejores precios.",
+					"listingDelay": "Uma vez que colocas artículos en el mercado público, tardarán {{startHours}} hora(s) en llegar al mercado e estar disponíveis para la venta.",
 					"removal": {
-						"manual": "Once items are available on the market, you will be allowed to remove them at your own discretion. Removing items from the market will result in only 75% of them being returned to you.",
-						"automatic": "Items are automatically removed from the market and returned to your empire after {{maxHours}} hours. Only 75% of them will be returned to you."
+						"manual": "Uma vez que los artículos están disponíveis en el mercado, podrás retirarlos a o seu discreción. Retirar artículos del mercado resultará en que solo el 75% de ellos te sean devueltos.",
+						"automatic": "Os artículos se retiran automáticamente del mercado e se devuelven a o seu império después de {{maxHours}} horas. Solo lhe devolverá el 75% de ellos."
 					},
-					"priceEditing": "You may edit the price of items currently on the market, however there is a 10% fee for doing so.",
-					"warWarning": "Be wary about selling during times of war, because the market coalition does not concern itself with inter-empire relations and will gladly sell your goods to your enemies."
+					"priceEditing": "Pode editar el precio de los artículos actualmente en el mercado, sin embargo, hay una tarifa del 10% por hacerlo.",
+					"warWarning": "Ten cuidado al vender durante tiempos de guerra, porque la coalición del mercado no se preocupa por las relações entre impérios e con gusto venderá os seus bienes a os seus inimigos."
 				}
 			},
 			"lottery": {
-				"title": "Lottery",
-				"description": "The lottery is a way to get a additional cash for your empire. You can buy three tickets per day. A random winner is chosen from the bought tickets but no winner is guaranteed. If there is no winner the money is added to the next lottery. The lottery is drawn once every 24 hours."
+				"title": "Lotería",
+				"description": "A lotería es una forma de obtener dinero adicional para o seu império. Pode comprar tres boletos por día. Se elige un ganador al azar entre los boletos comprados, pero no se garantiza un ganador. Si no hay ganador, el dinero se suma a la siguiente lotería. La lotería se sortea una vez cada 24 horas."
 			},
 			"clans": {
-				"title": "Clans",
-				"description": "If you wish to ally together with a group of friends, you may form a Clan. Being in a clan offers several advantages; however, there are also downsides.",
-				"defense": "Clan members automatically deploy 10% of their troops for the sole purpose of defending other clan members - in doing so, clan members can significantly boost their defensive power against attacking empires. Beware - an enemy engaging in a Surprise Attack will be able to bypass these extra defenses, including the 10% you shared yourself!",
-				"information": "Clan members can see the combined news feeds, intel and stats of all empires in the clan as well as chat among themselves.",
-				"war": "However, being in a clan also opens the possibility of war, allowing members of enemy clans to attack you mercilessly (and also allowing your clan to do the same). War can be declared by another clan at any time. While at war you will be subject to a war tax. To end a war both clans must accept the peace offering.",
+				"title": "Clãs",
+				"description": "Se deseas aliarte con un grupo de amigos, pode formar un Clã. Estar en un clã ofrece varias ventajas; sin embargo, também tiene desventajas.",
+				"defense": "Os membros del clã despliegan automáticamente el 10% de os seus tropas con el único propósito de defender a otros membros del clã - de esta manera, los membros del clã pueden aumentar significativamente o seu poder defensivo contra impérios atacantes. ¡Cuidado - un enemigo que realice un Ataque Sorpresa podrá evadir estas defesas adicionales, incluyendo el 10% que compartiste tú mismo!",
+				"information": "Os membros del clã pueden ver las noticias combinadas, la inteligencia e las estadísticas de todos los impérios en el clã, así como chatear entre ellos.",
+				"war": "Sin embargo, estar en un clã também abre la posibilidad de guerra, permitiendo que los membros de clãs inimigos te ataquen sin piedad (y também permitiendo que o seu clã haga lo mismo). La guerra puede ser declarada por otro clã en cualquier momento. Durante la guerra estarás sujeto a un impuesto de guerra. Para terminar una guerra, ambos clãs deben aceptar la oferta de paz.",
 				"joining": {
-					"title": "Creating and Joining",
-					"creation": "When you wish to create a clan, simply enter a short name and specify a password which other players must enter in order to join.",
-					"joining": "If you wish to join a clan which has already been created and you have been given its password, simply select the clan from the dropdown list and enter the password in the space provided."
+					"title": "Crear e Unirse",
+					"creation": "Cuando desees crear un clã, simplemente ingresa un nombre corto e especifica una contrasenha que otros jogadores deberán ingresar para unirse.",
+					"joining": "Se deseas unirte a un clã que ya ha sido creado e te han dado o seu contrasenha, simplemente selecciona el clã de la lista desplegable e ingresa la contrasenha en el espacio proporcionado."
 				}
 			},
 			"warCouncil": {
-				"title": "Your Army",
-				"description": "From here, you may deploy your empire's military to attack other empires and steal their land and resources. Once your empire reaches a certain size, this becomes the easiest method of expansion.",
-				"eraRestriction": "In order to attack another empire, it must either be in the same [era](Era) as yours or a [Time Gate](Magic%20Center) must be open between your empires, either opened by you or by your target.",
+				"title": "O seu Exército",
+				"description": "Desde aquí, pode desplegar o seu exército para atacar a otros impérios e robar os seus tierras e recursos. Una vez que o seu império alcanza cierto tamanho, este se convierte en el método más fácil de expansión.",
+				"eraRestriction": "Para atacar a otro império, debe estar en la misma [era](Era) que el tuyo o debe haber un [Portal del Tiempo](Magic%20Center) abierto entre os seus impérios, ya sea abierto por ti o por o seu objetivo.",
 				"attackTypes": {
-					"description": "Six different attack methods are available for you to use, each having their own advantages and disadvantages. Guerrilla Strike, Lay Seige, Air Strike, and Coastal Assault will use one troop type for both the attacker and the defender. All Out Attack, Surprise Attack, and Pillage will use the entire army for both the attacker and defender.",
+					"description": "Há seis métodos diferentes de ataque disponibles, cada uno con os seus propias ventajas e desventajas. Ataque Guerrillero, Asedio, Ataque Aéreo e Asalto Costero utilizarán un tipo de tropa tanto para el atacante como para el defensor. Ataque Total, Ataque Sorpresa e Saqueo utilizarán todo el exército tanto para el atacante como para el defensor.",
 					"guerrilla": {
-						"name": "Guerrilla Strike",
-						"description": "By sending in only your {{armoredUnit}}, you can avoid your target's other forces. If successful, all structures on captured land are destroyed."
+						"name": "Ataque Guerrillero",
+						"description": "Al enviar solo os seus {{armoredUnit}}, pode evitar las otras fuerzas de o seu objetivo. Si tienes éxito, todas las estructuras en la tierra capturada serán destruidas."
 					},
 					"siege": {
-						"name": "Lay Siege",
-						"description": "By sending in only your {{landUnit}}, you can not only steal your target's land but also destroy additional structures on the land you do not capture. {{defenseBuilding}} and {{wizardBuilding}} are especially vulnerable."
+						"name": "Asedio",
+						"description": "Al enviar solo os seus {{landUnit}}, no solo pode robar la tierra de o seu objetivo sino também destruir estructuras adicionales en la tierra que no captures. {{defenseBuilding}} e {{wizardBuilding}} son especialmente vulnerables."
 					},
 					"air": {
-						"name": "Air Strike",
-						"description": "By sending in only your {{airUnit}}, you can not only steal your target's land but also destroy additional structures on the land you do not capture. While attacking from above, significantly more structures can be destroyed."
+						"name": "Ataque Aéreo",
+						"description": "Al enviar solo os seus {{airUnit}}, no solo pode robar la tierra de o seu objetivo sino também destruir estructuras adicionales en la tierra que no captures. Al atacar desde arriba, se pueden destruir significativamente más estructuras."
 					},
 					"coastal": {
-						"name": "Coastal Assault",
-						"description": "By sending in only your {{seaUnit}}, you can not only steal your target's land but also destroy additional structures on the land you do not capture. {{defenseBuilding}} and {{wizardBuilding}} are especially vulnerable."
+						"name": "Asalto Costero",
+						"description": "Al enviar solo os seus {{seaUnit}}, no solo pode robar la tierra de o seu objetivo sino também destruir estructuras adicionales en la tierra que no captures. {{defenseBuilding}} e {{wizardBuilding}} son especialmente vulnerables."
 					},
 					"allOut": {
-						"name": "All Out Attack",
-						"description": "The standard attack type, this allows sending all types of military units to attack your target. If successful, you will steal a percentage of your target's land, potentially with some of its original structures intact."
+						"name": "Ataque Total",
+						"description": "O tipo de ataque estándar, esto permite enviar todos los tipos de unidades militares para atacar a o seu objetivo. Si tienes éxito, robarás un porcentaje de la tierra de o seu objetivo, potencialmente con algunas de os seus estructuras originales intactas."
 					},
 					"surprise": {
-						"name": "Surprise Attack",
-						"description": "A surprise attack grants a 25% attack power bonus and allows the attacker to bypass any shared forces the defender's clan may have, though this comes at the cost of increased troop losses for the attacker as well as a significantly higher health loss. If successful, all structures on captured land are destroyed."
+						"name": "Ataque Sorpresa",
+						"description": "Um ataque sorpresa otorga un bono de poder de ataque del 25% e permite al atacante evadir cualquier fuerza compartida que el clã del defensor pueda tener, aunque esto tiene el costo de mayores pérdidas de tropas para el atacante así como una pérdida de salud significativamente mayor. Si tienes éxito, todas las estructuras en la tierra capturada serán destruidas."
 					},
 					"pillage": {
-						"name": "Pillage",
-						"description": "Send your whole army on a raid for food and cash. If you are successful you will capture a small amount of land as well as steal food and cash from your enemy."
+						"name": "Saqueo",
+						"description": "Envía todo o seu exército en una incursión por comida e dinero. Si tienes éxito, capturarás una pequenha cantidad de tierra e também robarás comida e dinero de o seu enemigo."
 					}
 				},
 				"spells": {
-					"title": "Casting Spells",
-					"description": "From here, your {{wizardType}} can spend {{runeType}} and turns to cast spells on your enemies.",
-					"healthRestriction": "Spells cannot be cast if your empire's health is below 20%. Casting an offensive spell reduces health by 6%.",
-					"powerWarning": "If your empire's magic power is not great enough, high level spells will result in a magical explosion and kill some of your {{wizardType}}.",
+					"title": "Lançamento de Feitiços",
+					"description": "Desde aquí, os seus {{wizardType}} pueden gastar {{runeType}} e turnos para lançar feitiços contra os seus inimigos.",
+					"healthRestriction": "Os feitiços no se pueden lançar si la salud de o seu império está por abaixo del 20%. Lançar un feitiço ofensivo reduce la salud en un 6%.",
+					"powerWarning": "Se el poder mágico de o seu império no es lo suficientemente grande, los feitiços de alto nivel resultarán en una explosión mágica e matarán a algunos de os seus {{wizardType}}.",
 					"magicRatio": {
-						"intro": "To successfully cast an offensive spell, your magic ratio must be a certain value.",
-						"offense": "Your magic offense power is: your {{wizardType}} / ((your land + enemy land ) / 2) * race magic bonus",
-						"defense": "Enemy magic defense power is: enemy {{wizardType}} / enemy land * 1.05 * enemy race magic bonus",
-						"ratio": "Magic ratio: your magic offense / enemy magic defense"
+						"intro": "Para lançar exitosamente un feitiço ofensivo, o seu ratio mágico debe tener cierto valor.",
+						"offense": "O seu poder ofensivo mágico es: os seus {{wizardType}} / ((tu tierra + tierra enemiga) / 2) * bonus mágico de raça",
+						"defense": "O poder defensivo mágico enemigo es: {{wizardType}} inimigos / tierra enemiga * 1.05 * bonus mágico de raça enemigo",
+						"ratio": "Ratio mágico: o seu ofensiva mágica / defensa mágica enemiga"
 					},
 					"offensiveSpells": {
-						"title": "Offensive Spells",
+						"title": "Feitiços Ofensivos",
 						"blast": {
 							"name": "{{spellBlast}}",
-							"description": "If successful, this will eliminate 3% of your enemy's military and magical forces. If your target has an active {{spellShield}}, only 1% will be destroyed."
+							"description": "Se tiene éxito, esto eliminará el 3% de las fuerzas militares e mágicas de o seu enemigo. Si o seu objetivo tiene un {{spellShield}} activo, solo se destruirá el 1%."
 						},
 						"storm": {
 							"name": "{{spellStorm}}",
-							"description": "If successful, this will destroy a percentage of your target's cash and {{foodType}}. If shielded, it will only be 33% as effective."
+							"description": "Se tiene éxito, esto destruirá un porcentaje del dinero e {{foodType}} de o seu objetivo. Si está protegido, solo será 33% efectivo."
 						},
 						"runes": {
 							"name": "{{spellRunes}}",
-							"description": "If successful, this will destroy a percentage of your target's {{runeType}}, limiting the ability of their {{wizardType}} to cast spells. If shielded, it will only be 33% as effective."
+							"description": "Se tiene éxito, esto destruirá un porcentaje de las {{runeType}} de o seu objetivo, limitando la capacidad de os seus {{wizardType}} para lançar feitiços. Si está protegido, solo será 33% efectivo."
 						},
 						"struct": {
 							"name": "{{spellStruct}}",
-							"description": "If successful, this will destroy 3% of your enemy's structures. If your target has an active {{spellShield}}, only 1% will be destroyed."
+							"description": "Se tiene éxito, esto destruirá el 3% de las estructuras de o seu enemigo. Si o seu objetivo tiene un {{spellShield}} activo, solo se destruirá el 1%."
 						},
 						"fight": {
 							"name": "{{spellFight}}",
-							"description": "This spell will allow your {{wizardType}} to battle with your target's magic users. Successful attacks will steal approximately 33% as much land as a standard military attack."
+							"description": "Este feitiço permitirá a os seus {{wizardType}} luchar contra los usuarios de magia de o seu objetivo. Los ataques exitosos robarán aproximadamente el 33% de tierra que un ataque militar estándar."
 						},
 						"steal": {
 							"name": "{{spellSteal}}",
-							"description": "If successful, this will allow you to steal cash from your target empire's treasury. If shielded, it will only be 33% as effective."
+							"description": "Se tiene éxito, esto te permitirá robar dinero del tesoro del império objetivo. Si está protegido, solo será 33% efectivo."
 						}
 					}
 				}
 			},
 			"intelCenter": {
-				"title": "Intel Center",
-				"description": "This section allows you to see and acquire information on other empires to find out their strengths and weaknesses. Intel can help you decide who to [attack](War%20Council) or [trade with](Public%20Market)."
+				"title": "Centro de inteligência",
+				"description": "Esta sección te permite ver e adquirir informação sobre otros impérios para descubrir os seus fortalezas e debilidades. La inteligencia puede ayudarte a decidir a quién [atacar](War%20Council) o con quién [comerciar](Public%20Market)."
 			},
 			"foreignAid": {
-				"title": "Sending Foreign Aid",
-				"description": "If one of your friends or [clan mates](Clans) is in trouble and needs help, you can send some of your {{seaUnit}} with a shipment of troops and supplies. Up to {{maxCredits}} can be sent at any given time, and one additional shipment can be sent every {{delayHours}} hours.",
-				"limits": "In a single aid shipment, you can send up to 15% of your empire's currently available [troops](Military), money, {{runeType}}, and {{foodType}} to another empire.",
+				"title": "Enviar Ajuda externa",
+				"description": "Se uno de os seus amigos o [companheros de clã](Clãs) está en problemas e necesita ayuda, pode enviar algunas de os seus {{seaUnit}} con un cargamento de tropas e suministros. Se pueden enviar hasta {{maxCredits}} en cualquier momento, e se puede enviar un envío adicional cada {{delayHours}} horas.",
+				"limits": "Em un solo envío de ayuda, pode enviar hasta el 15% de las [tropas](Military), dinero, {{runeType}} e {{foodType}} actualmente disponíveis de o seu império a otro império.",
 				"restrictions": {
-					"netWorth": "Aid can only be sent to those who actually need it - an empire whose [net worth](Overview) is significantly greater than yours likely has no need for your goods. However, if you are in a clan, you will be allowed to send goods to clan mates many times your size.",
-					"war": "It is not possible to send aid to those you are at war with. Check the [War Council](War%20Council) for current wars."
+					"netWorth": "A ayuda solo se puede enviar a quienes realmente la necesitan - un império cuyo [património](Overview) es significativamente mayor que el tuyo probablemente no necesite os seus bienes. Sin embargo, si estás en un clã, podrás enviar bienes a companheros de clã muchas veces más grandes que tú.",
+					"war": "Não es posible enviar ayuda a aquellos con los que estás en guerra. Consulta el [Consejo de Guerra](War%20Council) para las guerras actuales."
 				}
 			},
 			"empireSettings": {
-				"title": "Empire Settings",
-				"profile": "Here you can update your public profile and set an icon. Your profile is a way to describe your empire, play style, or just be silly. Your icon is another way to express your personality in the game. Both are visible on the scores page.",
-				"race": "Change the race of your empire's inhabitants. This will come at a cost."
+				"title": "Configuração del Império",
+				"profile": "Aqui pode actualizar o seu perfil público e establecer un ícono. O seu perfil es una forma de describir o seu império, estilo de jogo o simplemente ser divertido. O seu ícono es otra forma de expresar o seu personalidad en el jogo. Ambos son visibles en la página de puntuações.",
+				"race": "Cambiar la raça de los habitantes de o seu império. Esto tendrá un costo."
 			},
 			"achievements": {
-				"title": "Achievements",
-				"description": "Achievements are milestones your empire can earn throughout the round. Some achievements will be earned easily but others will require a dedicated effort. Achievements are saved to your user profile so you can earn all achievements over the course of multiple game rounds."
+				"title": "Conquistas",
+				"description": "Os logros son hitos que o seu império puede ganar a lo largo de la ronda. Algunos logros se obtendrán fácilmente, pero otros requerirán un esfuerzo dedicado. Los logros se guardan en o seu perfil de usuario para que puedas ganar todos los logros en el transcurso de múltiples rondas de jogo."
 			},
 			"worldBank": {
-				"title": "The Bank",
-				"description": "The bank provides a place for empires both to store their excess funds and to take out loans during emergencies. View your current balances in your [Empire Summary](Summary).",
-				"accountLimits": "The maximum size of an empire's savings account and the most it can loan at once is determined mainly by the empire's [net worth](Overview).",
-				"savingsRate": "Savings account interest rates begin at {{bankSaveRate}}% and gradually decreases as your empire grows larger and begins to deposit more of its funds. Check your current rate in the [Overview](Overview).",
-				"loanRate": "Loan interest rates begin at {{bankLoanRate}}% and gradually increase as your empire grows larger and becomes more easily able to pay off loans. Check your current rate in the [Overview](Overview).",
-				"emergencyLoan": "If, while spending turns, your empire manages to run out of money, a loan will automatically be taken out for the amount you need, and the Bank will respect your state of emergency by allowing you to temporarily exceed your usual loan size limit by 100%. Consider using [cash focus](Cash) to earn more money.",
-				"finalWeek": "During the final week of a round, you will not be allowed to take out any additional loans. Make sure to check the [World News](World%20News) for round end announcements."
+				"title": "O Banco",
+				"description": "O banco proporciona un lugar para que los impérios almacenen os seus fondos excedentes e obtengan empréstimos durante emergencias. Ve os seus saldos actuales en o seu [Resumo do império](Summary).",
+				"accountLimits": "O tamanho máximo de la cuenta de poupança de un império e la cantidad máxima que puede pedir prestado a la vez se determina principalmente por el [património](Overview) del império.",
+				"savingsRate": "As tasas de interés de las cuentas de ahorro comienzan en {{bankSaveRate}}% e disminuyen gradualmente a medida que o seu império crece e comienza a depositar más fondos. Verifica o seu tasa actual en la [Vista Detallada](Overview).",
+				"loanRate": "As tasas de interés de los empréstimos comienzan en {{bankLoanRate}}% e aumentan gradualmente a medida que o seu império crece e puede pagar los empréstimos más fácilmente. Verifica o seu tasa actual en la [Vista Detallada](Overview).",
+				"emergencyLoan": "Si, mientras gastas turnos, o seu império se queda sin dinero, se tomará automáticamente un empréstimo por la cantidad que necesites, e o Banco respetará o seu estado de emergencia permitiéndote exceder temporalmente o seu límite habitual de empréstimo en un 100%. Considera usar el [enfoque económico](Cash) para ganar más dinero.",
+				"finalWeek": "Durante la última semana de una ronda, no lhe permitirá tomar empréstimos adicionales. Asegúrate de revisar las [Notícias do mundo](World%20News) para ver los anuncios de fin de ronda."
 			}
 		}
 	}

@@ -67,7 +67,13 @@
 			"toggle": "Alternar tema claro/escuro"
 		},
 		"shell": {
-			"errorBoundaryMessage": "Ocorreu um erro. Atualize a página."
+			"errorBoundaryMessage": "Ocorreu um erro. Atualize a página.",
+			"clockError": "Não foi possível carregar o relógio da rodada. Verifique a ligação e tente novamente.",
+			"retry": "Tentar de novo"
+		},
+		"lazy": {
+			"reloadLog": "Nova versão deste módulo encontrada. A recarregar...",
+			"reloadError": "Nova versão deste módulo encontrada. Recarregue a página."
 		}
 	}
 }

@@ -1,4 +1,5 @@
 import { lazy as _lazy } from "react"
+import i18n from "../../i18n"
 
 export default (function lazy(factory)
 {
@@ -15,12 +16,12 @@ export function importErrorHandler()
     // If the last reload time is more than 10 seconds ago, reload the page
     const isReloading = !time || time + 10000 < now;
     if (isReloading) {
-        console.log('New version for this module found. Reloading ...')
+        console.log(i18n.t("layout:layout.lazy.reloadLog"))
         sessionStorage.setItem('last-reload', String(now));
         window.location.reload();
         // Return an empty module so we do not see the error in the app before reloading
         return { default: () => null }
     }
 
-    throw new Error('New version for this module found. Please reload the page.')
+    throw new Error(i18n.t("layout:layout.lazy.reloadError"))
 }

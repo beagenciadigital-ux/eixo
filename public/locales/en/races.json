@@ -1,4 +1,20 @@
 {
+	"names": {
+		"human": "Human",
+		"elf": "Elf",
+		"dwarf": "Dwarf",
+		"troll": "Troll",
+		"gnome": "Gnome",
+		"gremlin": "Gremlin",
+		"orc": "Orc",
+		"drow": "Drow",
+		"goblin": "Goblin",
+		"hobbit": "Hobbit",
+		"ghoul": "Ghoul",
+		"minotaur": "Minotaur",
+		"vampire": "Vampire",
+		"pixie": "Pixie"
+	},
 	"dwarf": {
 		"welcome": "Welcome new Dwarf leader! Dwarves are specialized in industrial production and also have a strong defensive advantage. This tutorial will show you the steps to get started with your empire.",
 		"land": "Every empire needs as much land as they can get. While under new player protection, your only option to get more land is exploring. Click Explore in the sidebar.",

@@ -69,6 +69,9 @@
 		"role": "Rol",
 		"attack": "Ataque",
 		"castSpell": "Lanzar Hechizo",
-		"chat": "Chat"
+		"chat": "Chat",
+		"loading": "Cargando...",
+		"dr": "RD: {{pct}}%",
+		"roleOfClan": "{{role}} de {{clan}}"
 	}
 }

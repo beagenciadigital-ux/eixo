@@ -75,10 +75,18 @@ const EmpireStats = memo(({ empire, scoreEnabled }) => {
 					}
 					alt={raceArray[empire.race].name.toLowerCase()}
 				/>
-				<Text>{raceArray[empire.race].name}</Text>
+				<Text>
+					{t(`races:names.${raceArray[empire.race].name.toLowerCase()}`, {
+						defaultValue: raceArray[empire.race].name,
+					})}
+				</Text>
 			</Group>
 			<Group ml="xs" spacing={3} noWrap sx={{ width: "90px" }}>
-				<Text>DR: {Math.round(empire.diminishingReturns * 100) / 100}%</Text>
+				<Text>
+					{t("summary:card.dr", {
+						pct: Math.round(empire.diminishingReturns * 100) / 100,
+					})}
+				</Text>
 			</Group>
 		</Group>
 	)
@@ -87,7 +95,7 @@ const EmpireStats = memo(({ empire, scoreEnabled }) => {
 const ScoreCard = memo(({ empire, myEmpire, home, clan, clanTag, role }) => {
 	const [active, setActive] = useState(false)
 	const [opened, { toggle }] = useDisclosure(false)
-	const { t } = useTranslation(["summary"])
+	const { t } = useTranslation(["summary", "races"])
 	const { time } = useSelector((state) => state.time)
 
 	// Move selectors outside of useMemo
@@ -269,8 +277,14 @@ const ScoreCard = memo(({ empire, myEmpire, home, clan, clanTag, role }) => {
 						</Group>
 					</Group>
 					<Text>{empire.profile}</Text>
-					<Text>{clan && `${role} of ${clan}`}</Text>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Text>
+						{clan &&
+							t("summary:card.roleOfClan", {
+								role,
+								clan,
+							})}
+					</Text>
+					<Suspense fallback={<div>{t("summary:card.loading")}</div>}>
 						<Tabs defaultValue="" keepMounted={false}>
 							<Tabs.List>
 								<Tabs.Tab value="Recent News" disabled={disabled}>
