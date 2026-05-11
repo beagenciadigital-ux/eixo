@@ -118,8 +118,14 @@ const PubBuyCard = memo(
 					</Text>
 				</Card.Section>
 
-				{status !== "succeeded" ? (
+				{status === "loading" || status === "idle" ? (
 					<Loader />
+				) : status === "failed" ? (
+					<Card.Section p="sm">
+						<Text align="center" color="dimmed" size="sm">
+							{t("finance:publicMarket.loadError")}
+						</Text>
+					</Card.Section>
 				) : (
 					<Card.Section p="sm">
 						<SimpleGrid cols={2} spacing={1}>

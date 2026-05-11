@@ -1,0 +1,18 @@
+# Copia estas chaves para Environment do serviço da app no EasyPanel.
+# Substitui os placeholders; não commits ficheiros com segredos reais.
+
+NODE_ENV=production
+
+JWT_SECRET=PREENCHER_VALOR_FORTE
+DATABASE_URL=postgresql://USER:PASSWORD@HOST_POSTGRES_DOCKER:5432/eixo?sslmode=disable
+
+CRON_SECRET=PREENCHER_MESMO_VALOR_QUE_NO_CRON_BEARER
+
+# Opcional — CORS extra (origens separadas por vírgula), só se o teu domínio não estiver na lista default da app
+# ORIGIN=https://www.teudominio.com
+
+# Opcional — só se a API estiver noutro domínio que o site; rebuild obrigatório após mudar
+# NEXT_PUBLIC_API_ORIGIN=https://api.teudominio.com
+
+# Opcional — email de contacto na UI (NEXT_PUBLIC_* expõe ao browser)
+# NEXT_PUBLIC_CONTACT_EMAIL=suporte@teudominio.com

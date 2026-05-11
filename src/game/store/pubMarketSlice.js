@@ -1,6 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import Axios from 'axios'
 
+const emptyOtherItems = {
+	arm: [{ amount: 0, price: 0, type: 0 }],
+	lnd: [{ amount: 0, price: 0, type: 0 }],
+	fly: [{ amount: 0, price: 0, type: 0 }],
+	sea: [{ amount: 0, price: 0, type: 0 }],
+	food: [{ amount: 0, price: 0, type: 0 }],
+	runes: [{ amount: 0, price: 0, type: 0 }],
+}
+
 export const fetchMyItems = createAsyncThunk(
 	'market/myItems',
 	async (values, thunkAPI) => {
@@ -45,14 +54,7 @@ export const pubMarketSlice = createSlice({
 		statusMine: 'idle',
 		statusOthers: 'idle',
 		myItems: [],
-		otherItems: {
-			arm: [{ amount: 0, price: 0, type: 0 }],
-			lnd: [{ amount: 0, price: 0, type: 0 }],
-			fly: [{ amount: 0, price: 0, type: 0 }],
-			sea: [{ amount: 0, price: 0, type: 0 }],
-			food: [{ amount: 0, price: 0, type: 0 }],
-			runes: [{ amount: 0, price: 0, type: 0 }],
-		},
+		otherItems: { ...emptyOtherItems },
 	},
 	reducers: {
 		myItemsLoaded: (state, { payload }) => ({
@@ -79,6 +81,14 @@ export const pubMarketSlice = createSlice({
 			.addCase(fetchOtherItems.fulfilled, (state, action) => {
 				state.statusOthers = 'succeeded'
 				state.otherItems = action.payload
+			})
+			.addCase(fetchMyItems.rejected, (state) => {
+				state.statusMine = 'failed'
+				state.myItems = []
+			})
+			.addCase(fetchOtherItems.rejected, (state) => {
+				state.statusOthers = 'failed'
+				state.otherItems = { ...emptyOtherItems }
 			})
 	},
 })

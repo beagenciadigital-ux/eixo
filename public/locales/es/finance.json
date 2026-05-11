@@ -60,6 +60,7 @@
 		"responsePriceError": "Error al Actualizar el Precio",
 		"responseRecallSuccess": "Artículos Recuperados",
 		"responseRecallError": "Error al Recuperar Artículos",
+		"loadError": "No se pudieron cargar las ofertas. Actualiza la página.",
 		"edit": "Editar",
 		"recallButton": "Recuperar",
 		"wait": "Espera {{time}} horas",

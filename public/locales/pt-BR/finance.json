@@ -60,6 +60,7 @@
 		"responsePriceError": "Erro ao atualizar preço",
 		"responseRecallSuccess": "Itens recolhidos",
 		"responseRecallError": "Erro ao recolher",
+		"loadError": "Não foi possível carregar o mercado. Atualiza a página.",
 		"edit": "Editar",
 		"recallButton": "Recolher",
 		"wait": "Espere {{time}} horas",

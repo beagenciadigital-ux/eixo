@@ -236,11 +236,12 @@ const pubSell = async (req: Request, res: Response) => {
 		priceRunes,
 	];
 
-	priceArray.forEach((price, index) => {
+	for (let index = 0; index < priceArray.length; index++) {
+		const price = priceArray[index];
 		if (price < basePrices[index] * 0.33 || price > basePrices[index] * 2) {
 			return sendError(res, 400)("invalidPrice", language);
 		}
-	});
+	}
 
 	const sellArray = [sellArm, sellLnd, sellFly, sellSea, sellFood, sellRunes];
 	const trpArray = [

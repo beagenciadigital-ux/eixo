@@ -56,12 +56,12 @@ export function NothingFoundBackground()
             <div className={classes.inner}>
                 <Illustration className={classes.image} />
                 <div className={classes.content}>
-                    <Title className={classes.title}>{t('pages:error.title')}</Title>
+                    <Title className={classes.title}>{t('home.error.title')}</Title>
                     <Text color="dimmed" size="lg" align="center" className={classes.description}>
-                        {t('pages:error.description')}
+                        {t('home.error.description')}
                     </Text>
                     <Group position="center">
-                        <Button size="md" component='a' href='/'>{t('pages:error.homeButton')}</Button>
+                        <Button size="md" component='a' href='/'>{t('home.error.homeButton')}</Button>
                     </Group>
                 </div>
             </div>

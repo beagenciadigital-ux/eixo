@@ -38,6 +38,10 @@ export const scoresSlice = createSlice({
 				state.status = 'succeeded'
 				state.scores = action.payload
 			})
+			.addCase(loadScores.rejected, (state) => {
+				state.status = 'failed'
+				state.scores = []
+			})
 	},
 })
 

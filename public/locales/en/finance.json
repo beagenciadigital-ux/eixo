@@ -60,6 +60,7 @@
 		"responsePriceError": "Error Updating Price",
 		"responseRecallSuccess": "Items Recalled",
 		"responseRecallError": "Error Recalling Items",
+		"loadError": "Could not load market listings. Try refreshing the page.",
 		"edit": "Edit",
 		"recallButton": "Recall",
 		"wait": "Wait {{time}} hours",

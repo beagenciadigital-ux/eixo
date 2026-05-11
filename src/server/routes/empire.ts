@@ -282,7 +282,16 @@ const getOtherEmpires = async (req: Request, res: Response) => {
 
 // GET EMPIRE LIST FOR SCORES
 const getScores = async (req: Request, res: Response) => {
-	const { gameId } = req.query
+	const raw = req.query.gameId
+	const gameIdStr = Array.isArray(raw) ? raw[0] : raw
+	const gameIdNum =
+		typeof gameIdStr === "string" && gameIdStr !== ""
+			? Number(gameIdStr)
+			: NaN
+	if (gameIdStr === undefined || gameIdStr === "" || !Number.isFinite(gameIdNum)) {
+		return res.status(400).json({ error: "Game ID is required." })
+	}
+
 	try {
 		const empires = await getEmpireRepo().find({
 			select: [
@@ -309,7 +318,7 @@ const getScores = async (req: Request, res: Response) => {
 				"game_id",
 				"score",
 			],
-			where: { game_id: gameId },
+			where: { game_id: gameIdNum },
 			order: {
 				rank: "ASC",
 			},
@@ -317,7 +326,7 @@ const getScores = async (req: Request, res: Response) => {
 		})
 
 		if (empires.length === 0) {
-			return res.status(400).json({ error: "No empires found" })
+			return res.json([])
 		}
 
 		const newEmpires = await Promise.all(
@@ -334,7 +343,7 @@ const getScores = async (req: Request, res: Response) => {
 							"empireIdAgent2",
 							"clanTag",
 						],
-						where: { id: empire.clanId, game_id: gameId },
+						where: { id: empire.clanId, game_id: gameIdNum },
 						relations: ["relation"],
 					})
 

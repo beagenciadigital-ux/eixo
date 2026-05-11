@@ -13,9 +13,15 @@ export function ClientProviders({
 	children: React.ReactNode;
 }) {
 	useEffect(() => {
-		if (process.env.NODE_ENV === "production") {
-			void import("@vercel/analytics").then(({ inject }) => inject());
-		}
+		if (process.env.NODE_ENV !== "production") return;
+		const explicit =
+			process.env.NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS === "1";
+		const host =
+			typeof window !== "undefined" ? window.location.hostname : "";
+		const onVercel =
+			host === "vercel.app" || host.endsWith(".vercel.app");
+		if (!explicit && !onVercel) return;
+		void import("@vercel/analytics").then(({ inject }) => inject());
 	}, []);
 
 	return (
