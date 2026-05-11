@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     "src/game/**",
     // Express/TypeORM handlers live here; lint incrementally later.
     "src/server/**",
+    // Node CommonJS scripts (require() is intentional).
+    "scripts/**/*.cjs",
   ]),
 ]);
 

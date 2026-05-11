@@ -15,7 +15,6 @@ import {
 	MediaQuery,
 	Navbar,
 	Title,
-	ScrollArea,
 	Button,
 	Image,
 	Center,
@@ -304,9 +303,16 @@ function App() {
 									}}
 								>
 									<Navbar.Section grow ml={10}>
-										<ScrollArea h="100%">
+										<Box
+											h="100%"
+											sx={{
+												minHeight: 0,
+												overflowY: "auto",
+												overflowX: "hidden",
+											}}
+										>
 											<Sidebar game={activeGame} />
-										</ScrollArea>
+										</Box>
 									</Navbar.Section>
 									<Navbar.Section>
 										<Button
@@ -497,14 +503,18 @@ function App() {
 										minHeight: "calc(100vh - 2rem - env(safe-area-inset-bottom))",
 									}}
 								>
-									<ScrollArea
+									<Box
 										sx={{
 											flex: 1,
-											maxHeight: "calc(100vh - 200px - env(safe-area-inset-bottom))",
+											minHeight: 0,
+											maxHeight:
+												"calc(100vh - 200px - env(safe-area-inset-bottom))",
+											overflowY: "auto",
+											overflowX: "hidden",
 										}}
 									>
 										<Sidebar game={activeGame} />
-									</ScrollArea>
+									</Box>
 									<Stack spacing="sm">
 										<LanguageSelector />
 										<Button

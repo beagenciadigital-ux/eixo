@@ -1,4 +1,4 @@
-import { Tabs, Title, Center, Stack, Text } from "@mantine/core"
+import { Tabs, Title, Center, Stack, Text, Loader } from "@mantine/core"
 import lazy from '../utilities/lazyWrapper'
 const PrivateMarketBuy = lazy(() => import('./PrivateMarketBuy'))
 const PrivateMarketSell = lazy(() => import('./PrivateMarketSell'))
@@ -6,11 +6,23 @@ const PrivateMarketSell = lazy(() => import('./PrivateMarketSell'))
 // import PrivateMarketSell from "./PrivateMarketSell"
 import { checkRoundStatus } from "../../functions/checkRoundStatus"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 
 export default function PrivateMarket()
 {
     const { t } = useTranslation(['finance'])
+    const activeGame = useSelector((state) => state.games.activeGame)
     const roundStatus = checkRoundStatus()
+
+    if (!activeGame) {
+        return (
+            <main>
+                <Center style={{ minHeight: 240 }}>
+                    <Loader />
+                </Center>
+            </main>
+        )
+    }
 
     return (
         <main>

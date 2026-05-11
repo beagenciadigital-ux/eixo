@@ -1,0 +1,25 @@
+# deps e artefactos locais
+node_modules
+.next
+out
+dist
+
+# git e IDE
+.git
+.gitignore
+.cursor
+*.md
+!README.md
+
+# env (segredos entram por Easypanel / -e / compose)
+.env
+.env.*
+!.env.example
+
+# testes e caches
+coverage
+.turbo
+.vercel
+pnpm-debug.log*
+npm-debug.log*
+.DS_Store

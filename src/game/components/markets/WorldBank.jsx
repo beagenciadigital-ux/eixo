@@ -8,6 +8,7 @@ import {
 	SimpleGrid,
 	Text,
 	Stack,
+	Loader,
 } from "@mantine/core"
 import { useSelector } from "react-redux"
 import { useForm } from "@mantine/form"
@@ -22,10 +23,28 @@ import { useTranslation } from "react-i18next"
 
 export default function WorldBank() {
 	const { empire } = useSelector((state) => state.empire)
-	const { bankSaveRate, bankLoanRate } = useSelector(
-		(state) => state.games.activeGame,
+	const activeGame = useSelector((state) => state.games.activeGame)
+	const loadEmpire = useLoadEmpire(empire?.uuid)
+
+	if (!empire || !activeGame) {
+		return (
+			<Center style={{ minHeight: 240 }}>
+				<Loader />
+			</Center>
+		)
+	}
+
+	return (
+		<WorldBankLoaded
+			empire={empire}
+			activeGame={activeGame}
+			loadEmpire={loadEmpire}
+		/>
 	)
-	const loadEmpire = useLoadEmpire(empire.uuid)
+}
+
+function WorldBankLoaded({ empire, activeGame, loadEmpire }) {
+	const { bankSaveRate, bankLoanRate } = activeGame
 	// let loanDefault = empire.loan
 	const bankRef = useRef()
 	const loanRef = useRef()
@@ -68,7 +87,7 @@ export default function WorldBank() {
 
 		validationRules: {
 			withdrawAmt: (value) => value <= empire.bank && value >= 0,
-			depositAmt: (value) => value <= depositAmount && value >= 0,
+			depositAmt: (value) => value <= canSave && value >= 0,
 		},
 
 		errorMessages: {

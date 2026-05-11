@@ -5,8 +5,9 @@
  */
 const path = require("path");
 const { Client } = require("pg");
-require("dotenv").config({ path: path.join(__dirname, "..", ".env.local") });
-require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
+const root = path.join(__dirname, "..");
+require("dotenv").config({ path: path.join(root, ".env") });
+require("dotenv").config({ path: path.join(root, ".env.local"), override: true });
 
 const usernameArg = process.argv[2]?.trim();
 if (!usernameArg) {

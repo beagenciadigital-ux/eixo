@@ -14,7 +14,7 @@ import
     MediaQuery,
     Navbar,
     Title,
-    ScrollArea,
+    Box,
     Button,
     Image,
 } from '@mantine/core'
@@ -105,13 +105,17 @@ function Admin()
                                 zIndex={110}
                                 sx={{ paddingBottom: 'calc(1em + env(safe-area-inset-bottom))' }}
                             >
-                                <Navbar.Section
-                                    grow
-                                    component={ScrollArea}
-                                    ml={10}
-                                    onClick={() => setOpened(false)}
-                                >
-                                    <AdminSidebar />
+                                <Navbar.Section grow ml={10} onClick={() => setOpened(false)}>
+                                    <Box
+                                        h="100%"
+                                        sx={{
+                                            minHeight: 0,
+                                            overflowY: 'auto',
+                                            overflowX: 'hidden',
+                                        }}
+                                    >
+                                        <AdminSidebar />
+                                    </Box>
                                 </Navbar.Section>
                                 <Navbar.Section>
                                     <Button

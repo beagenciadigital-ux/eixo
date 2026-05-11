@@ -51,6 +51,8 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
+			// Persisted slices (empire, games, etc.) make full-tree freezes expensive in dev.
+			immutableCheck: { warnAfter: 128 },
 		}),
 })
 

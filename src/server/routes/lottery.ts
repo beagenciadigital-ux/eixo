@@ -25,13 +25,16 @@ const buyTicket = async (req: Request, res: Response) => {
 
 	const empire = await Empire.findOne({ id: empireId })
 
+	if (!empire) {
+		return res.status(404).json({ error: 'Empire not found' })
+	}
+
 	if (empire.turnsUsed < game.turnsProtection || empire.mode === 'demo') {
 		return res.status(400).json({ error: 'not allowed' })
 	}
 
-	const allTickets = await Lottery.find()
 	const empireTickets = await Lottery.find({
-		where: { empire_id: empireId },
+		where: { empire_id: empireId, game_id: game.game_id },
 		order: {
 			createdAt: 'DESC',
 		},
@@ -54,10 +57,14 @@ const buyTicket = async (req: Request, res: Response) => {
 	empire.cash -= ticketCost
 	await empire.save()
 
+	const ticketCount = await Lottery.count({
+		where: { game_id: game.game_id, ticket: Not(0) },
+	})
+
 	const ticket = new Lottery()
 	ticket.empire_id = empireId
 	ticket.cash = ticketCost * 10
-	ticket.ticket = allTickets.length + 1
+	ticket.ticket = ticketCount + 1
 	ticket.game_id = game.game_id
 	await ticket.save()
 
@@ -67,10 +74,15 @@ const buyTicket = async (req: Request, res: Response) => {
 const getJackpot = async (req: Request, res: Response) => {
 	const game: Game = res.locals.game
 
-	const allTickets = await Lottery.find({ where: { game_id: game.id } })
+	const allTickets = await Lottery.find({
+		where: { game_id: game.game_id },
+	})
 
 	let jackpot = 0
-	const jackpotTracker = await Lottery.findOne({ ticket: 0, game_id: game.id })
+	const jackpotTracker = await Lottery.findOne({
+		ticket: 0,
+		game_id: game.game_id,
+	})
 	// console.log(jackpotTracker)
 	if (!jackpotTracker) {
 		jackpot += game.lotteryJackpot
@@ -88,10 +100,18 @@ const getJackpot = async (req: Request, res: Response) => {
 }
 
 const getTickets = async (req: Request, res: Response) => {
-	const { empireId } = req.params
+	const empireId = Number(req.params.empireId)
+	if (!Number.isFinite(empireId)) {
+		return res.status(400).json({ error: 'Invalid empire id' })
+	}
+
+	const empire = await Empire.findOne({ id: empireId })
+	if (!empire) {
+		return res.status(404).json({ error: 'Empire not found' })
+	}
 
 	const tickets = await Lottery.findAndCount({
-		where: { empire_id: empireId },
+		where: { empire_id: empireId, game_id: empire.game_id },
 	})
 
 	return res.json({ success: tickets[1] })
@@ -99,9 +119,13 @@ const getTickets = async (req: Request, res: Response) => {
 
 const getTotalTickets = async (req: Request, res: Response) => {
 	const { gameId } = req.query
-	console.log(gameId)
+	const gameIdNum = Number(gameId)
+	if (!Number.isFinite(gameIdNum)) {
+		return res.status(400).json({ error: 'Game ID is required.' })
+	}
+
 	const tickets = await Lottery.findAndCount({
-		where: { ticket: Not(0), game_id: gameId },
+		where: { ticket: Not(0), game_id: gameIdNum },
 	})
 
 	return res.json({ success: tickets[1] })
