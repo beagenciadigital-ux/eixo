@@ -150,227 +150,227 @@
 				}
 			},
 			"military": {
-				"title": "Military Units",
-				"description": "Your military serves not only to protect your empire from harm, but to strike out against others who threaten you. Different units are used in different [attack types](War%20Council) and can be produced through [industry](Industry) or purchased from the [markets](Black%20Market).",
+				"title": "Unidades militares",
+				"description": "O exército serve para defender o império e para atacar quem o ameaça. Tipos diferentes de unidade entram em [tipos de ataque](War%20Council) distintos; pode produzi-las na [indústria](Industry) ou comprá-las nos [mercados](Black%20Market).",
 				"eraButtons": {
-					"past": "Past",
-					"present": "Present",
-					"future": "Future"
+					"past": "Passado",
+					"present": "Presente",
+					"future": "Futuro"
 				},
 				"units": {
 					"armored": {
 						"name": "{{unitName}}",
-						"description": "The basic military unit used in Guerrilla Strikes. Not the strongest unit, but with a cheaper price tag these can be mobilized in large groups to cause plenty of damage to your enemy.",
-						"stats": "Base cost ${{cost}}, offensive power {{offense}}, defensive power {{defense}}."
+						"description": "Unidade base usada em ataques de guerrilha. Não é a mais forte, mas custa menos e pode ser mobilizada em massa para causar muitos danos ao inimigo.",
+						"stats": "Custo base ${{cost}}, poder ofensivo {{offense}}, poder defensivo {{defense}}."
 					},
 					"land": {
 						"name": "{{unitName}}",
-						"description": "A strong {{primaryStrength}} unit used in Seige Attacks. Can be used in attacks to gain land from your enemies.",
-						"stats": "Base cost ${{cost}}, offensive power {{offense}}, defensive power {{defense}}."
+						"description": "Unidade forte de {{primaryStrength}} usada em cercos. Serve para conquistar terras aos inimigos.",
+						"stats": "Custo base ${{cost}}, poder ofensivo {{offense}}, poder defensivo {{defense}}."
 					},
 					"air": {
 						"name": "{{unitName}}",
-						"description": "An Air Strike attack is sometimes the best way to go; these can also capture land in special attacks and have an edge in {{primaryStrength}}.",
-						"stats": "Base cost ${{cost}}, offensive power {{offense}}, defensive power {{defense}}."
+						"description": "O ataque aéreo é por vezes a melhor opção; estas unidades também podem capturar terra em ataques especiais e têm vantagem em {{primaryStrength}}.",
+						"stats": "Custo base ${{cost}}, poder ofensivo {{offense}}, poder defensivo {{defense}}."
 					},
 					"sea": {
 						"name": "{{unitName}}",
-						"description": "This unit is used in Coastal Assaults but they are used not only for military purposes as they are needed to ship foreign aid to other empires. With both strong offensive and defensive capabilities, it is the most expensive unit, but also the most powerful.",
-						"stats": "Base cost ${{cost}}, offensive power {{offense}}, defensive power {{defense}}."
+						"description": "Usada em assaltos costeiros e para enviar ajuda externa a outros impérios. Forte em ataque e defesa; é a unidade mais cara e a mais poderosa.",
+						"stats": "Custo base ${{cost}}, poder ofensivo {{offense}}, poder defensivo {{defense}}."
 					}
 				}
 			},
 			"buildings": {
-				"title": "Structures",
-				"description": "Your empire's land can be allocated for the following purposes. Buildings can be [built](Build) or [demolished](Demolish) to adjust your empire's focus:",
+				"title": "Estruturas",
+				"description": "A terra do império pode ser dedicada a estes fins. Os edifícios podem ser [construídos](Build) ou [demolidos](Demolish) para mudar o foco:",
 				"types": {
 					"housing": {
 						"name": "{{buildingName}}",
-						"description": "While {{peasantName}} will live on unused land, these are specifically designed for housing. As a result, they allow you to house a great deal more {{peasantName}} than otherwise. More {{peasantName}} means more tax income when using [cash focus](Cash)."
+						"description": "Os {{peasantName}} podem viver em terra vazia, mas estes edifícios são feitos para alojamento: cabem muito mais {{peasantName}}. Mais população significa mais imposto quando se usa o foco em [dinheiro](Cash)."
 					},
 					"economy": {
 						"name": "{{buildingName}}",
-						"description": "These allow your empire's economy to grow, helping to increase your Per Capita Income, as well as directly producing money themselves. Essential for [casher strategy](Casher)."
+						"description": "Fazem a economia crescer, aumentam a renda per capita e geram dinheiro diretamente. Essenciais na [estratégia de economista](Casher)."
 					},
 					"military": {
 						"name": "{{buildingName}}",
-						"description": "These produce your [military units](Military); the percentage of resources allocated to each unit type produced is controlled through the [industry settings](Industry)."
+						"description": "Produzem as [unidades militares](Military); a percentagem de recursos por tipo de unidade define-se nas [definições de indústria](Industry)."
 					},
 					"barracks": {
 						"name": "{{buildingName}}",
-						"description": "These allow you to reduce your military expenses by more efficiently housing your units. They will also lower the price of all military units purchased from the [Black Market](Black%20Market). These also increase the rate at which your Black Market refills."
+						"description": "Reduzem despesas militares ao alojar tropas com mais eficiência, baixam o preço das unidades compradas no [mercado negro](Black%20Market) e aceleram o reabastecimento do mercado negro."
 					},
 					"magic": {
 						"name": "{{buildingName}}",
-						"description": "These serve to train and house {{wizardType}}, as well as produce {{runeType}} with which they may cast their [spells](Magic%20Center). Essential for [mage strategy](Mage)."
+						"description": "Treinam e alojam {{wizardType}} e produzem {{runeType}} para lançar [feitiços](Magic%20Center). Essenciais na [estratégia de mago](Mage)."
 					},
 					"food": {
 						"name": "{{buildingName}}",
-						"description": "These are vital for feeding your {{peasantName}} and military; without food, your population and army will starve and desert your empire. Essential for [farmer strategy](Farmer)."
+						"description": "Alimentam {{peasantName}} e o exército; sem comida a população e as tropas morrem de fome e desertam. Essenciais na [estratégia de fazendeiro](Farmer)."
 					},
 					"defense": {
 						"name": "{{buildingName}}",
-						"description": "These are a strictly defensive building, for every 1% of land built as {{buildingName}}, your defense is increased by 1% (up to 50%) and your diminishing returns (DR) rate increases by 0.01. Helps protect against [attacks](War%20Council)."
+						"description": "Edifício puramente defensivo: por cada 1% de terra em {{buildingName}}, a defesa sobe 1% (até 50%) e a taxa de retornos decrescentes (DR) aumenta 0,01. Ajuda contra [ataques](War%20Council)."
 					}
 				}
 			},
 			"race": {
-				"title": "Races",
-				"description": "There are many different races in the world, each with their own distinct advantages and disadvantages in the following areas:",
-				"scroll": "Scroll to see more",
+				"title": "Raças",
+				"description": "Há várias raças, cada uma com vantagens e desvantagens nas áreas abaixo:",
+				"scroll": "Role para ver mais",
 				"attributes": {
-					"name": "Race",
+					"name": "Raça",
 					"offense": {
-						"name": "Offense",
-						"description": "Your offensive power while attacking other empires."
+						"name": "Ofensiva",
+						"description": "Poder ofensivo ao atacar outros impérios."
 					},
 					"defense": {
-						"name": "Defense",
-						"description": "Your defensive power when being attacked by other empires."
+						"name": "Defesa",
+						"description": "Poder defensivo quando sofre ataques."
 					},
 					"building": {
-						"name": "Building",
-						"description": "How quickly you can construct (and demolish) structures."
+						"name": "Construção",
+						"description": "Velocidade para construir e demoler estruturas."
 					},
 					"upkeep": {
-						"name": "Upkeep*",
-						"description": "The amount of money you must pay for upkeep on your military units."
+						"name": "Manutenção*",
+						"description": "Dinheiro pago por turno para manter as unidades militares."
 					},
 					"magic": {
-						"name": "Magic",
-						"description": "Your magical power, used when casting spells and when other empires cast spells on you."
+						"name": "Magia",
+						"description": "Poder mágico ao lançar feitiços e quando outros lançam feitiços sobre si."
 					},
 					"industry": {
-						"name": "Industry",
-						"description": "Your ability to produce military units."
+						"name": "Indústria",
+						"description": "Capacidade de produzir unidades militares."
 					},
 					"economy": {
-						"name": "Economy",
-						"description": "Your Per Capita Income, how much money your citizens make each turn."
+						"name": "Economia",
+						"description": "Renda per capita: quanto os cidadãos geram por turno."
 					},
 					"exploration": {
-						"name": "Exploration",
-						"description": "How much land you gain per turn spent exploring."
+						"name": "Exploração",
+						"description": "Quanta terra ganha por turno gasto a explorar."
 					},
 					"market": {
-						"name": "Market*",
-						"description": "The prices of military units on the private market."
+						"name": "Mercado*",
+						"description": "Preços das unidades militares no mercado privado."
 					},
 					"consumption": {
-						"name": "Consumption*",
-						"description": "The amount of {{foodType}} your population and military consumes each turn."
+						"name": "Consumo*",
+						"description": "Quantidade de {{foodType}} que a população e o exército consomem por turno."
 					},
 					"energy": {
-						"name": "Energy",
-						"description": "The rate at which your {{wizardType}} produce {{runeType}}."
+						"name": "Energia",
+						"description": "Velocidade a que os {{wizardType}} produzem {{runeType}}."
 					},
 					"agriculture": {
-						"name": "Agriculture",
-						"description": "The rate at which your {{farmType}} produce {{foodType}}."
+						"name": "Agricultura",
+						"description": "Velocidade a que as {{farmType}} produzem {{foodType}}."
 					}
 				},
-				"note": "For all of the above values, a positive percentage works to your empire's advantage while a negative percentage acts as a penalty. For attributes noted with a \"*\", this may seem backwards - for example, a food consumption penalty (negative) will increase how much food your units require, while an upkeep bonus (positive) will decrease your expenses."
+				"note": "Percentagens positivas ajudam o império; negativas penalizam. Nos atributos com \"*\" o sinal pode parecer contraintuitivo: uma penalização de consumo de comida (negativa) aumenta a comida que as unidades precisam, enquanto um bónus de manutenção (positivo) reduz despesas."
 			},
 			"era": {
-				"title": "Time Periods",
-				"description": "Empires in this world exist in 3 different time periods. Interacting directly with an empire in another era requires an open [Time Gate](Magic%20Center).",
-				"militaryNote": "The offensive and defensive power of [military units](Military) varies with one's era. Additionally, empires in different eras receive the following bonuses and penalties:",
+				"title": "Períodos de tempo",
+				"description": "Os impérios existem em três eras. Interagir diretamente com outra era exige um [portal do tempo](Magic%20Center) aberto.",
+				"militaryNote": "O poder ofensivo e defensivo das [unidades militares](Military) depende da era. Impérios em eras diferentes recebem estes bónus e penalizações:",
 				"attributes": {
 					"economy": {
-						"name": "Economy",
-						"description": "Affects the per capita income of your [citizens](Cash)."
+						"name": "Economia",
+						"description": "Altera a renda per capita dos [cidadãos](Cash)."
 					},
 					"foodProduction": {
-						"name": "Food Production",
-						"description": "Affects how productive your [{{farmType}}](Farm) are."
+						"name": "Produção de alimentos",
+						"description": "Altera a produtividade das [{{farmType}}](Farm)."
 					},
 					"industry": {
-						"name": "Industry",
-						"description": "Affects your ability to [produce military units](Industry)."
+						"name": "Indústria",
+						"description": "Altera a capacidade de [produzir unidades militares](Industry)."
 					},
 					"energy": {
-						"name": "Energy",
-						"description": "The rate at which your [{{wizardType}}](Magic%20Center) produce {{runeType}}."
+						"name": "Energia",
+						"description": "Velocidade a que os [{{wizardType}}](Magic%20Center) produzem {{runeType}}."
 					},
 					"exploration": {
-						"name": "Exploration",
-						"description": "How much land you gain per turn spent [exploring](Explore)."
+						"name": "Exploração",
+						"description": "Quanta terra ganha por turno gasto a [explorar](Explore)."
 					}
 				}
 			},
 			"farmer": {
-				"title": "Farmer Strategy",
-				"description": "As a farmer, your primary goal is to produce food and sell it to other players. Food is in high demand from most players in the game because [troops](Military) and [{{wizardType}}](Magic%20Center) consume a lot of food.",
+				"title": "Estratégia de fazendeiro",
+				"description": "Como fazendeiro, o foco é produzir comida e vendê-la a outros jogadores. A comida é muito procurada porque [tropas](Military) e [{{wizardType}}](Magic%20Center) consomem muito.",
 				"setup": {
-					"title": "Set up",
-					"raceRecommendation": "The best [races](Race) for a farming strategy are Gremlin, and Goblin due to their lower food consumption and higher food production. Farmers are also best suited for the {{presentEra}} due to the {{foodBonus}}% increase in food production. Players should aim to use the [Magic Center](Magic%20Center) to advance as soon as possible.",
-					"buildings": "Farmers only need to focus on two primary building types: [{{farmType}}](Build) and [{{wizardBuilding}}](Build). {{farmType}} obviously produce food. {{wizardBuilding}} are needed in small quantities to advance eras and protect yourself from magical attacks with [{{spellShield}}](Magic%20Center)."
+					"title": "Preparação",
+					"raceRecommendation": "As melhores [raças](Race) para agricultura são Gremlin e Goblin (menos consumo de comida, mais produção). Fazendeiros encaixam bem na {{presentEra}} pelo bónus de {{foodBonus}}% em comida. Use o [Centro mágico](Magic%20Center) para avançar de era o quanto antes.",
+					"buildings": "Concentre-se em dois tipos: [{{farmType}}](Build) e [{{wizardBuilding}}](Build). As {{farmType}} produzem comida; poucas {{wizardBuilding}} servem para mudar de era e lançar [{{spellShield}}](Magic%20Center) contra magia inimiga."
 				},
 				"turnsUsage": {
-					"title": "Using Turns",
-					"initialPhase": "Start your session with full turns ({{maxTurns}}). Use your initial turns [attacking](War%20Council) other players. Your health will drop as you attack. When your health is less than 70% or you fail an attack, it is time to stop and [build](Build). Build {{farmType}} so that they make up around 95% of your buildings. After you build, [farm](Farm) until you are back to 100% health. Repeat this process until you are out of attacks.",
-					"foodProduction": "Now that you have a lot of land and farms built, focus the rest of your time producing food. Don't forget to cast a [spell shield](Magic%20Center) before you run out of turns.",
-					"selling": "Take your overflowing bounty of food and sell it on the [Public Market](Public%20Market) for a reasonable price.",
-					"profits": "Hopefully when you return to use more turns, someone will have purchased your food. The cash you made will be in the [bank](The%20Bank). Use the proceeds to purchase troops and keep some left over for expenses."
+					"title": "Uso de turnos",
+					"initialPhase": "Comece com turnos cheios ({{maxTurns}}). Use turnos iniciais a [atacar](War%20Council); a saúde desce. Pare quando a saúde for inferior a 70% ou falhar um ataque e [construa](Build): cerca de 95% de {{farmType}}. Depois [Fazenda](Farm) até recuperar 100% de saúde. Repita até ficar sem ataques.",
+					"foodProduction": "Com muita terra e fazendas, use o resto do tempo a produzir comida. Lance [escudo mágico](Magic%20Center) antes de ficar sem turnos.",
+					"selling": "Venda o excesso no [Mercado público](Public%20Market) a preço razoável.",
+					"profits": "Quando voltar, alguém pode ter comprado a comida; o dinheiro estará no [banco](The%20Bank). Compre tropas e guarde caixa para despesas."
 				}
 			},
 			"indy": {
-				"title": "Industrialist Strategy",
-				"description": "As an Indy (Industrialist), your primary goal is to produce troops and sell them to other players. Your troops will be in high demand from other players looking to expand their armies.",
+				"title": "Estratégia industrial",
+				"description": "Como industrialista, produza tropas e venda-as; outros jogadores precisam de exércitos.",
 				"setup": {
-					"title": "Set up",
-					"raceRecommendation": "The best [races](Race) for an Indy strategy are Dwarf, Orc, or Goblin due to their industry bonus. Indys are also best suited for the {{futureEra}} due to the {{industryBonus}}% increase to industry output. Players should aim to [advance to this era](Magic%20Center) as soon as possible.",
-					"buildings": "Indys need to focus on a few building types: [{{militaryBuilding}}](Build), [{{barracksBuilding}}](Build) and [{{wizardBuilding}}](Build). {{militaryBuilding}} produces new troops. {{barracksBuilding}} reduce the upkeep cost of troops and reduce the prices on the [black market](Black%20Market). {{wizardBuilding}} are needed in small quantities to advance eras and protect yourself from magical attacks with [{{spellShield}}](Magic%20Center)."
+					"title": "Preparação",
+					"raceRecommendation": "Melhores [raças](Race): Anão, Orc ou Goblin (bónus de indústria). A {{futureEra}} dá {{industryBonus}}% extra à indústria; [avançe para essa era](Magic%20Center) cedo.",
+					"buildings": "Foque [{{militaryBuilding}}](Build), [{{barracksBuilding}}](Build) e [{{wizardBuilding}}](Build). {{militaryBuilding}} cria tropas; {{barracksBuilding}} reduz manutenção e preços no [mercado negro](Black%20Market); {{wizardBuilding}} em pequena quantidade para eras e [{{spellShield}}](Magic%20Center)."
 				},
 				"turnsUsage": {
-					"title": "Using Turns",
-					"initialPhase": "In order to produce the most troops you can, you will need a lot of land. Start your session with full turns ({{maxTurns}}). Use your initial turns [attacking](War%20Council) other players. Your health will drop as you attack. When your health is less than 70% or you fail an attack, it is time to stop and [build](Build). Build {{militaryBuilding}} so that they make up around 85% of your buildings. After you build, use [industry](Industry) until you are back to 100% health. Repeat this process until you are out of attacks.",
-					"troopProduction": "Now that you have a lot of land and {{militaryBuilding}}, focus the rest of your time producing troops. Don't forget to cast a [spell shield](Magic%20Center) before you run out of turns. If you start to run low on cash or food, you can sell some troops on the [black market](Black%20Market) for quick cash.",
-					"selling": "Take excess troops you just made and sell them on the [public market](Public%20Market) for a reasonable price. If they are too expensive, other players may not want to buy them. If they are too cheap, you will not make as much money as you could have. It can be good to sell troops in batches at different price points to see what works best.",
-					"profits": "Hopefully when you return to use more turns, someone will have purchased your troops. The cash you made will be in your [bank account](The%20Bank). Use the proceeds to purchase food and keep some left over for expenses."
+					"title": "Uso de turnos",
+					"initialPhase": "Precisa de muita terra. Com turnos cheios ({{maxTurns}}), [ataque](War%20Council) até a saúde cair abaixo de 70% ou falhar; depois [construa](Build) ~85% de {{militaryBuilding}} e use [Indústria](Industry) até 100% de saúde. Repita até ficar sem ataques.",
+					"troopProduction": "Com terra e forjas, produza tropas. [Escudo mágico](Magic%20Center) antes de ficar sem turnos. Se faltar caixa ou comida, venda tropas no [mercado negro](Black%20Market).",
+					"selling": "Venda o excesso no [mercado público](Public%20Market). Preço demasiado alto afasta compradores; demasiado baixo reduz lucro; experimente lotes a preços diferentes.",
+					"profits": "Ao regressar, o dinheiro das vendas estará na [conta bancária](The%20Bank). Compre comida e reserve para despesas."
 				}
 			},
 			"casher": {
-				"title": "Casher Strategy",
-				"description": "As a casher, your primary goal is to produce cash for yourself. You will rely on other players to purchase food and troops from the [markets](Public%20Market).",
+				"title": "Estratégia de economista",
+				"description": "Como economista, maximiza o dinheiro no império e compra comida e tropas nos [mercados](Public%20Market).",
 				"setup": {
-					"title": "Set up",
-					"raceRecommendation": "The best [races](Race) for a casher strategy are Gnome, Vampire, and Minotaur due to their lower troop upkeep, higher per capita income, and market bonus (Gnome only). Cashers are also best suited for the {{futureEra}} due to the {{cashBonus}}% increase in income. Players should aim to [advance to this era](Magic%20Center) as soon as possible.",
-					"buildings": "Cashers need to focus on a few building types: [{{housingBuilding}}](Build), [{{economyBuilding}}](Build), [{{barracksBuilding}}](Build) and [{{wizardBuilding}}](Build). {{housingBuilding}} brings more {{peasantName}} to your empire increasing your population. {{economyBuilding}} produce income and increase your per capita income. {{barracksBuilding}} reduce the upkeep cost of troops and reduce the prices on the [black market](Black%20Market). {{wizardBuilding}} are needed in small quantities to advance eras and protect yourself from magical attacks with [{{spellShield}}](Magic%20Center)."
+					"title": "Preparação",
+					"raceRecommendation": "Melhores [raças](Race): Gnomo, Vampiro e Minotauro (manutenção baixa, renda alta; bónus de mercado no Gnomo). A {{futureEra}} dá {{cashBonus}}% de rendimento; [avançe](Magic%20Center) cedo.",
+					"buildings": "Use [{{housingBuilding}}](Build), [{{economyBuilding}}](Build), [{{barracksBuilding}}](Build) e [{{wizardBuilding}}](Build). Cabanas trazem {{peasantName}}; mercados geram renda e renda per capita; quartéis reduzem custos e preços no [mercado negro](Black%20Market); torres para eras e [{{spellShield}}](Magic%20Center)."
 				},
 				"turnsUsage": {
-					"title": "Using Turns",
-					"initialPhase": "In order to produce the most cash you can, you will need a lot of land. Start your session with full turns ({{maxTurns}}). Use your initial turns [attacking](War%20Council) other players. Your health will drop as you attack. When your health is less than 70% or you fail an attack, it is time to stop and [build](Build). Build {{housingBuilding}} and {{economyBuilding}} so that they make up around 45% of your buildings each. After you build, use [cash](Cash) until you are back to 100% health. Repeat this process until you are out of attacks. During this time it can be beneficial to lower your [tax rate](Cash) to encourage {{peasantName}} to come to your empire.",
-					"cashProduction": "Now that you have a lot of land, {{housingBuilding}}, {{economyBuilding}}, and {{peasantName}}, focus the rest of your time producing food. During this time it can be good to raise your tax rate, just remember it will cause some of your peasants to leave. Don't forget to cast a [spell shield](Magic%20Center) before you run out of turns.",
-					"spending": "Take cash you just made and spend it on the [public market](Public%20Market) or [private market](Black%20Market). You will likely want to buy food and troops. Compare prices to get the best deal."
+					"title": "Uso de turnos",
+					"initialPhase": "Precisa de terra. Com {{maxTurns}} turnos, [ataque](War%20Council), depois [construa](Build) ~45% de {{housingBuilding}} e {{economyBuilding}} cada; use [Dinheiro](Cash) até 100% de saúde. Baixar a [taxa de imposto](Cash) pode atrair {{peasantName}}.",
+					"cashProduction": "Com terra, edifícios e população, pode subir impostos para maximizar caixa (alguns camponeses saem). [Escudo mágico](Magic%20Center) antes de ficar sem turnos.",
+					"spending": "Gaste o lucro no [mercado público](Public%20Market) ou [mercado privado](Black%20Market); compare preços."
 				}
 			},
 			"mage": {
-				"title": "Mage Strategy",
-				"description": "As an Mage, your primary goal is to produce cash through magical spells.",
+				"title": "Estratégia de mago",
+				"description": "Como mago, ganha ouro com feitiços.",
 				"setup": {
-					"title": "Set up",
-					"raceRecommendation": "The best [races](Race) for a Mage strategy are Elf, Drow, and Pixie due to their magic and {{runeType}} production bonus. Mages are also best suited for the {{pastEra}} due to the {{runeBonus}}% increase to {{runeType}} production. Players do not need to advance eras as a Mage.",
-					"buildings": "Mages need to focus on one main building: [{{wizardBuilding}}](Build). {{wizardBuilding}} produce {{runeType}} and bring {{wizardType}} to your empire. You may also want to build some [{{farmType}}](Build) because {{wizardType}} like to eat a lot."
+					"title": "Preparação",
+					"raceRecommendation": "Melhores [raças](Race): Elfo, Drow e Pixie (magia e {{runeType}}). A {{pastEra}} dá {{runeBonus}}% extra em {{runeType}}; não é obrigatório mudar de era.",
+					"buildings": "Priorize [{{wizardBuilding}}](Build) para {{runeType}} e {{wizardType}}. Algumas [{{farmType}}](Build) ajudam porque os magos comem muito."
 				},
 				"turnsUsage": {
-					"title": "Using Turns",
-					"initialPhase": "In order to produce the most {{runeType}} and resources as possible, you will need a lot of land. Start your session with full turns ({{maxTurns}}). Use your initial turns [attacking](War%20Council) other players. Your health will drop as you attack. When your health is less than 70% or you fail an attack, it is time to stop and [build](Build). Build {{wizardBuilding}} so that they make up around 95% of your buildings. After you build, [meditate](Meditate) until you are back to 100% health. Repeat this process until you are out of attacks.",
-					"spellCasting": "Now that you have a lot of land and {{wizardType}}, focus some of your turns producing more {{runeType}}. When you have enough {{runeType}}, go to the [Magic Center](Magic%20Center) and cast [{{cashSpell}}](Magic%20Center) as many times as you can. If you run low on food you can buy some from the [markets](Public%20Market) or cast [{{foodSpell}}](Magic%20Center) to make some yourself.",
-					"spending": "Take cash you just made and spend it on the [public market](Public%20Market) or [private market](Black%20Market). You will likely want to buy food and troops. Compare prices to get the best deal."
+					"title": "Uso de turnos",
+					"initialPhase": "Precisa de terra. Com {{maxTurns}} turnos, [ataque](War%20Council), depois [construa](Build) ~95% de {{wizardBuilding}} e [Medite](Meditate) até 100% de saúde. Repita até ficar sem ataques.",
+					"spellCasting": "Com {{wizardType}} e mana, no [Centro mágico](Magic%20Center) lance [{{cashSpell}}](Magic%20Center) ao máximo. Compre comida nos [mercados](Public%20Market) ou use [{{foodSpell}}](Magic%20Center).",
+					"spending": "Gaste o ouro nos mercados; compare preços de comida e tropas."
 				}
 			},
 			"protection": {
-				"title": "Your First Turns in Protection",
-				"description": "Your empire is protected until you have used {{turnsProtection}} turns. You cannot attack nor be attacked during this time.",
+				"title": "Primeiros turnos em proteção",
+				"description": "O império está protegido até gastar {{turnsProtection}} turnos. Não pode atacar nem ser atacado.",
 				"gettingStarted": {
-					"exploring": "The first order of business should be expanding your lands by exploring. Once you have some land to work with, you need to build structures. The optimum structures will depend on your race and strategy choices. Finding your niche within the game is essential for having the most success. For example, if you notice a lack of food on the Public Market, farming could be a good choice.",
-					"magicTip": "It is recommended that every empire build some amount of {{wizardBuilding}} in order to advance between eras and cast spell shields for protection against Mages."
+					"exploring": "Expanda terras a explorar; depois construa conforme raça e estratégia. Se faltar comida no mercado público, agricultura pode ser forte.",
+					"magicTip": "Construa sempre algumas {{wizardBuilding}} para mudar de era e lançar escudos contra magos."
 				},
 				"leavingProtection": {
-					"timing": "Once you have used {{protectionEndTurns}} turns, it is best to wait until you have {{maxTurns}} turns again before breaking out of protection. Going forward it is recommended that you have full turns and use as many turns as possible in one session.",
-					"vulnerability": "When you are out of protection, you will be vulnerable to attacks from other players. On the other hand, you should be ready to launch your first attacks as soon as you can. Attacking is a much faster way to gain land than exploring.",
-					"militaryTip": "It can be beneficial to select one or two troop types to focus on in your army. Military units have different attack and defense capabilities in each era so find the one that works for you."
+					"timing": "Depois de {{protectionEndTurns}} turnos, espere voltar a ter {{maxTurns}} turnos antes de sair da proteção. Use sessões longas com turnos cheios.",
+					"vulnerability": "Fora da proteção pode ser atacado; também pode atacar — é a forma mais rápida de ganhar terra face à exploração.",
+					"militaryTip": "Focar um ou dois tipos de tropa ajuda; ataque e defesa mudam por era."
 				}
 			},
 			"summary": {

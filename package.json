@@ -10,6 +10,7 @@
     "promote-admin": "node scripts/promote-user-admin.cjs",
     "generate:cron-secret": "node scripts/generate-cron-secret.cjs",
     "locale:diff": "node scripts/locale-key-diff.cjs",
+    "locale:value-audit": "node scripts/locale-value-audit.cjs",
     "generate:achievements": "node scripts/generate-achievements-json.mjs"
   },
   "dependencies": {

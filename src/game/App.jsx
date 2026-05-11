@@ -24,6 +24,8 @@ import {
 } from "@mantine/core"
 import { NotificationsProvider, showNotification } from "@mantine/notifications"
 import neoIcon from "./icons/neoIcon.svg"
+
+const neoIconSrc = typeof neoIcon === "string" ? neoIcon : neoIcon.src
 import Sidebar from "./components/layout/sidebar"
 import InfoBar from "./components/layout/infobar"
 import { useDispatch, useSelector } from "react-redux"
@@ -358,7 +360,7 @@ function App() {
 										>
 											<Group align="center" spacing={4} noWrap>
 												<Image
-													src={neoIcon}
+													src={neoIconSrc}
 													height={38}
 													width={38}
 													alt=""

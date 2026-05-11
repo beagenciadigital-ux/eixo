@@ -20,6 +20,8 @@ import
 } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import neoIcon from '../../icons/neoIcon.svg'
+
+const neoIconSrc = typeof neoIcon === 'string' ? neoIcon : neoIcon.src
 import { useDispatch, useSelector } from 'react-redux'
 import { load, logout } from '../../store/userSlice'
 import ThemeToggle from '../../components/utilities/themeToggle'
@@ -141,7 +143,7 @@ function Admin()
                                     </MediaQuery>
                                     <Group align='center' spacing={4}>
                                         <MediaQuery smallerThan={400} styles={{ display: 'none' }}>
-                                            <Image src={neoIcon} height={38} width={38} sx={colorScheme === 'dark' ? ({ filter: 'invert(1)', opacity: '75%' }) : ({ filter: 'invert(0)', })} />
+                                            <Image src={neoIconSrc} height={38} width={38} sx={colorScheme === 'dark' ? ({ filter: 'invert(1)', opacity: '75%' }) : ({ filter: 'invert(0)', })} />
                                         </MediaQuery>
                                         <Title order={1} ml={0}>
                                             Admin Dashboard
