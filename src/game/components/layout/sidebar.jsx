@@ -105,7 +105,13 @@ const Sidebar = memo(({ game }) => {
 					marginTop: "0.5rem",
 				}}
 			>
-				<Button radius={0} component={Link} to="/select">
+				<Button
+					radius={0}
+					component={Link}
+					to="/select"
+					fullWidth
+					sx={{ whiteSpace: "normal", height: "auto" }}
+				>
 					<Title order={3} align="center" color="white" w={"100%"}>
 						{game.name}
 					</Title>
@@ -132,6 +138,8 @@ const Sidebar = memo(({ game }) => {
 							compact
 							to={`/app/${key}`}
 							variant={variant}
+							fullWidth
+							sx={{ whiteSpace: "normal", height: "auto" }}
 							key={key}
 						>
 							{t(i18nKey)}
@@ -144,11 +152,20 @@ const Sidebar = memo(({ game }) => {
 					href="https://discord.gg/bnuVy2pdgM"
 					target="_blank"
 					variant="subtle"
+					fullWidth
+					sx={{ whiteSpace: "normal", height: "auto" }}
 					rightIcon={<ArrowSquareOut />}
 				>
 					{t("layout.sidebar.headings.discord")}
 				</Button>
-				<Button component={Link} compact to="/app/Tips" variant="subtle">
+				<Button
+					component={Link}
+					compact
+					to="/app/Tips"
+					variant="subtle"
+					fullWidth
+					sx={{ whiteSpace: "normal", height: "auto" }}
+				>
 					{t("layout.sidebar.headings.gameTips")}
 				</Button>
 				<Title order={4}>{t("layout.sidebar.headings.useTurns")}</Title>
@@ -169,6 +186,7 @@ const Sidebar = memo(({ game }) => {
 							to={`/app/${key}`}
 							variant={variant}
 							fullWidth
+							sx={{ whiteSpace: "normal", height: "auto" }}
 							key={key}
 							className={setTutorialClassnames(key)}
 							onClick={() => {
@@ -266,6 +284,7 @@ const Sidebar = memo(({ game }) => {
 							to={`/app/${key}`}
 							variant={variant}
 							fullWidth
+							sx={{ whiteSpace: "normal", height: "auto" }}
 							key={key}
 							className={setTutorialClassnames(key)}
 							onClick={() => {
@@ -327,6 +346,7 @@ const Sidebar = memo(({ game }) => {
 							to={`/app/${key}`}
 							variant={variant}
 							fullWidth
+							sx={{ whiteSpace: "normal", height: "auto" }}
 							key={key}
 						>
 							{t(i18nKey)}
@@ -351,6 +371,7 @@ const Sidebar = memo(({ game }) => {
 							to={`/app/${key}`}
 							variant={variant}
 							fullWidth
+							sx={{ whiteSpace: "normal", height: "auto" }}
 							key={key}
 						>
 							{t(i18nKey)}
@@ -375,6 +396,7 @@ const Sidebar = memo(({ game }) => {
 							to={`/app/${key}`}
 							variant={variant}
 							fullWidth
+							sx={{ whiteSpace: "normal", height: "auto" }}
 							key={key}
 						>
 							{t(i18nKey)}
@@ -388,6 +410,7 @@ const Sidebar = memo(({ game }) => {
 					fullWidth
 					variant="subtle"
 					target="_blank"
+					sx={{ whiteSpace: "normal", height: "auto" }}
 					rightIcon={<ArrowSquareOut />}
 				>
 					{t("layout.sidebar.headings.donate")}

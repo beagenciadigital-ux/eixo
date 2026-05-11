@@ -1,11 +1,45 @@
 "use client";
 
 import "@/game/config/setupClientApi";
-import React, { StrictMode, useEffect } from "react";
+import React, { StrictMode, useEffect, useLayoutEffect } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { BrowserRouter } from "react-router-dom";
+import {
+	BrowserRouter,
+	useLocation,
+	useNavigate,
+} from "react-router-dom";
 import { store, persistor } from "@/game/store/store";
+
+/**
+ * Rotas legadas usam espaços no segmento (ex.: "Magic Center"). O pathname da
+ * barra de endereços pode vir percent-encoded (%20); o React Router faz match
+ * literal, por isso normalizamos para o path decodificado.
+ */
+function NormalizeEncodedPathname({ children }: { children: React.ReactNode }) {
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	useLayoutEffect(() => {
+		let decoded: string;
+		try {
+			decoded = decodeURI(location.pathname);
+		} catch {
+			return;
+		}
+		if (decoded === location.pathname) return;
+		navigate(
+			{
+				pathname: decoded,
+				search: location.search,
+				hash: location.hash,
+			},
+			{ replace: true },
+		);
+	}, [location.pathname, location.search, location.hash, navigate]);
+
+	return <>{children}</>;
+}
 
 export function ClientProviders({
 	children,
@@ -34,7 +68,7 @@ export function ClientProviders({
 							v7_relativeSplatPath: true,
 						}}
 					>
-						{children}
+						<NormalizeEncodedPathname>{children}</NormalizeEncodedPathname>
 					</BrowserRouter>
 				</PersistGate>
 			</Provider>

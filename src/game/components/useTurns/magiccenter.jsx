@@ -119,15 +119,15 @@ export default function MagicCenter({ size })
         return { nextEra, canAdvance, prevEra, canRegress }
     }
 
-    const timeGateCheck = (effects) =>
+    const timeGateCheck = (effectsList) =>
     {
-        let timeGate = false
-        for (const effect of effects) {
+        if (!Array.isArray(effectsList)) return false
+        for (const effect of effectsList) {
             if (effect.empireEffectName === 'time gate') {
-                timeGate = true
+                return true
             }
         }
-        return timeGate
+        return false
     }
 
     const { nextEra, canAdvance, prevEra, canRegress } = eraCheck(empire)

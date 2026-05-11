@@ -298,17 +298,23 @@ function App() {
 								<Navbar
 									padding="sm"
 									hidden={false}
-									width={{ sm: 280, base: 280 }}
+									width={{ base: 300, sm: 300 }}
 									zIndex={110}
 									sx={{
 										paddingBottom: "calc(1em + env(safe-area-inset-bottom))",
+										overflow: "hidden",
 									}}
 								>
-									<Navbar.Section grow ml={10}>
+									<Navbar.Section
+										grow
+										ml={10}
+										sx={{ minHeight: 0, flex: "1 1 0" }}
+									>
 										<Box
 											h="100%"
 											sx={{
 												minHeight: 0,
+												maxHeight: "100%",
 												overflowY: "auto",
 												overflowX: "hidden",
 											}}
@@ -350,23 +356,36 @@ function App() {
 											style={{ textDecoration: "none", color: "inherit" }}
 											href="/"
 										>
-											<Group align="center" spacing={4}>
-												<MediaQuery
-													smallerThan={400}
-													styles={{ display: "none" }}
+											<Group align="center" spacing={4} noWrap>
+												<Image
+													src={neoIcon}
+													height={38}
+													width={38}
+													alt=""
+													sx={(theme) => ({
+														flexShrink: 0,
+														...(colorScheme === "dark"
+															? { filter: "invert(1)", opacity: "75%" }
+															: { filter: "invert(0)" }),
+														[theme.fn.smallerThan("sm")]: {
+															height: 32,
+															width: 32,
+														},
+													})}
+												/>
+												<Title
+													order={1}
+													ml={0}
+													sx={(theme) => ({
+														overflow: "hidden",
+														textOverflow: "ellipsis",
+														whiteSpace: "nowrap",
+														minWidth: 0,
+														[theme.fn.smallerThan("sm")]: {
+															fontSize: theme.fontSizes.lg,
+														},
+													})}
 												>
-													<Image
-														src={neoIcon}
-														height={38}
-														width={38}
-														sx={
-															colorScheme === "dark"
-																? { filter: "invert(1)", opacity: "75%" }
-																: { filter: "invert(0)" }
-														}
-													/>
-												</MediaQuery>
-												<Title order={1} ml={0}>
 													{BRAND_NAME}
 												</Title>
 											</Group>
