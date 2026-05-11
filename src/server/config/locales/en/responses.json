@@ -82,6 +82,9 @@
 		"rushToBank": "You have run out of money! You rush to the bank to take out a loan.",
 		"empireDisabled": "Your empire has been disabled by administration.",
 		"notEnoughTurns": "Not enough turns available.",
-		"specifyTurns": "Specify the number of turns to use."
+		"specifyTurns": "Specify the number of turns to use.",
+		"productionCash": "You produced {{amount}} while cashing.",
+		"productionIndustry": "You produced {{arm}} {{armUnit}}, {{lnd}} {{lndUnit}}, {{fly}} {{flyUnit}}, and {{sea}} {{seaUnit}}.",
+		"productionResource": "You produced {{amount}} {{unit}}."
 	}
 }

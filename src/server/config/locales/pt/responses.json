@@ -82,6 +82,9 @@
 		"rushToBank": "Ficaste sem dinheiro! Corres ao banco para pedir um empréstimo.",
 		"empireDisabled": "O teu império foi desativado pela administração.",
 		"notEnoughTurns": "Não há turnos suficientes disponíveis.",
-		"specifyTurns": "Indica quantos turnos queres usar."
+		"specifyTurns": "Indica quantos turnos queres usar.",
+		"productionCash": "Produziste {{amount}} ao usar turnos em Dinheiro.",
+		"productionIndustry": "Produziste {{arm}} {{armUnit}}, {{lnd}} {{lndUnit}}, {{fly}} {{flyUnit}} e {{sea}} {{seaUnit}}.",
+		"productionResource": "Produziste {{amount}} {{unit}}."
 	}
 }

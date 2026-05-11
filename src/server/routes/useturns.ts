@@ -33,6 +33,24 @@ import { calcPeasants } from '../services/turn/calcPeasants'
 import { translate } from '../util/translation'
 import { language as languageMiddleware } from '../middleware/language'
 
+/** BCP 47 locale for number grouping in turn result messages */
+function localeForTurnMessages(language: string): string {
+	if (language === 'pt') return 'pt-BR'
+	if (language === 'es') return 'es'
+	return 'en-US'
+}
+
+/** Game UI uses a leading $; avoid `$-123` by placing the minus before the dollar sign */
+function formatSignedGameDollars(value: number, language: string): string {
+	const locale = localeForTurnMessages(language)
+	const rounded = Math.round(value)
+	const abs = Math.abs(rounded)
+	const formatted = abs.toLocaleString(locale)
+	if (rounded === 0) return `$${formatted}`
+	if (rounded < 0) return `-$${formatted}`
+	return `+$${formatted}`
+}
+
 function desertionNotice(
 	language: string,
 	empire: Empire,
@@ -285,7 +303,11 @@ export const useTurn = async (
 		// money = money - loanpayed
 		if (type === 'cash') {
 			turnResult = money
-			message['production'] = `You produced $${money} while cashing.`
+			message['production'] = translate(
+				'responses:turns.productionCash',
+				language,
+				{ amount: formatSignedGameDollars(money, language) },
+			)
 		}
 
 		// console.log(money)
@@ -336,11 +358,21 @@ export const useTurn = async (
 		current['trpSea'] = trpsea
 
 		if (type === 'industry') {
-			message['production'] = `You produced ${trparm} ${
-				eraArray[empire.era].trparm
-			}, ${trplnd} ${eraArray[empire.era].trplnd}, ${trpfly} ${
-				eraArray[empire.era].trpfly
-			}, and ${trpsea} ${eraArray[empire.era].trpsea}.`
+			const era = eraArray[empire.era]
+			message['production'] = translate(
+				'responses:turns.productionIndustry',
+				language,
+				{
+					arm: trparm,
+					armUnit: era.trparm,
+					lnd: trplnd,
+					lndUnit: era.trplnd,
+					fly: trpfly,
+					flyUnit: era.trpfly,
+					sea: trpsea,
+					seaUnit: era.trpsea,
+				},
+			)
 		}
 
 		// update food
@@ -382,9 +414,11 @@ export const useTurn = async (
 		}
 
 		if (type === 'farm') {
-			message['production'] = `You produced ${food} ${
-				eraArray[empire.era].food
-			}.`
+			message['production'] = translate(
+				'responses:turns.productionResource',
+				language,
+				{ amount: food, unit: eraArray[empire.era].food },
+			)
 		}
 
 		// health
@@ -418,9 +452,11 @@ export const useTurn = async (
 
 		if (type === 'meditate') {
 			turnResult = runes
-			message['production'] = `You produced ${runes} ${
-				eraArray[empire.era].runes
-			}.`
+			message['production'] = translate(
+				'responses:turns.productionResource',
+				language,
+				{ amount: runes, unit: eraArray[empire.era].runes },
+			)
 		}
 
 		// add/lose wizards

@@ -213,6 +213,13 @@ const spellResult = (result, t) =>
 	}
 }
 
+function productionHighlightColor(data) {
+	if (data.type === 'cash' && data.money < 0) return 'red'
+	if (data.type === 'farm' && data.food < 0) return 'red'
+	if (data.type === 'meditate' && data.runes < 0) return 'red'
+	return 'green'
+}
+
 export default function TurnResultCard({ data, era })
 {
 	const { t } = useTranslation(['turns'])
@@ -236,7 +243,7 @@ export default function TurnResultCard({ data, era })
 					})}>
 						{data.type === 'explore' && <Text align='center' weight='bold' color='green'>{t('turns:results.exploreSuccess', { count: data.result.toLocaleString() })}</Text>}
 						{data?.messages?.production ? (
-							<Text align='center' weight='bold' color='green'>{data.messages.production}</Text>
+							<Text align='center' weight='bold' color={productionHighlightColor(data)}>{data.messages.production}</Text>
 						) : null}
 						{data?.messages?.desertion && <Text align='center' color='red' weight='bold'>{data.messages.desertion}</Text>}
 						{data.attack && attackResult(data.attack, era, t)}

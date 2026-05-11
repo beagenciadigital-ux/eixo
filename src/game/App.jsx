@@ -297,9 +297,8 @@ function App() {
 								isMobile ? undefined : (
 								<Navbar
 									padding="sm"
-									hiddenBreakpoint="sm"
-									hidden={!opened}
-									width={{ sm: 200, base: 200 }}
+									hidden={false}
+									width={{ sm: 280, base: 280 }}
 									zIndex={110}
 									sx={{
 										paddingBottom: "calc(1em + env(safe-area-inset-bottom))",
