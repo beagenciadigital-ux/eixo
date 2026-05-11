@@ -63,6 +63,14 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
 	const { username, password, stayLoggedIn } = req.body;
 	const language = res.locals.language;
+
+	if (!process.env.JWT_SECRET || process.env.JWT_SECRET.trim() === "") {
+		console.error(
+			"[auth/login] JWT_SECRET is missing or empty — set it in EasyPanel / env (see .env.example)",
+		);
+		return sendError(res, 500)("generic", language);
+	}
+
 	// console.log(username, password)
 	try {
 		let errors: any = {};
@@ -82,13 +90,24 @@ const login = async (req: Request, res: Response) => {
 
 		if (!user) return sendError(res, 404)("auth.userNotFound", language);
 
+		if (
+			typeof user.password !== "string" ||
+			!user.password.startsWith("$2")
+		) {
+			console.error(
+				"[auth/login] stored password is not a bcrypt hash for user:",
+				username,
+			);
+			return sendError(res, 500)("generic", language);
+		}
+
 		const passwordMatches = await bcrypt.compare(password, user.password);
 
 		if (!passwordMatches) {
 			return sendError(res, 401)("auth.passwordIncorrect", language);
 		}
 
-		const token = jwt.sign({ username }, process.env.JWT_SECRET!);
+		const token = jwt.sign({ username }, process.env.JWT_SECRET);
 
 		// const data = token
 		let time = 3600;
@@ -137,7 +156,7 @@ const login = async (req: Request, res: Response) => {
 
 		return res.json(user);
 	} catch (err) {
-		console.log(err);
+		console.error("[auth/login] unexpected error:", err);
 		return sendError(res, 500)("generic", language);
 	}
 };

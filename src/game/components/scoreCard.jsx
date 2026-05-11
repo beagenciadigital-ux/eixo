@@ -41,6 +41,7 @@ import { useTranslation } from "react-i18next"
 
 // Extract card header into separate component
 const EmpireStats = memo(({ empire, scoreEnabled }) => {
+	const { t } = useTranslation(["summary", "races"])
 	return (
 		<Group sx={{ gap: "7px" }}>
 			{scoreEnabled && (
